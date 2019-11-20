@@ -1,0 +1,27 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="zh_CN">
+<head>
+    <title>{% block title %}众包网站{% endblock %}</title>
+    <meta charset="UTF-8">
+    {% block style %}
+        <style type="text/css">
+
+        </style>
+    {% endblock %}
+
+    {% block js %}
+
+    {% endblock %}
+</head>
+<body>
+{% include 'head.html' %}
+{% block content %}
+
+{% endblock %}
+
+{% include 'footer.html' %}
+</body>
+{% block downjs %}
+{% endblock %}
+</html>

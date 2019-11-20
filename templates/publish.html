@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>发表博客</title>
+    <link rel="stylesheet" href="/static/css/index.css">
+    <script src="/static/js/jquery.min.js"></script>
+    <script src="/static/js/scrollReveal.js"></script>
+    <!-- 引入wangEditor插件 -->
+    <script src="/static/js/wangEditor.js"></script>
+</head>
+<body>
+<!-- 嵌入导航栏页面 -->
+{% include 'head.html' %}
+
+<!-- 宏定义 -->
+{% import 'macros.html' as index_macro %}
+<!-- 背景图片 -->
+<div class="bgimg">
+
+</div>
+{{ index_macro.lists_tip("发表博客","不要轻易放弃，学习成长的路上，我们长路漫漫，只因学无止境。") }}
+<!-- 第二层 包含发表博客 和右侧区域 -->
+<div id="layer2">
+    <!-- 发表博客 -->
+    <div class="cleft">
+        <div class="send">
+            <!-- 文本框 -->
+            <div class="stitle">
+                <input type="text" id="title">&nbsp;文章标题
+            </div>
+            <!-- 富文本编辑框 -->
+            <div id="editor"></div>
+            <!-- 发表按钮 -->
+            <div class="sbtn">
+                <button id="send">发表</button>
+            </div>
+        </div>
+    </div>
+    <!-- 右侧区域 -->
+    <div class="cright">
+        <h3>特别推荐</h3>
+        <div class="line"></div>
+        {{ index_macro.index_image("/static/images/banner01.jpg") }}
+        {{ index_macro.index_image("/static/images/banner02.jpg") }}
+        {{ index_macro.index_image("/static/images/banner03.jpg") }}
+    </div>
+</div>
+<!-- 导入底部文件 -->
+{% include 'footer.html' %}
+<!-- 加载js -->
+<script src="/static/js/index.js"></script>
+<script>
+    //调用获取焦点的函数
+    getFocus($("#l7 a"));
+
+    // 实例化插件 wangEditor富文本编辑器
+    var E = window.wangEditor;
+    var editor = new E('#editor');
+    editor.create();
+
+    //绑定点击发表按钮的事件
+    $("#send").on("click", function () {
+        alert(editor.txt.text());
+        alert(editor.txt.html());
+    })
+</script>
+</body>
+</html>

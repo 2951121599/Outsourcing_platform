@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="/static/css/index.css">
+    <script src="/static/js/jquery.min.js"></script>
+    <script src="/static/js/system.js"></script>
+</head>
+<body>
+<img id="bg" width="100%" src="/static/images/b.jpg" alt="">
+<div id="log">
+    <h3>登录</h3>
+    <hr>
+    <form action="" onsubmit="return sub();">
+        <div>
+            <input class="txt" type="text" placeholder="请输入用户名" id="username" name="username">
+        </div>
+        <div>
+            <input class="txt" type="text" placeholder="请输入密码" id="userpass" name="userpass">
+        </div>
+        <div>
+            <input class="btn" type="submit" value="提交">
+        </div>
+    </form>
+</div>
+<script>
+    //编写检验提交数据是否为空的函数
+    function sub() {
+        //使用变量缓存元素对象
+        var $username = $("#username");
+        var $userpass = $("#userpass");
+        //检测变量中是否输入了值
+        if ($username.val() == "" || $userpass.val() == "") {
+            //如果用户名为空
+            if ($username.val() == "") {
+                //弹出错误提示
+                alert("请输入用户名");
+                //元素获取输入的焦点
+                $username.focus();
+                //阻止提交
+                return false;
+            } else {
+                alert("请输入密码");
+                $userpass.focus();
+                //阻止提交
+                return false;
+            }
+        } else {
+            //保存用户名
+            //本地存储对象，在浏览器对象提供
+            //设置本地存储对象的值
+            window.localStorage.setItem("username", $username.val())
+            //可以提交
+            return true;
+        }
+    }
+
+    //页面加载完成
+    $(function () {
+        //console.log("adf")
+        //获取本地存储的数据
+        if (window.localStorage.getItem("username")) {
+            var _name = window.localStorage.getItem("username");
+            //找到文本框对象，并赋值
+            $("#username").val(_name);
+        }
+    })
+</script>
+</body>
+
+</html>

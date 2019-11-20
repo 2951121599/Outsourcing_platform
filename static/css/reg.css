@@ -1,0 +1,361 @@
+
+/*--reset 最新最全最好的Bootstrap模板：http://www.bootstrapmb.com--*/
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,dl,dt,dd,ol,nav ul,nav li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{margin:0;padding:0;border:0;font-size:100%;font:inherit;vertical-align:baseline;}
+article, aside, details, figcaption, figure,footer, header, hgroup, menu, nav, section {display: block;}
+ol,ul{list-style:none;margin:0px;padding:0px;}
+blockquote,q{quotes:none;}
+blockquote:before,blockquote:after,q:before,q:after{content:'';content:none;}
+table{border-collapse:collapse;border-spacing:0;}
+/*--start editing from here--*/
+a{text-decoration:none;}
+.txt-rt{text-align:right;}/* text align right */
+.txt-lt{text-align:left;}/* text align left */
+.txt-center{text-align:center;}/* text align center */
+.float-rt{float:right;}/* float right */
+.float-lt{float:left;}/* float left */
+.clear{clear:both;}/* clear float */
+.pos-relative{position:relative;}/* Position Relative */
+.pos-absolute{position:absolute;}/* Position Absolute */
+.vertical-base{	vertical-align:baseline;}/* vertical align baseline */
+.vertical-top{	vertical-align:top;}/* vertical align top */
+nav.vertical ul li{	display:block;}/* vertical menu */
+nav.horizontal ul li{	display: inline-block;}/* horizontal menu */
+img{max-width:100%;}
+/*--end reset--*/
+body {
+font-family:Verdana;
+     'Roboto Condensed', sans-serif;
+	background-image: linear-gradient(to left, rgb(178, 69, 146), rgb(241, 95, 121));
+    background-attachment: fixed;
+}
+h1 {
+    font-size: 2.8em;
+    text-align: center;
+    color: #fff;
+    font-weight: 100;
+	margin-bottom: 1em;
+
+}
+.login-form h2, .login-form h3 {
+    font-size: 2.2em;
+    color: #fff;
+    text-align: center;
+    margin-bottom: 1.5em;
+    line-height: 0.7em;
+}
+/*-- main --*/
+.main {
+    padding: 2em 0 0;
+	text-align: center;
+}
+.main-w3lsrow {
+    width: 51%;
+    margin: 0 auto;
+}
+.login-form {
+    width: 38%;
+	float:left;
+    background: #222430;
+    padding: 2.5em;
+    background-size: cover;
+    -webkit-box-shadow: -6px 6px 3px 0px rgb(28, 43, 61);
+    -moz-box-shadow: -6px 6px 3px 0px rgb(28, 43, 61);
+    -o-box-shadow: -6px 6px 3px 0px rgb(28, 43, 61);
+    -ms-box-shadow: -6px 6px 3px 0px rgb(28, 43, 61);
+    box-shadow: 0px 5px 9px 0px rgba(0, 0, 0, 0.68);
+    text-align: left;
+}
+.login-form.agileits-right {
+	float: right;
+}
+.input-row {
+    padding: 1em 1.5em;
+    border: 1px solid #c7c7c7;
+	-webkit-border-radius: 15px;
+	-moz-border-radius: 15px;
+	-o-border-radius: 15px;
+	-ms-border-radius: 15px;
+    border-radius: 15px;
+}
+.login-form input[type="text"], .login-form input[type="password"] {
+    outline: none;
+    font-size: 1em;
+    color: #000;
+    padding: .6em;
+    margin: 0;
+    width: 93%;
+    border: none;
+    -webkit-appearance: none;
+    display: block;
+    background: #fff;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+	-o-border-radius: 2px;
+	-ms-border-radius: 2px;
+    border-radius: 2px;
+}
+.login-form p {
+    font-size: 1em;
+    color: #fff;
+    margin: 1.5em 0 .5em;
+	font-weight: 600;
+}
+/*-- checkbox --*/
+.anim {
+    font-size: 0.9em;
+    color: #fff;
+    cursor: pointer;
+    position: relative;
+    margin: 2em 0 0;
+    font-weight: 600;
+    display: inline-block;
+}
+input.checkbox {
+    background: #222430;
+    cursor: pointer;
+	vertical-align: middle;
+}
+input.checkbox:before {
+	content: "";
+	position: absolute;
+	width: 1em;
+	height: 1em;
+	background: inherit;
+}
+input.checkbox:after {
+	content: "";
+	position: absolute;
+	top: 0px;
+	left: 0;
+	z-index: 1;
+	width: 1em;
+	height: 1em;
+	border: 1px solid #F44336;
+	-webkit-transition: .4s all;
+	-moz-transition: .4s all;
+	-o-transition: .4s all;
+	-ms-transition: .4s all;
+	transition: .4s all;
+}
+input.checkbox:checked:after {
+	transform: rotate(-45deg);
+	height: .5rem;
+	border-color: #F44336;
+	border-top-color: transparent;
+	border-right-color: transparent;
+}
+
+@keyframes rippling {
+	50% {
+		border-left-color: #F44336;
+	}
+	100% {
+		border-bottom-color: #F44336;
+		border-left-color: #F44336;
+	}
+}
+.login-form.login-form-left .anim {
+    margin-top: 2.5em;
+}
+/*-- //checkbox --*/
+.login-form input[type="submit"] {
+    font-size: 1em;
+    color: #fff;
+    background: #F44336;
+    border: 1px solid #F44336;
+    outline: none;
+    cursor: pointer;
+    padding: .6em 1em;
+    -webkit-appearance: none;
+    width: 100%;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    -ms-border-radius: 2px;
+    -o-border-radius: 2px;
+    border-radius: 2px;
+    margin-top: 4em;
+}
+.login-form input[type="submit"]:hover {
+    background: transparent;
+    color: #F44336;
+	transition: 0.5s all ;
+    -webkit-transition: 0.5s all;
+    -moz-transition: 0.5s all;
+    -o-transition: 0.5s all;
+    -ms-transition: 0.5s all;
+}
+.login-agileits-bottom {
+    margin-top: 3.9em;
+    text-align: center;
+}
+.login-agileits-bottom  h6 {
+    font-size: 1em;
+    font-weight: 600;
+}
+.login-agileits-bottom h6 a {
+    color: #fff;
+    transition: 0.5s all ;
+    -webkit-transition: 0.5s all;
+    -moz-transition: 0.5s all;
+    -o-transition: 0.5s all;
+    -ms-transition: 0.5s all;
+}
+.login-agileits-bottom h6 a:hover{
+    color: #F44336;
+}
+/*-- //main --*/
+/*-- copyright --*/
+.copyright {
+    margin: 3em 0 2em;
+    text-align: center;
+}
+.copyright p {
+    font-size: 1em;
+    color: #fff;
+	line-height:1.8em;
+}
+.copyright p a{
+    color: #fff;
+	-webkit-transition: 0.5s all;
+	-moz-transition: 0.5s all;
+	-o-transition: 0.5s all;
+	-ms-transition: 0.5s all;
+	transition: 0.5s all;
+}
+.copyright p a:hover{
+    color: #222430;
+}
+/*-- //copyright --*/
+/*-- responsive-design --*/
+@media(max-width:1440px){
+.main-w3lsrow {
+    width: 57%;
+}
+}
+@media(max-width:1366px){
+.main-w3lsrow {
+    width: 62%;
+}
+}
+@media(max-width:1080px){
+.main-w3lsrow {
+    width: 73%;
+}
+}
+@media(max-width:991px){
+h1 {
+    font-size: 2.5em;
+}
+.login-form {
+    padding: 2em;
+}
+.main-w3lsrow {
+    width: 70%;
+}
+.login-form p {
+    margin: 1.2em 0 .5em;
+}
+.anim {
+    margin: 1.5em 0 0;
+}
+.login-form.login-form-left .anim {
+    margin-top: 2em;
+}
+.login-form input[type="submit"] {
+    margin-top: 3em;
+}
+.login-agileits-bottom {
+    margin-top: 3.6em;
+}
+.login-form h2, .login-form h3 {
+    font-size: 1.8em;
+}
+}
+@media(max-width:800px){
+.main-w3lsrow {
+    width: 82%;
+}
+h1 {
+    font-size: 2.2em;
+}
+}
+@media(max-width:667px){
+.main-w3lsrow {
+    width: 92%;
+}
+.login-form input[type="text"], .login-form input[type="password"] {
+    padding: .5em;
+}
+}
+@media(max-width:600px){
+.main-w3lsrow {
+    width: inherit;
+}
+.login-form, .login-form.agileits-right {
+    width: 50%;
+    float: none;
+    margin: 0 auto;
+}
+.login-form.agileits-right {
+    margin: 1.5em auto 0;
+}
+.login-agileits-bottom {
+    margin-top: 2em;
+}
+.login-form input[type="submit"] {
+    margin-top: 2em;
+}
+}
+@media(max-width:414px){
+h1 {
+    font-size: 1.8em;
+}
+.login-form, .login-form.agileits-right {
+    width: 60%;
+}
+.copyright p {
+    padding: 0 1em;
+}
+}
+@media(max-width:384px){
+.main {
+    padding: 1.5em 0 0;
+}
+.login-form h2, .login-form h3 {
+    margin-bottom: 1em;
+}
+}
+@media(max-width:320px){
+h1 {
+    font-size: 1.6em;
+}
+.login-form, .login-form.agileits-right {
+    width: 72%;
+    padding: 1.5em;
+}
+.login-form h2, .login-form h3 {
+    font-size: 1.4em;
+}
+.login-form p {
+    font-size: 0.9em;
+}
+.login-form.login-form-left .anim {
+    margin-top: 1.5em;
+}
+.login-form input[type="submit"] {
+    font-size: 0.9em;
+}
+.login-agileits-bottom h6 {
+    font-size: 0.9em;
+}
+.login-agileits-bottom {
+    margin-top: 1.5em;
+}
+.copyright {
+    margin: 2em 0 1em;
+}
+.copyright p {
+    font-size: 0.9em;
+}
+}
+/*-- //responsive-design --*/

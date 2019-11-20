@@ -1,0 +1,470 @@
+/*通用样式*/
+ul, h3, p, table, body {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    background-color: #ccc;
+}
+
+ul {
+    list-style-type: none;
+}
+
+.fl {
+    float: left;
+}
+
+/*右侧浮动*/
+.fr {
+    float: right;
+}
+
+/*清除浮动*/
+.cb {
+    clear: both;
+}
+
+a {
+    text-decoration: none;
+    color: #fff;
+}
+
+/*通用样式结束*/
+
+/*导航栏样式*/
+#nav {
+    width: 100%;
+    background-color: #555;
+    color: #fff;
+    /*固定位置 防止覆盖*/
+    position: fixed;
+    top: 0;
+    z-index: 9;
+}
+
+#nav .con {
+    width: 1140px;
+    /*水平居中*/
+    margin: 0 auto;
+    /*包裹浮动元素*/
+    overflow: hidden;
+    /*高度*/
+    height: 80px;
+    /*垂直居中*/
+    line-height: 80px;
+}
+
+#nav .con .log {
+    /*浮动左侧对齐*/
+    float: left;
+    /*设置字体大小*/
+    font-size: 28px;
+    /*右边距*/
+    margin-right: 100px;
+}
+
+#nav .con ul {
+    /*浮动左侧对齐*/
+    float: left;
+    /*包裹浮动元素li*/
+    overflow: hidden;
+}
+
+#nav .con ul li {
+    /*浮动左侧对齐*/
+    float: left;
+    /*宽度*/
+    width: 80px;
+    /*文字居中*/
+    text-align: center;
+    /*距右侧li*/
+    margin-right: 20px;
+}
+
+/*控制登录注册*/
+#nav .con .act {
+    /*浮动到最右侧*/
+    float: right;
+}
+
+#nav .con .act a {
+    margin-right: 10px;
+}
+
+/*获取焦点 改变颜色*/
+#nav .focus {
+    color: aqua;
+}
+
+/*子类导航*/
+/*ul*/
+#nav #sub_nav {
+    /*开始时隐藏*/
+    display: none;
+    /*背景颜色*/
+    background-color: #fff;
+    /*绝对定位 悬浮*/
+    position: absolute;
+    /*低于导航的权重*/
+    z-index: 5;
+    /*宽度*/
+    width: 180px;
+    /*距底部距离*/
+    padding-bottom: 20px;
+}
+
+#nav #sub_nav li {
+    width: 100%;
+    height: 42px;
+    line-height: 42px;
+    margin-left: 30px;
+    /*文字左对齐*/
+    text-align: left;
+}
+
+#nav #sub_nav li a {
+    color: #000;
+}
+
+#nav #sub_nav li a:hover {
+    color: red;
+}
+
+/*导航栏样式结束*/
+
+/*第一层*/
+#layer1 {
+    width: 1140px;
+    overflow: hidden;
+    /*距上100px 左右居中 距下0*/
+    margin: 100px auto 0;
+}
+
+/*左侧轮播图*/
+#layer1 .lleft {
+    float: left;
+    width: 752px;
+    height: 452px;
+    margin-right: 23px;
+    position: relative;
+}
+
+#layer1 .lleft p {
+    position: absolute;
+    color: white;
+    width: 712px;
+    padding: 10px 20px;
+    left: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+/*右侧广告*/
+#layer1 .lright {
+    float: right;
+    width: 363px;
+}
+
+#layer1 #imgleft, #layer1 #imgright {
+    font-size: 100px;
+    width: 50px;
+    text-align: center;
+    color: red;
+    /*透明度*/
+    opacity: 0.7;
+    /*悬浮*/
+    position: absolute;
+    top: 50%;
+    height: 56px;
+    line-height: 36px;
+    margin-top: -28px;
+}
+
+#layer1 #imgleft:hover, #layer1 #imgright:hover {
+    opacity: 1;
+}
+
+#layer1 #imgright {
+    right: 0
+}
+
+/*右侧广告图 box*/
+#layer1 .lright .box {
+    position: relative;
+    height: 216px;
+}
+
+/*过滤器*/
+#layer1 .lright .box:nth-child(2) {
+    margin-top: 20px;
+}
+
+#layer1 .lright .box .btitle,
+#layer1 .lright .box p {
+    position: absolute;
+}
+
+#layer1 .lright .box .btitle {
+    background-color: #555;
+    color: white;
+    border-radius: 3px;
+    font-size: 13px;
+    top: 15px;
+    left: 15px;
+    padding: 5px;
+}
+
+#layer1 .lright .box p {
+    bottom: 0;
+    left: 0;
+    padding: 10px 0 10px 20px;
+    width: 345px;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+}
+
+
+/*登陆的背景*/
+#bg {
+    opacity: 0.3;
+    position: fixed;
+}
+
+#log {
+    width: 480px;
+    height: 336px;
+    background-color: white;
+    border-radius: 8px;
+    position: absolute;
+    left: 50%;
+    margin-left: -240px;
+    top: 50%;
+    margin-top: -168px;
+}
+
+#log h3 {
+    text-align: center;
+}
+
+#log form {
+    margin-left: 30px;
+}
+
+
+/*第二层 layer2 内容页样式开始*/
+/*左侧内容*/
+#layer2 {
+    width: 1140px;
+    /*居中*/
+    margin: 20px auto;
+    overflow: hidden;
+}
+
+#layer2 .cleft {
+    float: left;
+    width: 752px;
+}
+
+#layer2 .cright {
+    float: right;
+    width: 365px;
+}
+
+/*发表博客开始*/
+#layer2 .cleft .send {
+    background-color: white;
+    padding: 20px 15px;
+}
+
+#layer2 .cleft .send .stitle {
+    margin: 20px 0;
+}
+
+#layer2 .cleft .send div .stitle input {
+    border: 1px solid #ccc;
+    padding: 8px 10px;
+}
+
+#layer2 .cleft .send .sbtn button {
+    padding: 10px 20px;
+    border-radius: 8px;
+    border: solid 1px #555555;
+    font-weight: 700;
+    font-size: 18px;
+}
+
+#layer2 .cleft .send .sbtn button:hover {
+    background-color: #555;
+    color: white;
+}
+
+/*发表博客结束*/
+
+/*宏模板样式开始*/
+/*左侧模板*/
+.ccon {
+    background-color: white;
+    padding: 30px 20px;
+    margin-bottom: 20px;
+}
+
+/*标题*/
+.ccon .cctitle {
+    font-size: 25px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+/*div包含图片和文字和阅读量*/
+.ccon .ccframe {
+    overflow: hidden;
+}
+
+/*图片*/
+.ccon .ccframe img {
+    float: left
+}
+
+/*文字和阅读量*/
+.ccon .ccright {
+    float: right;
+    width: 400px;
+    color: #444;
+}
+
+.ccon .ccright p {
+    margin: 30px 20px;
+}
+
+.ccon .ccright .info {
+    margin: 30px 20px;
+}
+
+
+/*右侧*/
+#layer2 .cright {
+    float: right;
+    width: 365px;
+    background-color: white;
+    padding: 30px 0 10px 0;
+}
+
+#layer2 .cright div {
+    margin-bottom: 20px;
+    margin-left: 20px;
+}
+
+#layer2 .cright h3 {
+    margin-left: 20px;
+}
+
+#layer2 .cright .line {
+    border-bottom: 2px solid #444;
+    width: 70px;
+    margin: 20px 0 20px 20px;
+}
+
+
+/*内容页样式结束*/
+
+
+/*底部样式开始*/
+#footer {
+    width: 100%;
+    background-color: #555;
+    color: #f1f1f1;
+}
+
+#footer p {
+    text-align: center;
+    width: 1140px;
+    margin: 0 auto;
+    height: 80px;
+    line-height: 80px;
+}
+
+/*底部样式结束*/
+
+/*中间背景图片开始*/
+.bgimg {
+    margin-top: 80px;
+    width: 100%;
+    height: 202px;
+    background: url("/static/images/page_bg1.png") no-repeat;
+    background-size: 100%;
+}
+
+/*中间背景图片结束*/
+
+/*中间信息提示栏样式开始*/
+.title {
+    width: 1140px;
+    margin: 20px auto;
+    overflow: hidden;
+    border-bottom: #555 1px solid;
+}
+
+.title .ltip {
+    float: left;
+    padding: 20px 40px;
+    background-color: #555;
+    color: white;
+    font-size: 20px;
+}
+
+.title .rtip {
+    float: right;
+    margin-top: 30px;
+}
+
+/*中间信息提示栏样式结束*/
+
+
+/*图片列表内容开始*/
+/*一行*/
+.items {
+    width: 1140px;
+    margin: 20px auto;
+    overflow: hidden;
+}
+
+/*单个*/
+.items .item {
+    float: left;
+    position: relative;
+    background-color: white;
+    margin: 0 5px 0 10px;
+}
+
+.items .item div img {
+    width: 270px;
+    height: 178px;
+}
+
+.items .item p {
+    color: black;
+    margin: 10px 25px 20px 20px;
+    font-size: 15px;
+    /*要能显示两行 给宽和高*/
+    width: 220px;
+    height: 42px;
+    /*文字超出多余的隐藏*/
+    overflow: hidden;
+}
+
+.items .item span {
+    position: absolute;
+    background-color: #c02640;
+    color: white;
+    font-size: 13px;
+    padding: 3px 5px;
+    border-radius: 3px;
+    /*绝对定位一定要给偏移量*/
+    top: 15px;
+    right: 15px;
+}
+
+/*中间信息内容结束*/
+

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>列表页</title>
+    <link rel="stylesheet" href="/static/css/index.css">
+    <script src="/static/js/jquery.min.js"></script>
+    <script src="/static/js/scrollReveal.js"></script>
+</head>
+<body>
+<!-- 嵌入导航栏页面 -->
+{% include 'head.html' %}
+
+<!-- 宏定义 -->
+{% import 'macros.html' as index_macro %}
+<!-- 背景图片 -->
+<div class="bgimg">
+
+</div>
+{{ index_macro.lists_tip("项目列表","不要轻易放弃，学习成长的路上，我们长路漫漫，只因学无止境。") }}
+<!-- 第二层 包含博客页 和右侧区域 -->
+<div id="layer2">
+    <div class="cleft">
+        {{ index_macro.index_content("Python语言在人工智能方向的优势","/static/images/toppic01.jpg","当前环境, Python的语法在很大程度上适合人工智能领域的代码编写",25161) }}
+        {{ index_macro.index_content("Python语言在人工智能方向的优势","/static/images/toppic01.jpg","当前环境, Python的语法在很大程度上适合人工智能领域的代码编写",25161) }}
+        {{ index_macro.index_content("Python语言在人工智能方向的优势","/static/images/toppic01.jpg","当前环境, Python的语法在很大程度上适合人工智能领域的代码编写",25161) }}
+    </div>
+    <div class="cright">
+        <h3>特别推荐</h3>
+        <div class="line"></div>
+        {{ index_macro.index_image("/static/images/banner01.jpg") }}
+        {{ index_macro.index_image("/static/images/banner02.jpg") }}
+        {{ index_macro.index_image("/static/images/banner03.jpg") }}
+    </div>
+</div>
+<!-- 导入底部文件 -->
+{% include 'footer.html' %}
+<!-- 加载js -->
+<script src="/static/js/index.js"></script>
+<script>
+    //调用获取焦点的函数
+    getFocus($("#l2 a"))
+</script>
+</body>
+</html>
