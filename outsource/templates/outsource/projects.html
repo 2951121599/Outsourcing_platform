@@ -16,20 +16,64 @@
 <div class="bgimg">
 
 </div>
-{{ index_macro.lists_tip("项目列表","不要轻易放弃，学习成长的路上，我们长路漫漫，只因学无止境。") }}
+<!-- 首页的内容 右侧 显示图片的内容 lists_tip(tip,msg) -->
+<div class="title">
+    <div class="ltip">
+        {#            {{ tip }}#}
+        项目列表
+    </div>
+    <div class="rtip">
+        {#            {{ msg }}#}
+        不要轻易放弃，学习成长的路上，我们长路漫漫，只因学无止境。
+    </div>
+</div>
+
+
 <!-- 第二层 包含博客页 和右侧区域 -->
 <div id="layer2">
     <div class="cleft">
-        {{ index_macro.index_content("Python语言在人工智能方向的优势","/static/images/toppic01.jpg","当前环境, Python的语法在很大程度上适合人工智能领域的代码编写",25161) }}
-        {{ index_macro.index_content("Python语言在人工智能方向的优势","/static/images/toppic01.jpg","当前环境, Python的语法在很大程度上适合人工智能领域的代码编写",25161) }}
-        {{ index_macro.index_content("Python语言在人工智能方向的优势","/static/images/toppic01.jpg","当前环境, Python的语法在很大程度上适合人工智能领域的代码编写",25161) }}
+        <!-- 首页的内容 左侧 index_content(title,imgurl,tip,num)-->
+
+        <div class="ccon" data-scroll-reveal="top|bottom 10px 3 3">
+            <div class="cctitle">
+                {#                {{ title }}#}
+                Python语言在人工智能方向的优势
+            </div>
+            <div class="ccframe">
+                <div>
+                    <img src="
+{#{{ imgurl }}#}
+/static/images/toppic01.jpg
+" width="300" alt="">
+                </div>
+                <div class="ccright">
+                    <p>
+                        {#                        {{ tip }}#}
+                        当前环境, Python的语法在很大程度上适合人工智能领域的代码编写
+                    </p>
+                    <div class="info">
+                        {#                        {{ num }}#}
+                        25161
+                        人已阅读
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
     </div>
     <div class="cright">
         <h3>特别推荐</h3>
         <div class="line"></div>
-        {{ index_macro.index_image("/static/images/banner01.jpg") }}
-        {{ index_macro.index_image("/static/images/banner02.jpg") }}
-        {{ index_macro.index_image("/static/images/banner03.jpg") }}
+        <!-- 首页的内容 右侧 显示图片的内容 index_image(imgurl) -->
+
+        <div data-scroll-reveal="top|bottom 10px 3 3">
+            <img src="
+{#{{ imgurl }}#}
+/static/images/banner01.jpg
+" width="300" alt="">
+        </div>
+
     </div>
 </div>
 <!-- 导入底部文件 -->

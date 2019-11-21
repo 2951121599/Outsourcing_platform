@@ -1,3 +1,4 @@
+{% load staticfiles %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,26 +12,41 @@
 <!-- 嵌入导航栏页面 -->
 {% include 'head.html' %}
 
-<!-- 宏定义 -->
-{% import 'macros.html' as index_macro %}
 <!-- 背景图片 -->
 <div class="bgimg">
 
 </div>
-{{ index_macro.lists_tip("图片列表","不要轻易放弃，学习成长的路上，我们长路漫漫，只因学无止境。") }}
+<div class="title">
+    <div class="ltip">
+        {# {{ tip }}#}
+        图片列表
+    </div>
+    <div class="rtip">
+        {#{{ msg }}#}
+        不要轻易放弃，学习成长的路上，我们长路漫漫，只因学无止境。
+    </div>
+</div>
 <!-- 图片展示页面 -->
+<!-- 首页的内容 左侧 pics_content(imgurl,tip,num) -->
+
+
 <div class="items">
-    {{ index_macro.pics_content("/static/images/a.jpg","Python基础学习总结Python基础学习总结Python基础学习总结Python基础学习总结Python基础学习总结Python基础学习总结Python基础学习总结",336) }}
-    {{ index_macro.pics_content("/static/images/b.jpg","Python基础学习总结",336) }}
-    {{ index_macro.pics_content("/static/images/c.jpg","Python基础学习总结",336) }}
-    {{ index_macro.pics_content("/static/images/d.jpg","Python基础学习总结",336) }}
+    <div class="item" data-scroll-reveal="top|bottom 10px 3 3">
+        <div>
+            <img src="
+            {% block imgurl_pics_content %}
+                {% static 'images/a.jpg' %}
+            {% endblock %}" alt="">
+        </div>
+        <p>{% block tip_pics_content %}
+            Python基础学习总结Python基础学习总结Python基础学习总结Python基础学习总结Python基础学习总结Python基础学习总结Python基础学习总结
+        {% endblock %}</p>
+        <span>喜欢 | {% block num_pics_content %}
+            {#{{ num }}#}8
+        {% endblock %}</span>
+    </div>
 </div>
-<div class="items">
-    {{ index_macro.pics_content("/static/images/a.jpg","Python基础学习总结Python基础学习总结Python基础学习总结Python基础学习总结Python基础学习总结Python基础学习总结Python基础学习总结",336) }}
-    {{ index_macro.pics_content("/static/images/b.jpg","Python基础学习总结",336) }}
-    {{ index_macro.pics_content("/static/images/c.jpg","Python基础学习总结",336) }}
-    {{ index_macro.pics_content("/static/images/d.jpg","Python基础学习总结",336) }}
-</div>
+
 <!-- 导入底部文件 -->
 {% include 'footer.html' %}
 <!-- 加载js -->

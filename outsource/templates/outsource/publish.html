@@ -13,13 +13,23 @@
 <!-- 嵌入导航栏页面 -->
 {% include 'head.html' %}
 
-<!-- 宏定义 -->
-{% import 'macros.html' as index_macro %}
 <!-- 背景图片 -->
 <div class="bgimg">
 
 </div>
-{{ index_macro.lists_tip("发表博客","不要轻易放弃，学习成长的路上，我们长路漫漫，只因学无止境。") }}
+
+<!-- 首页的内容 右侧 显示图片的内容 lists_tip(tip,msg)-->
+    <div class="title">
+        <div class="ltip">
+{#            {{ tip }}#}
+            发表博客
+        </div>
+        <div class="rtip">
+{#            {{ msg }}#}
+            不要轻易放弃，学习成长的路上，我们长路漫漫，只因学无止境。
+        </div>
+    </div>
+
 <!-- 第二层 包含发表博客 和右侧区域 -->
 <div id="layer2">
     <!-- 发表博客 -->
@@ -41,9 +51,15 @@
     <div class="cright">
         <h3>特别推荐</h3>
         <div class="line"></div>
-        {{ index_macro.index_image("/static/images/banner01.jpg") }}
-        {{ index_macro.index_image("/static/images/banner02.jpg") }}
-        {{ index_macro.index_image("/static/images/banner03.jpg") }}
+        <!-- 首页的内容 右侧 显示图片的内容 index_image(imgurl)-->
+
+        <div data-scroll-reveal="top|bottom 10px 3 3">
+            <img src="
+                    {#{{ imgurl }}#}
+                    /static/images/banner01.jpg
+                    " width="300" alt="">
+        </div>
+
     </div>
 </div>
 <!-- 导入底部文件 -->
