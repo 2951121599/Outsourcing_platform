@@ -13,12 +13,18 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
-from django.conf.urls import url,include
+from django.conf.urls import url, include
 from django.contrib import admin
-import outsource.urls
 
 urlpatterns = [
+    # http://127.0.0.1:8000/admin
     url(r'^admin/', admin.site.urls),
-    url(r'^', include(outsource.urls)),
-    url(r'^index', include(outsource.urls)),
+    # http://127.0.0.1:8000/
+    url(r'^', include('outsource.urls')),
+    # http://127.0.0.1:8000/index/xxx
+    url(r'^index/', include('outsource.urls')),
+    # http://127.0.0.1:8000/circle/xxx
+    url(r'^circle/', include('circle.urls')),
+    # http://127.0.0.1:8000/trade/xxx
+    url(r'^trade/', include('trade.urls')),
 ]

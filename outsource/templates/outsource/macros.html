@@ -1,0 +1,57 @@
+<!-- 宏 -->
+<!-- 首页的图片广告 -->
+{% macro index_imgad(title,imgurl,tip) %}
+    <div class="box">
+        <div class="btitle">{{ title }}</div>
+        <img src="{{ imgurl }}" width="366" height="216" alt="">
+        <p>{{ tip }}</p>
+    </div>
+{% endmacro %}
+
+<!-- 首页的内容 左侧 -->
+{% macro index_content(title,imgurl,tip,num) %}
+    <div class="ccon" data-scroll-reveal="top|bottom 10px 3 3">
+        <div class="cctitle">{{ title }}</div>
+        <div class="ccframe">
+            <div>
+                <img src="{{ imgurl }}" width="300" alt="">
+            </div>
+            <div class="ccright">
+                <p>{{ tip }}</p>
+                <div class="info">{{ num }}人已阅读</div>
+            </div>
+        </div>
+    </div>
+{% endmacro %}
+
+<!-- 首页的内容 右侧 显示图片的内容 -->
+{% macro index_image(imgurl) %}
+    <div data-scroll-reveal="top|bottom 10px 3 3">
+        <img src="{{ imgurl }}" width="300" alt="">
+    </div>
+{% endmacro %}
+
+
+<!-- 首页的内容 右侧 显示图片的内容 -->
+{% macro lists_tip(tip,msg) %}
+    <div class="title">
+        <div class="ltip">
+            {{ tip }}
+        </div>
+        <div class="rtip">
+            {{ msg }}
+        </div>
+    </div>
+{% endmacro %}
+
+
+<!-- 首页的内容 左侧 -->
+{% macro pics_content(imgurl,tip,num) %}
+    <div class="item" data-scroll-reveal="top|bottom 10px 3 3">
+        <div>
+            <img src="{{ imgurl }}" alt="">
+        </div>
+        <p>{{ tip }}</p>
+        <span>喜欢 | {{ num }}</span>
+    </div>
+{% endmacro %}

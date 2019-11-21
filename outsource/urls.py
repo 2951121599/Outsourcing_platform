@@ -7,6 +7,12 @@ from . import views
 
 app_name = "outsource"
 urlpatterns = [
-    url(r'^', views.index, name="主页"),
-    url(r'^index', views.index, name="主页"),
+    # http://127.0.0.1:8000/
+    url(r'^$', views.index),
+    # http://127.0.0.1:8000/index
+    url(r'^index$', views.index),
+    # http://127.0.0.1:8000/projects
+    url(r'^projects$', views.projects),
+    # http://127.0.0.1:8000/reg
+    url(r'^reg$', views.reg),
 ]
