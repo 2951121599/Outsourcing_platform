@@ -1,10 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/trade.css' %}">
+{% endblock %}
 
-</body>
-</html>
+{% block content %}
+    <h1>家伙是发动机抗老化</h1>sdfhhhhhhhh
+{% endblock %}

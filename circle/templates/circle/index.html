@@ -1,4 +1,121 @@
 {% extends 'base.html' %}
+{% load staticfiles %}
+{% block title %}
+    技术圈
+{% endblock %}
+{% block css %}
+    <style>
+        {# 页面主体的样式 #}
+        #all {
+            width: 1140px;
+            margin: 20px auto;
+            background-color: #555555;
+        }
+
+        {# 导航栏下的标题栏样式 #}
+        #title {
+            padding-left: 300px;
+        }
+
+        {# 主标题下的文字 #}
+        #title > span {
+            padding-left: 50px;
+        }
+
+        {# 内容主体 #}
+        #content {
+            padding: 10px;
+        }
+
+        #msg {
+            border-radius: 5px;
+            width: 800px;
+            height: 150px;
+            margin-bottom: 20px;
+            margin-left: 10px;
+            padding: 20px;
+            background-color: #fff;
+        }
+
+        {# 右侧个人信息栏 #}
+        #personal {
+            float: right;
+            width: 240px;
+            height: 600px;
+            background-color: #fff;
+            margin: 10px;
+            padding: 10px;
+            border-radius: 5px;
+        }
+    </style>
+{% endblock %}
 {% block content %}
-    这是circle的主页面
+    <div id="all">
+        <div style="height: 80px"></div>
+        <div>
+            {# 主标题 #}
+            <div id="title">
+                <h2>技术圈</h2>
+                <span>“人，是会思考的芦苇。”——帕斯卡，《思想录》</span>
+            </div>
+            <hr>
+            {# 右侧个人信息显示栏 #}
+            <div id="personal">
+                <span>个人信息</span>
+            </div>
+            {# 内容区 #}
+            <div id="content">
+
+
+                <div id="msg">
+                    <a href="#" title="题目">
+                        <h3>
+                            {% block title_circle %}
+                                我是题目
+                            {% endblock %}
+                        </h3>
+                    </a>
+                    <p>
+                        {% block p_circle %}
+                            内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容
+                        {% endblock %}
+                    </p>
+                </div>
+
+
+                <div id="msg">
+                    <a href="#" title="题目">
+                        <h3>我是题目</h3>
+                    </a>
+                    <p>
+                        内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容
+                    </p>
+                </div>
+                <div id="msg">
+                    <a href="#" title="题目">
+                        <h3>我是题目</h3>
+                    </a>
+                    <p>
+                        内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容
+                    </p>
+                </div>
+                <div id="msg">
+                    <a href="#" title="题目">
+                        <h3>我是题目</h3>
+                    </a>
+                    <p>
+                        内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容
+                    </p>
+                </div>
+                <div id="msg">
+                    <a href="#" title="题目">
+                        <h3>我是题目</h3>
+                    </a>
+                    <p>
+                        内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}

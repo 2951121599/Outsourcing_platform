@@ -1,5 +1,68 @@
 {% extends 'base.html' %}
 {% load staticfiles %}
-{% block content %}
-    这是trade主页
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/trade.css' %}">
 {% endblock %}
+
+{% block content %}
+    <div id="layer2">
+        <div id="cleft">
+            <!-- 首页的内容 左侧 index_content(title, language, tip, num, p_url)-->
+            <div class="con" data-scroll-reveal="left 10px 3 3">
+                <div class="r_div">
+                    <div><a href="{% block p_url %}
+{#                   p_url  详情页    #}
+                         1
+                    {% endblock %}"><b>
+                        {#{{title}}#}
+                        {% block title_trade %}
+                            基于语言的动态资源解析
+                        {% endblock %}
+                    </b></a><span>
+{#                        {{ language|upper }}#}
+                        {% block language_trade %}
+                            Python
+                        {% endblock %}
+                    </span></div>
+                    <div id="ccright">
+                        <p>
+{#                            {{ tip }}#}
+                            {% block tip_trade %}
+                                本文探讨了Python语言在AI领域的优势与运用.谁会成为AI和大数据时代的第一开发语言？这本已是一个不需要争议的问题.如果说三年前,Matlab
+                            {% endblock %}
+                        </p>
+                    </div>
+                </div>
+                <div class="tb_info">
+                    <span>
+{#                        {{ num }}#}
+                        {% block num_trade %}
+                            2560
+                        {% endblock %}
+                        <a href="">收藏</a><br>
+{#                        {{num-2015}}#}
+                        <a href="">评论</a></span>
+                </div>
+            </div>
+
+
+            {#            {% for i in ["c","python3","java","c++","go","lua","ruby","r","c#","lisp","basic","php"] %}#}
+            {#                {{#}
+            {#                index_macro.index_content("基于"+i+"语言的动态资源解析",i,#}
+            {#                "本文探讨了Python语言在AI领域的优势与运用.谁会成为AI和大数据时代的第一开发语言？这本已是一个不需要争议的问题.如果说三年前,Matlab#}
+            {#                Scala R Java",2560,"#top") }}#}
+            {#            {% endfor %}#}
+        </div>
+    </div>
+{% endblock %}
+
+{% block downjs %}
+    <script src="/static/js/index.js"></script>
+    <script>
+        getFocus($("#l1 a"))
+    </script>
+{% endblock %}
+
+
+
+

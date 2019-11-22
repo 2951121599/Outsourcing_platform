@@ -8,7 +8,7 @@
     <script src="{% static "js/jquery.min.js" %}"></script>
     <script src="{% static "js/scrollReveal.js" %}"></script>
 
-    {% block style %}
+    {% block css %}
 
     {% endblock %}
 
@@ -18,6 +18,8 @@
 </head>
 <body>
 {% include 'head.html' %}
+{#留出导航栏的固定宽度#}
+<div style="height: 80px"></div>
 {% block content %}
 
 {% endblock %}

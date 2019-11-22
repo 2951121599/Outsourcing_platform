@@ -1,0 +1,149 @@
+{% extends 'base.html' %}
+{% block title_name %}
+    课程详情
+{% endblock %}
+
+{% block lunbo %}
+{% endblock %}
+
+{% block main %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'course/css/app/index.css' %}">
+    <ol class="breadcrumb">
+        <li><a href="/">首页</a></li>
+        <li><a href="/course/coursetype/?id={{ course.types.id }}">{{ course.types }}</a></li>
+        <li class="active">课程详情</li>
+    </ol>
+    <div class="col-md-12 course-info">
+        <div class="l-box pull-left col-md-4">
+            <img src="/{{ course.cover_img }}">
+        </div>
+        <div class="r-box pull-right col-md-8">
+            <ul>
+                <li><h2>{{ course.title }}</h2></li>
+                <li id="info">{{ course.course_info }}</li>
+                <li id="time-num"><span>添加时间：{{ course.add_time }}</span> &nbsp; | &nbsp; <span> {{ course.click_num }} 次播放</span>
+                </li>
+                <li>
+                    <button class="btn btn-danger" onclick="window.open('/course/study/?id={{ course.id }}')">
+                        开始学习
+                    </button> &nbsp;
+                    <button class="btn btn-info">
+                        <a id="down" href="#download">课件下载</a>
+                    </button> &nbsp;
+
+                    <a id="fave" onclick="collection({{ course.id }})" href="javascript:void(0);"><span class="glyphicon glyphicon-heart"></span> 收藏 (<span id="collect_num">{{ course.collection_num }}</span>)</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="col-md-8" id="download_course">
+        <div class="panel panel-default">
+            <!-- Default panel contents -->
+            <div class="panel-heading"><h4>课件下载</h4></div>
+            <a name="download"></a>
+            <div class="panel-body">
+                <ul>
+                    <li>
+                        <span class="pull-left">{{ course.kj.kejian_name }}</span>
+                        <a class="pull-right" href="javascript:void(0);" onclick="downloads()">下载</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div id="course_commnt">
+            <div class="panel panel-default">
+                <!-- Default panel contents -->
+                <div class="panel-heading"><h4 style="color: #1b6d85">课程评论</h4></div>
+                <div class="panel-body">
+                    <ul>
+                        {% for comment in comment %}
+                        <li>
+                            <div id="commont-left" class="pull-left">
+                                <h5 class="comment-user">{{ comment.user.username }}</h5>
+                                <span class="comment">{{ comment.comment }}</span>
+                            </div>
+                            <div id="commont-right" class="pull-right">时间： {{ comment.add_time }}
+                            </div>
+                        </li>
+                            {% empty %}
+                            <li>暂时还没有评论， 快来抢沙发！</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-1"></div>
+    <div class="col-md-3" id="teacher">
+        <h4 id="tea">讲师简介</h4>
+        <hr>
+        <div id="heade">
+            <img class="img-circle" src="/{{ userinfo.head }}">
+        </div>
+        <div id="name">
+            <h5>{{ course.user.username }}</h5>
+        </div>
+        <hr>
+        <div id="teacher-info">
+            <p>
+                {{ course.teacher_info }}
+            </p>
+        </div>
+    </div>
+{% csrf_token %}
+    <script>
+        function downloads() {
+            var domain = document.domain;
+            var token = $('input[name=csrfmiddlewaretoken]').val();
+            console.log({{ course.kj.id }}, token);
+            $.ajax({
+                url: '/course/download/?id='+{{ course.kj.id }},
+                method: "POST",
+                dataType: "json",
+                data: {'csrfmiddlewaretoken': token},
+                success: function (data) {
+                    if (data.code == 0) {
+                        url = domain + ':8000/' + data.data;
+                        var $eleForm = $("<form method='get'></form>");
+                        $eleForm.attr("action", "http://" + url);
+                        $(document.body).append($eleForm);
+                        //提交表单，实现下载
+                        $eleForm.submit();
+                    } else {
+                        alert(data.msg)
+                    }
+
+                }
+            })
+        }
+
+
+        function collection(obj) {
+            var token = $('input[name=csrfmiddlewaretoken]').val();
+            var id = obj;
+            form_list = {'csrfmiddlewaretoken': token, 'id':id};
+            var num = $("#collect_num").text();
+            var num = parseInt(num);
+            $.ajax({
+                url: '/course/collect/',
+                method: "POST",
+                dataType: "json",
+                data: form_list,
+                success: function (data) {
+                    console.log(data);
+                    if(data.code === -1){
+                        alert("您还没有登录，请登录");
+                        window.location.href="/users/sign_in/"
+                    }
+                    if(data.code === 0){
+                        var nums = num += 1;
+                        $("#collect_num").text(nums);
+                    }
+                }
+            })
+        }
+    </script>
+{% endblock %}
