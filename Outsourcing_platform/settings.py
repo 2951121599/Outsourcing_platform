@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'outsource',
     'circle',
     'trade',
+    'user',
 ]
 
 MIDDLEWARE = [

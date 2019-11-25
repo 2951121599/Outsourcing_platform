@@ -23,10 +23,10 @@ urlpatterns = [
     url(r'^help$', views.help_menu),
     # http://127.0.0.1:8000/publish
     url(r'^publish$', views.publish),
-    # http://127.0.0.1:8000/reg
-    url(r'^reg$', views.reg),
-    # http://127.0.0.1:8000/login
-    url(r'^login$', views.login),
-    # http://127.0.0.1:8000/user
-    url(r'^user$', views.user),
+    # # http://127.0.0.1:8000/reg
+    # url(r'^reg$', views.reg),
+    # # http://127.0.0.1:8000/login
+    # url(r'^login$', views.login),
+    # # http://127.0.0.1:8000/user
+    # url(r'^user$', views.user),
 ]

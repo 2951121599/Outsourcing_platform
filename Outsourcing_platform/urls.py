@@ -27,4 +27,6 @@ urlpatterns = [
     url(r'^circle/', include('circle.urls')),
     # http://127.0.0.1:8000/trade/xxx
     url(r'^trade/', include('trade.urls')),
+    # http://127.0.0.1:8000/user/xxx
+    url(r'^user/', include('user.urls')),
 ]

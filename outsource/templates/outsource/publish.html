@@ -26,6 +26,7 @@
             -moz-transition: all linear 0.30s;
             transition: all linear 0.30s;
         }
+
         input[type="checkbox"] {
             text-indent: 0;
             width: 17px;
@@ -90,18 +91,18 @@
 {% block content %}
     <div class="step-form">
         <div style="height: 3px"></div>
-        <form id="newform" action="" method="post">
+        <form id="newform" action="/publish" method="post">
             <div class="message-tip">
                 <p>1、请提供详细的项目资料，以便于我们为您推荐合适的开发者</p>
                 <p>2、整包项目收费标准：报价含14%的平台服务费，如需开票另收税费6%</p>
-                <p>3、项目发布之后，客栈工作人员将在半个工作日内联系您</p>
+                <p>3、项目发布之后，网站工作人员将在半个工作日内联系您</p>
             </div>
             <div class="field cover-field" style="margin-left: 25px">
                 <label class="field-hd" style="margin-bottom: 25px">第一步：项目名称
                     <a href="" style="color: #0093FD">（了解更多)</a>
                 </label>
                 <div style="height: 40px"></div>
-                <input id="projectname" type="text" class="project-name" name="pro_name"
+                <input id="projectname" type="text" class="project-name" name="project_name"
                        placeholder="请输入项目名称，1-20个字以内" value="" maxlength="20"
                        style="width: 535px !important;display: block">
                 <div style="height: 40px"></div>
@@ -111,17 +112,25 @@
                 <label class="field-hd">第二步：我的项目类型（可多选）</label>
                 <div style="height: 20px"></div>
                 <div class="second">
+                    {#                    {% for i in check_box_list %}#}
+                    {#                        {{ i }}#}
+                    {#                        <tr>#}
+                    {#                            <td><input type="checkbox" value="{{ i }}" name="check_box_list">{{ i }}</td>#}
+                    {#                        </tr>#}
+                    {#                    {% endfor %}#}
+                    <input type="text" name="class_id" style="margin-bottom: 10px"><br>
                     <input type="checkbox" name="kind" style="margin-bottom: 10px">&nbsp;&nbsp;Android<br>
                     <div style="height: 10px"></div>
-                    <input type="checkbox" name="kind" style="margin-bottom: 10px">&nbsp;&nbsp;iOS<br>
+
+                    <input type="checkbox" name="kind" value="iOS" style="margin-bottom: 10px">&nbsp;&nbsp;iOS<br>
                     <div style="height: 10px"></div>
-                    <input type="checkbox" name="kind" style="margin-bottom: 10px">&nbsp;&nbsp;PC网站<br>
+                    <input type="checkbox" name="kind" value="PC网站" style="margin-bottom: 10px">&nbsp;&nbsp;PC网站<br>
                     <div style="height: 10px"></div>
-                    <input type="checkbox" name="kind" style="margin-bottom: 10px">&nbsp;&nbsp;微信端开发<br>
+                    <input type="checkbox" name="kind" value="微信端开发" style="margin-bottom: 10px">&nbsp;&nbsp;微信端开发<br>
                     <div style="height: 10px"></div>
-                    <input type="checkbox" name="kind" style="margin-bottom: 10px">&nbsp;&nbsp;HTML5<br>
+                    <input type="checkbox" name="kind" value="HTML5" style="margin-bottom: 10px">&nbsp;&nbsp;HTML5<br>
                     <div style="height: 10px"></div>
-                    <input type="checkbox" name="kind" style="margin-bottom: 10px">&nbsp;&nbsp;其他<br>
+                    <input type="checkbox" name="kind" value="其他" style="margin-bottom: 10px">&nbsp;&nbsp;其他<br>
                     <div style="height: 30px"></div>
 
                 </div>
@@ -137,7 +146,7 @@
             <div class="field" style="width: 767px;margin-left: 25px">
                 <label class="field-hd">第四步：我的项目介绍</label><br>
                 <div style="height: 20px"></div>
-                <textarea id="projectdescrption" name="pro_descrption"
+                <textarea id="projectdescrption" name="project_descrption"
                           style="height:140px;background: #f7f9fb; width:742px;margin-bottom: 20px;"
                           maxlength="500"></textarea>
                 <div class="check-box" style="margin-bottom: 10px;">
