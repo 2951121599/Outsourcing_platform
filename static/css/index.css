@@ -174,7 +174,7 @@ a {
     font-size: 100px;
     width: 50px;
     text-align: center;
-    color: red;
+    color: #666;
     /*透明度*/
     opacity: 0.7;
     /*悬浮*/
@@ -386,6 +386,10 @@ a {
     margin: 0 auto;
     height: 80px;
     line-height: 80px;
+}
+
+#footer a{
+    color: #00ffff;
 }
 
 /*底部样式结束*/

@@ -38,3 +38,7 @@ def reg(request):
 
 def login(request):
     return render(request, 'outsource/login.html')
+
+
+def user(request):
+    return render(request, 'outsource/user.html')

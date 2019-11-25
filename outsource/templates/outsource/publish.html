@@ -1,85 +1,158 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>发表博客</title>
-    <link rel="stylesheet" href="/static/css/index.css">
-    <script src="/static/js/jquery.min.js"></script>
-    <script src="/static/js/scrollReveal.js"></script>
-    <!-- 引入wangEditor插件 -->
-    <script src="/static/js/wangEditor.js"></script>
-</head>
-<body>
-<!-- 嵌入导航栏页面 -->
-{% include 'head.html' %}
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block css %}
+    <style>
+        .step-form .message-tip {
+            margin: 25px;
+            padding: 10px 20px;
+            background-color: #ebf5fe;
+            border: 1px solid #badefb;
+            color: #73afe0;
+            font-size: 12px;
+        }
 
-<!-- 背景图片 -->
-<div class="bgimg">
+        input[type="submit"] {
+            margin-top: 32px;
+            height: 40px;
+            text-decoration: none;
+            background: #2f435e;
+            color: #f2f2f2;
+            padding: 10px 30px 10px 30px;
+            font-size: 16px;
+            font-family: 微软雅黑, 宋体, Arial, Helvetica, Verdana, sans-serif;
+            font-weight: bold;
+            border-radius: 3px;
+            -webkit-transition: all linear 0.30s;
+            -moz-transition: all linear 0.30s;
+            transition: all linear 0.30s;
+        }
+        input[type="checkbox"] {
+            text-indent: 0;
+            width: 17px;
+            height: 17px;
+            text-align: center;
+            display: inline-block;
+            vertical-align: middle;
+            line-height: 15px;
+            position: relative;
+        }
 
-</div>
+        input[type="checkbox"]::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            background: #fff;
+            width: 100%;
+            height: 100%;
+            border: 1px solid #bdbfc2;
+        }
 
-<!-- 首页的内容 右侧 显示图片的内容 lists_tip(tip,msg)-->
-    <div class="title">
-        <div class="ltip">
-{#            {{ tip }}#}
-            发表博客
-        </div>
-        <div class="rtip">
-{#            {{ msg }}#}
-            不要轻易放弃，学习成长的路上，我们长路漫漫，只因学无止境。
-        </div>
-    </div>
+        input[type="checkbox"]:checked::before {
+            content: "\2713";
+            background-color: #37b048;
+            color: #fff;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            font-size: 12px;
+            font-weight: bold;
+            outline: none;
+            border: 1px solid #ccc;
+        }
 
-<!-- 第二层 包含发表博客 和右侧区域 -->
-<div id="layer2">
-    <!-- 发表博客 -->
-    <div class="cleft">
-        <div class="send">
-            <!-- 文本框 -->
-            <div class="stitle">
-                <input type="text" id="title">&nbsp;文章标题
+        .step-form {
+            width: 1140px;
+            background: white;
+            margin: 100px auto 50px;
+        }
+
+        .project-name {
+            margin: 0;
+            outline: 0;
+            -webkit-appearance: none;
+            -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+            line-height: 1.2142em;
+            padding: .67861em 1em;
+            font-size: 1em;
+            background: #fff;
+            border: 1px solid rgba(39, 41, 43, .15);
+            color: rgba(0, 0, 0, .8);
+            border-radius: .2857rem;
+            box-shadow: 0 0 0 0 transparent inset;
+            -webkit-transition: background-color .2s ease, color .2s ease, box-shadow .2s ease, border-color .2s ease;
+            transition: background-color .2s ease, color .2s ease, box-shadow .2s ease, border-color .2s ease;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+    <div class="step-form">
+        <div style="height: 3px"></div>
+        <form id="newform" action="" method="post">
+            <div class="message-tip">
+                <p>1、请提供详细的项目资料，以便于我们为您推荐合适的开发者</p>
+                <p>2、整包项目收费标准：报价含14%的平台服务费，如需开票另收税费6%</p>
+                <p>3、项目发布之后，客栈工作人员将在半个工作日内联系您</p>
             </div>
-            <!-- 富文本编辑框 -->
-            <div id="editor"></div>
-            <!-- 发表按钮 -->
-            <div class="sbtn">
-                <button id="send">发表</button>
+            <div class="field cover-field" style="margin-left: 25px">
+                <label class="field-hd" style="margin-bottom: 25px">第一步：项目名称
+                    <a href="" style="color: #0093FD">（了解更多)</a>
+                </label>
+                <div style="height: 40px"></div>
+                <input id="projectname" type="text" class="project-name" name="pro_name"
+                       placeholder="请输入项目名称，1-20个字以内" value="" maxlength="20"
+                       style="width: 535px !important;display: block">
+                <div style="height: 40px"></div>
             </div>
-        </div>
+
+            <div class="field" style="margin-left:25px ">
+                <label class="field-hd">第二步：我的项目类型（可多选）</label>
+                <div style="height: 20px"></div>
+                <div class="second">
+                    <input type="checkbox" name="kind" style="margin-bottom: 10px">&nbsp;&nbsp;Android<br>
+                    <div style="height: 10px"></div>
+                    <input type="checkbox" name="kind" style="margin-bottom: 10px">&nbsp;&nbsp;iOS<br>
+                    <div style="height: 10px"></div>
+                    <input type="checkbox" name="kind" style="margin-bottom: 10px">&nbsp;&nbsp;PC网站<br>
+                    <div style="height: 10px"></div>
+                    <input type="checkbox" name="kind" style="margin-bottom: 10px">&nbsp;&nbsp;微信端开发<br>
+                    <div style="height: 10px"></div>
+                    <input type="checkbox" name="kind" style="margin-bottom: 10px">&nbsp;&nbsp;HTML5<br>
+                    <div style="height: 10px"></div>
+                    <input type="checkbox" name="kind" style="margin-bottom: 10px">&nbsp;&nbsp;其他<br>
+                    <div style="height: 30px"></div>
+
+                </div>
+            </div>
+            <div class="field" style="margin-left: 25px">
+                <label class="field-hd" style="border-radius:20% ">第三步：项目预算（元）</label><br>
+                <div style="height: 20px"></div>
+                <input type="number" name="budget" maxlength="10"
+                       style="width: 200px; height: 25.8px;background:#f7f9fb" value=""
+                       placeholder=" 请输入您的资金预算">
+                <div style="height: 20px"></div>
+            </div>
+            <div class="field" style="width: 767px;margin-left: 25px">
+                <label class="field-hd">第四步：我的项目介绍</label><br>
+                <div style="height: 20px"></div>
+                <textarea id="projectdescrption" name="pro_descrption"
+                          style="height:140px;background: #f7f9fb; width:742px;margin-bottom: 20px;"
+                          maxlength="500"></textarea>
+                <div class="check-box" style="margin-bottom: 10px;">
+                    <div class="ui checkbox" style="margin-bottom: 10px">
+                        <input type="checkbox">
+                        <label style="color: #1b1c1d"> 我已阅读并同意<a href="/outsource/publish_rule"
+                                                                 target="_blank"
+                                                                 style="color: blue">《程序员外包平台项目发布协议》</a></label>
+                    </div>
+                </div>
+                <div>
+                    <input type="submit" value="发布" style="margin-right:10px;margin-bottom: 25px ">
+                    <input type="submit" value="草稿">
+                </div>
+            </div>
+        </form>
     </div>
-    <!-- 右侧区域 -->
-    <div class="cright">
-        <h3>特别推荐</h3>
-        <div class="line"></div>
-        <!-- 首页的内容 右侧 显示图片的内容 index_image(imgurl)-->
-
-        <div data-scroll-reveal="top|bottom 10px 3 3">
-            <img src="
-                    {#{{ imgurl }}#}
-                    /static/images/banner01.jpg
-                    " width="300" alt="">
-        </div>
-
-    </div>
-</div>
-<!-- 导入底部文件 -->
-{% include 'footer.html' %}
-<!-- 加载js -->
-<script src="/static/js/index.js"></script>
-<script>
-    //调用获取焦点的函数
-    getFocus($("#l7 a"));
-
-    // 实例化插件 wangEditor富文本编辑器
-    var E = window.wangEditor;
-    var editor = new E('#editor');
-    editor.create();
-
-    //绑定点击发表按钮的事件
-    $("#send").on("click", function () {
-        alert(editor.txt.text());
-        alert(editor.txt.html());
-    })
-</script>
-</body>
-</html>
+{% endblock %}

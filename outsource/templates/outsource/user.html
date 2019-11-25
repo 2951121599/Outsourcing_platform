@@ -1,0 +1,116 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block title %}
+    用户界面
+{% endblock %}
+{% block css %}
+    <style>
+        #hd {
+            height: 50px;
+            width: 100%;
+            background-color: dodgerblue;
+            text-align: center;
+            font-size: 25px;
+            color: white;
+        }
+
+        #hd p {
+            padding-top: 5px;
+        }
+
+        #baba {
+            width: 1140px;
+            margin: 20px auto;
+            overflow: hidden;
+        }
+
+        #lan {
+            float: left;
+            height: 500px;
+            width: 100px;
+            background-color: aliceblue;
+            border: black 1px;
+        }
+
+
+        #lan1 {
+            text-align: center;
+            padding-top: 100px;
+            border-color: black;
+            border: 1px;
+        }
+
+        #info {
+            display: inline-block;
+            float: right;
+            width: 800px;
+        }
+
+        #form_font {
+            width: 100px;
+            float: left;
+            text-align: right;
+        }
+
+        #form_font > p {
+            margin: 0;
+            padding: 0;
+        }
+
+        #form_text {
+            margin-left: 5px;
+            position: relative;
+        }
+
+        #form_text input {
+            margin: 2px 0 2px 0;
+        }
+
+        #form_text form textarea {
+            display: block;
+        }
+
+        #bye {
+            position: absolute;
+            right: 380px;
+            bottom: 0;
+        }
+    </style>
+{% endblock %}
+
+
+{% block content %}
+    <div id="hd">
+        <p>个人中心</p>
+    </div>
+    <div id="baba">
+        <div id="lan">
+            <div id="lan1">
+                <a class="lan_a" href="">基本信息</a><br>
+                <a class="lan_a" href="">我的推荐</a><br>
+                <a class="lan_a" href="">我的项目</a>
+            </div>
+        </div>
+        <div id="info">
+            <div id="form_font">
+                <p>用户名：</p>
+                <p>密码：</p>
+                <p>E_mail：</p>
+                <p>手机号：</p>
+                <p>昵称：</p>
+                <p>个人描述：</p>
+            </div>
+            <div id="form_text">
+                <form action="">
+                    <input type="text" name="username" id=""><br>
+                    <input type="text" name="password" id=""><br>
+                    <input type="text" name="e-mail" id=""><br>
+                    <input type="text" name="ph_number" id=""><br>
+                    <input type="text" name="nick_name" id=""><br>
+                    <textarea name="user_info" id="" cols="30" rows="10"></textarea>
+                    <input type="submit" value="保存" name="" id="bye">
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

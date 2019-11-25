@@ -1,10 +1,13 @@
 from django.shortcuts import render
 from django.db import models
+from .models import *
+
 
 # Create your views here.
 def index(request):
-    return render(request, 'trade/index.html')
+    projects = Project.objects.all()
 
+    return render(request, 'trade/index.html', locals())
 
     # def detail(request):
     #     project = models.Project.objects.all()
