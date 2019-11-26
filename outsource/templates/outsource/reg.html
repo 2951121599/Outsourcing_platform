@@ -20,7 +20,8 @@
 				<div class="agile-row">
 					<h2>登录</h2>
 					<div class="login-agileits-top"> 	
-						<form action="#" method="post"> 
+						<form action="#" method="post">
+                            {% csrf_token %}
 							<p>用户名 </p>
 							<input type="text" class="name" name="user name" required=""/>
 							<p>密码</p>
@@ -42,7 +43,8 @@
 				<div class="agile-row">
 					<h3>注册</h3>
 					<div class="login-agileits-top"> 	
-						<form action="#" method="post"> 
+						<form action="#" method="post">
+                            {% csrf_token %}
 							<p>用户名 </p>
 							<input type="text" class="name" name="user name" required=""/>
 							<p>Email</p>

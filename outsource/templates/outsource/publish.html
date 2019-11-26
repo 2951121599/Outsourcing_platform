@@ -92,6 +92,7 @@
     <div class="step-form">
         <div style="height: 3px"></div>
         <form id="newform" action="/publish" method="post">
+            {% csrf_token %}
             <div class="message-tip">
                 <p>1、请提供详细的项目资料，以便于我们为您推荐合适的开发者</p>
                 <p>2、整包项目收费标准：报价含14%的平台服务费，如需开票另收税费6%</p>

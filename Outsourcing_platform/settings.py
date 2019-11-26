@@ -45,7 +45,7 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    # 'django.middleware.csrf.CsrfViewMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
@@ -130,5 +130,9 @@ USE_TZ = True
 STATIC_URL = '/static/'
 # 静态文件的存储目录
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
+
+# 存储用户主动上传的文件 用来记录上传文件的位置
+MEDIA_ROOT = os.path.join(BASE_DIR, 'static/files')
+
 # 去除自动补/
 # APPEND_SLASH = False

@@ -29,4 +29,8 @@ urlpatterns = [
     # url(r'^login$', views.login),
     # # http://127.0.0.1:8000/user
     # url(r'^user$', views.user),
+    # http://127.0.0.1:8000/help/guide1
+    url(r'^help/guide1$', views.guide1),
+    # http://127.0.0.1:8000/help/guide2
+    url(r'^help/guide2$', views.guide2),
 ]

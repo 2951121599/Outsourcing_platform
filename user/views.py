@@ -72,7 +72,7 @@ def login_view(request):
         if request.session.get('uid') and request.session.get('username'):
             # 登陆过
             # return HttpResponse("你已经登陆过了!")
-            return HttpResponseRedirect('/outsource/index')
+            return HttpResponseRedirect('/index')
         # 2.没session 检查cookies
         uid = request.COOKIES.get('uid')
         username = request.COOKIES.get('username')
@@ -107,7 +107,7 @@ def login_view(request):
         request.session['username'] = user.username
 
         # 2.检查是否要存cookies
-        resp = HttpResponseRedirect('/outsource/index')
+        resp = HttpResponseRedirect('/index')
         # resp = HttpResponse("登陆成功")
         if 'remember' in request.POST.keys():
             # 3.用户勾选了 存cookies 记住用户名
@@ -137,3 +137,6 @@ def index_view(request):
     uid = request.my_uid
     return HttpResponseRedirect('outsource/index.html', locals())
 
+
+def user(request):
+    return render(request, 'user/user.html')

@@ -85,3 +85,11 @@ def login(request):
 
 def user(request):
     return render(request, 'outsource/user.html')
+
+
+def guide1(request):
+    return render(request, 'outsource/guide1.html')
+
+
+def guide2(request):
+    return render(request, 'outsource/guide2.html')
