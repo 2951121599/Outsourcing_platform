@@ -131,6 +131,7 @@ STATIC_URL = '/static/'
 # 静态文件的存储目录
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
 
+MEDIA_URL = '/static/files/'
 # 存储用户主动上传的文件 用来记录上传文件的位置
 MEDIA_ROOT = os.path.join(BASE_DIR, 'static/files')
 

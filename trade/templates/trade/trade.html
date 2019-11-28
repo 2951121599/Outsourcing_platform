@@ -1,9 +1,56 @@
 {% extends 'base.html' %}
 {% load staticfiles %}
+{% block title %}
+    项目交易
+{% endblock %}
+
 {% block css %}
     <link rel="stylesheet" href="{% static 'css/trade.css' %}">
 {% endblock %}
 
 {% block content %}
-    <h1>家伙是发动机抗老化</h1>sdfhhhhhhhh
+    <div id="layer2">
+        <div id="cleft">
+            <!-- 首页的内容 左侧 index_content(title, language, tip, num, p_url)-->
+            {% for project in projects %}
+                <div class="con1" data-scroll-reveal="left 10px 3 3">
+                    <div class="r_div">
+                        <div><a href="
+                            {#  p_url  详情页    #}
+                         1"><b>{{ project.title }}</b></a><span>{{ project.tag }}
+                        {#{{ language|upper }}#}
+                    </span></div>
+                        <div id="ccright">
+                            <p>{{ project.content }}</p>
+                        </div>
+                    </div>
+                    <div class="tb_info">
+                    <span>
+                        {{ project.collection }}收藏</a><br>
+                        {{ project.comments }}<a href="">评论</a>
+                    </span>
+                    </div>
+                </div>
+            {% endfor %}
+
+
+            {#            {% for i in ["c","python3","java","c++","go","lua","ruby","r","c#","lisp","basic","php"] %}#}
+            {#                {{#}
+            {#                index_macro.index_content("基于"+i+"语言的动态资源解析",i,#}
+            {#                "本文探讨了Python语言在AI领域的优势与运用.谁会成为AI和大数据时代的第一开发语言？这本已是一个不需要争议的问题.如果说三年前,Matlab#}
+            {#                Scala R Java",2560,"#top") }}#}
+            {#            {% endfor %}#}
+        </div>
+    </div>
 {% endblock %}
+
+{% block downjs %}
+    <script src="/static/js/index.js"></script>
+    <script>
+        getFocus($("#l1 a"))
+    </script>
+{% endblock %}
+
+
+
+

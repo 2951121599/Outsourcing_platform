@@ -3,14 +3,18 @@
 # 文件名:  urls.py
 # 当前系统日期时间：2019/11/19，17:20 
 from django.conf.urls import url
+from django.conf import settings
 from . import views
+from django.views.static import serve
 
 app_name = "outsource"
 urlpatterns = [
     # http://127.0.0.1:8000/
     url(r'^$', views.index),
-    # http://127.0.0.1:8000/index
+    # http://127.0.0.1:8000/index/
     url(r'^index$', views.index),
+    # 图片上传
+    url(r'^media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT}),
     # http://127.0.0.1:8000/projects
     url(r'^projects$', views.projects),
     # http://127.0.0.1:8000/projects/detail/projects_id  项目详情页

@@ -9,6 +9,6 @@ app_name = "trade"
 urlpatterns = [
     # http://127.0.0.1:8000/trade
     url(r'^$', views.index),
-    # http://127.0.0.1:8000/trade/index
-    url(r'^index$', views.index),
+    # # http://127.0.0.1:8000/trade/index
+    # url(r'^index$', views.index),
 ]

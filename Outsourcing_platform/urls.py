@@ -22,7 +22,7 @@ urlpatterns = [
     # http://127.0.0.1:8000/
     url(r'^', include('outsource.urls')),
     # http://127.0.0.1:8000/index/xxx
-    url(r'^index/', include('outsource.urls')),
+    # url(r'^index/', include('outsource.urls')),
     # http://127.0.0.1:8000/circle/xxx
     url(r'^circle/', include('circle.urls')),
     # http://127.0.0.1:8000/trade/xxx

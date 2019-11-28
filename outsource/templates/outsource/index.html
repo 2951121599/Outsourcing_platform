@@ -1,87 +1,78 @@
+{% extends 'base.html' %}
 {% load staticfiles %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>主页</title>
-    <link rel="stylesheet" href="{% static "css/index.css" %}">
-    <script src="{% static "js/jquery.min.js" %}"></script>
-    <script src="{% static "js/scrollReveal.js" %}"></script>
-</head>
-<body>
-<!-- 嵌入导航栏页面 -->
-{% include 'head.html' %}
-<!-- Django不支持导入宏 -->
-<!-- 第一层 包含轮播图 和右侧区域 -->
-<div id="layer1">
-    <!-- 左边导航 -->
-    <div class="lleft">
-        <span id="imgleft">&lsaquo;</span>
-        <img width="752" height="452" src="{% static "images/banner01.jpg" %}" id="img" alt="">
-        <span id="imgright">&rsaquo;</span>
-        <p>爬虫微课5小时Python学习路线</p>
-    </div>
-    <!-- 右边广告 -->
-    <div class="lright">
-        <!-- 首页的图片广告 -->
-        <div class="box">
-            <div class="btitle">Linux</div>
-            <img src="/static/images/toppic01.jpg" width="366" height="216" alt="">
-            <p>
-                Linux升级为p3, 安装pip,svn的方法
-            </p>
+
+{% block title %}
+    主页
+{% endblock %}
+
+{% block content %}
+    <!-- 第一层 包含轮播图 和右侧区域 -->
+    <div id="layer1">
+        <!-- 左边导航 -->
+        <div class="lleft">
+            <span id="imgleft">&lsaquo;</span>
+            <img width="752" height="452" src="{% static "images/banner01.jpg" %}" id="img" alt="">
+            <span id="imgright">&rsaquo;</span>
+            <p>爬虫微课5小时Python学习路线</p>
         </div>
-    </div>
-</div>
-
-
-<!-- 第二层 包含博客页 和右侧区域 -->
-<div id="layer2">
-    <div class="cleft">
-        <div class="ccon" data-scroll-reveal="top|bottom 10px 3 3">
-            <div class="cctitle">
-                {% block title1 %}
-                    Python语言在人工智能方向的优势
-                {% endblock %}</div>
-            <div class="ccframe">
-                <div>
-                    <img src="{% block imgurl1 %}
-                /static/images/toppic01.jpg
-            {% endblock %}" width="300" alt="">
-                </div>
-                <div class="ccright">
-                    <p>{% block tip1 %}
-                        当前环境, Python的语法在很大程度上适合人工智能领域的代码编写
-                    {% endblock %}</p>
-                    <div class="info">{% block num %}
-                        25161
-                    {% endblock %}人已阅读
-                    </div>
-                </div>
+        <!-- 右边广告 -->
+        <div class="lright">
+            <!-- 首页的图片广告 -->
+            <div class="box">
+                <div class="btitle">Linux</div>
+                <img src="/static/images/toppic01.jpg" width="366" height="216" alt="">
+                <p>
+                    Linux升级为p3, 安装pip,svn的方法
+                </p>
             </div>
         </div>
-
     </div>
-    <div class="cright">
-        <h3>特别推荐</h3>
-        <div class="line"></div>
-        <div data-scroll-reveal="top|bottom 10px 3 3">
-            <img src="{% block imgurl2 %}
-                /static/images/banner01.jpg
-            {% endblock %}" width="300" alt="">
+
+
+    <!-- 第二层 包含新闻页 和右侧区域 -->
+    <div id="layer2">
+        <!-- 新闻页 -->
+        <div class="cleft">
+            {% for news in all_news %}
+                <div class="ccon" data-scroll-reveal="top|bottom 10px 3 3">
+                    <div class="cctitle">
+                        {{ news.news_title }}
+                        <div class="ccframe">
+                            <div>
+                                <img src="{{ news.image_url.url }}" width="300" alt="">
+                            </div>
+                            <div class="ccright">
+                                {{ news.news_tip }}
+                            </div>                            <div class="info">
+                                {{ news.created_at }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
         </div>
+        <!-- 新闻页 结束 -->
 
+        <!-- 推荐页 -->
+        <div class="cright">
+            <h3>特别推荐</h3>
+            <div class="line"></div>
+            <div data-scroll-reveal="top|bottom 10px 3 3">
+                <img src="{% block imgurl2 %}
+                    /static/images/banner01.jpg
+                {% endblock %}" width="300" alt="">
+            </div>
+        </div>
+        <!-- 推荐页 结束 -->
     </div>
-</div>
+    <!-- 第二层 结束 -->
+{% endblock %}
 
-<!-- 导入底部文件 -->
-{% include 'footer.html' %}
-
-<!-- 加载js -->
-<script src="/static/js/index.js"></script>
-<script>
-    //调用获取焦点的函数
-    getFocus($("#l1 a"))
-</script>
-</body>
-</html>
+{% block downjs %}
+    <!-- 加载js -->
+    <script src="/static/js/index.js"></script>
+    <script>
+        //调用获取焦点的函数
+        getFocus($("#l1 a"))
+    </script>
+{% endblock %}

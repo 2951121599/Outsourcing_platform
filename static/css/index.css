@@ -142,7 +142,8 @@ a {
     width: 1140px;
     overflow: hidden;
     /*距上100px 左右居中 距下0*/
-    margin: 100px auto 0;
+    /*margin: 100px auto 0;*/ /*已经预留80px*/
+    margin: 20px auto 0;
 }
 
 /*左侧轮播图*/
@@ -315,7 +316,8 @@ a {
 
 /*标题*/
 .ccon .cctitle {
-    font-size: 25px;
+    /*font-size: 25px;*/
+    font-size: 18px;
     font-weight: 700;
     margin-bottom: 10px;
 }
@@ -332,9 +334,16 @@ a {
 
 /*文字和阅读量*/
 .ccon .ccright {
+    font-size: 16px;
     float: right;
     width: 400px;
     color: #444;
+    /*文字内边距*/
+    /*padding: 30px 5px 30px 5px*/
+}
+
+.ccon .ccframe .info{
+    margin: 30px 20px;
 }
 
 .ccon .ccright p {

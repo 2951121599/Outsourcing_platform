@@ -1,6 +1,6 @@
 from django.http import *
 from django.shortcuts import render
-from outsource.models import PublishProject
+from .models import News, PublishProject
 
 
 # Create your views here.
@@ -32,7 +32,8 @@ def logging_check(fn):
 
 
 def index(request):
-    return render(request, 'outsource/index.html')
+    all_news = News.objects.all()
+    return render(request, 'outsource/index.html', locals())
 
 
 def projects(request):
