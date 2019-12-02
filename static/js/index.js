@@ -8,13 +8,13 @@ $("#l6").hover(function () {
 //大图切换
 var arrImg = [{
     "url": "/static/images/banner01.jpg",
-    "tip": "第一张图片"
+    "tip": "产品需求规划，是软件项目成功的关键"
 }, {
     "url": "/static/images/banner02.jpg",
-    "tip": "第二张图片"
+    "tip": "五星级的过程体验和交付质量"
 }, {
     "url": "/static/images/banner03.jpg",
-    "tip": "第三张图片"
+    "tip": "优质的在线服务与帮助"
 }];
 var i = 0;
 $("#imgleft").on("click", function () {

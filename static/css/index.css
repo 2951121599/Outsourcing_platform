@@ -43,7 +43,7 @@ a {
     z-index: 9;
 }
 
-#nav a{
+#nav a {
     color: #fff;
 }
 
@@ -312,6 +312,7 @@ a {
     background-color: white;
     padding: 30px 20px;
     margin-bottom: 20px;
+    position: relative;
 }
 
 /*标题*/
@@ -332,8 +333,12 @@ a {
     float: left
 }
 
+.ccon .ccframe .ccframe-right {
+    /*position: relative;*/
+}
+
 /*文字和阅读量*/
-.ccon .ccright {
+.ccon .ccframe .ccframe-right .ccright {
     font-size: 16px;
     float: right;
     width: 400px;
@@ -342,8 +347,13 @@ a {
     /*padding: 30px 5px 30px 5px*/
 }
 
-.ccon .ccframe .info{
-    margin: 30px 20px;
+.ccon .ccframe .ccframe-right .info {
+    float: right;
+    width: 400px;
+    position: absolute;
+    bottom: 35px;
+    left: 330px;
+    /*margin: 30px 20px;*/
 }
 
 .ccon .ccright p {
@@ -378,6 +388,45 @@ a {
     margin: 20px 0 20px 20px;
 }
 
+#layer2 .cright .side-list {
+
+}
+
+.side-list > li {
+    margin-bottom: 10px;
+    line-height: 180%;
+    border-bottom: #f8f8f8 solid 1px;
+    position: relative;
+    padding: 10px 10px 10px 25px;
+}
+
+.side-list > li::before {
+    content: "";
+    height: 10px;
+    width: 10px;
+    border-radius: 50%;
+    background: #396;
+    position: absolute;
+    left: 5px;
+    top: 18px;
+}
+
+.side-list > li > a {
+    color: #333;
+    display: block;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.side-list > li > a:hover {
+    color: #25913f;
+}
+
+.side-list > li > strong {
+    color: #9d9d9d;
+    display: block;
+    font-weight: normal;
+}
 
 /*内容页样式结束*/
 
@@ -397,7 +446,7 @@ a {
     line-height: 80px;
 }
 
-#footer a{
+#footer a {
     color: #00ffff;
 }
 

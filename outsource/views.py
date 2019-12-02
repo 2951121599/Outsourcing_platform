@@ -44,8 +44,8 @@ def detail_projects(request):
     return render(request, 'outsource/detail_projects.html')
 
 
-def cases(request):
-    return render(request, 'outsource/cases.html')
+def developers(request):
+    return render(request, 'outsource/developers.html')
 
 
 def cases_projects(request):

@@ -13,16 +13,21 @@
             <span id="imgleft">&lsaquo;</span>
             <img width="752" height="452" src="{% static "images/banner01.jpg" %}" id="img" alt="">
             <span id="imgright">&rsaquo;</span>
-            <p>爬虫微课5小时Python学习路线</p>
+            <p>产品需求规划，是软件项目成功的关键</p>
         </div>
         <!-- 右边广告 -->
         <div class="lright">
             <!-- 首页的图片广告 -->
             <div class="box">
-                <div class="btitle">Linux</div>
                 <img src="/static/images/toppic01.jpg" width="366" height="216" alt="">
                 <p>
-                    Linux升级为p3, 安装pip,svn的方法
+                    免费发布需求
+                </p>
+            </div>
+            <div class="box">
+                <img src="/static/images/toppic01.jpg" width="366" height="216" alt="">
+                <p>
+                    申请签约接单
                 </p>
             </div>
         </div>
@@ -37,13 +42,16 @@
                 <div class="ccon" data-scroll-reveal="top|bottom 10px 3 3">
                     <div class="cctitle">
                         {{ news.news_title }}
-                        <div class="ccframe">
-                            <div>
-                                <img src="{{ news.image_url.url }}" width="300" alt="">
-                            </div>
+                    </div>
+                    <div class="ccframe">
+                        <div>
+                            <img src="{{ news.image_url.url }}" width="300" alt="">
+                        </div>
+                        <div class="ccframe-right">
                             <div class="ccright">
                                 {{ news.news_tip }}
-                            </div>                            <div class="info">
+                            </div>
+                            <div class="info">
                                 {{ news.created_at }}
                             </div>
                         </div>
@@ -55,15 +63,18 @@
 
         <!-- 推荐页 -->
         <div class="cright">
-            <h3>特别推荐</h3>
+            <h3>新闻排行榜</h3>
             <div class="line"></div>
-            <div data-scroll-reveal="top|bottom 10px 3 3">
-                <img src="{% block imgurl2 %}
-                    /static/images/banner01.jpg
-                {% endblock %}" width="300" alt="">
-            </div>
+            <ul class="side-list">
+                <li><a href="#">12月2日每日新闻：鸿蒙2020年将超Linux，成全球第五大操作系统</a></li>
+                <li><a href="#">11月29日每日新闻：工信部携号转网数据，电信转入最多、移动转出最多</a></li>
+                <li><a href="#">11月28日每日新闻：亚马逊将发布二代自研芯片 继续挑战英特尔</a></li>
+                <li><a href="#">11月27日每日新闻：我国33个研究前沿排名世界第一</a></li>
+                <li><a href="#">11月26日每日新闻：联发科携手英特尔研发5G PC解决方案</a></li>
+            </ul>
         </div>
-        <!-- 推荐页 结束 -->
+    </div>
+    <!-- 推荐页 结束 -->
     </div>
     <!-- 第二层 结束 -->
 {% endblock %}
