@@ -10,19 +10,23 @@ from django.views.static import serve
 app_name = "outsource"
 urlpatterns = [
     # http://127.0.0.1:8000/
-    url(r'^$', views.index),
+    url(r'^$', views.index, name='index'),
     # http://127.0.0.1:8000/index/
     url(r'^index$', views.index),
+    # http://127.0.0.1:8000/news/detail/projects_id  新闻详情页
+    url(r'^news/detail/(\d+)$', views.news_detail),
     # 图片上传
     url(r'^media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT}),
     # http://127.0.0.1:8000/projects
-    url(r'^projects$', views.projects),
+    url(r'^projects$', views.projects, name='projects'),
+    # 分类列表页
+    url(r'^projects/(?P<kind>\d+)/(?P<page>\d+)/$', views.projects_list, name='projects_list'),  # 列表页
     # http://127.0.0.1:8000/projects/detail/projects_id  项目详情页
-    url(r'^projects/detail/(\d+)$', views.detail_projects),
+    url(r'^projects/detail/(\d+)$', views.projects_detail),
     # http://127.0.0.1:8000/developers
     url(r'^developers$', views.developers),
-    # http://127.0.0.1:8000/cases/detail/projects_id  案例详情页
-    url(r'^cases/detail/(\d+)$', views.cases_projects),
+    # http://127.0.0.1:8000/developers/detail/developers_id  开发者详情页
+    url(r'^developers/detail/(\d+)$', views.developers_detail),
     # http://127.0.0.1:8000/help
     url(r'^help$', views.help_menu),
     # http://127.0.0.1:8000/publish
@@ -37,4 +41,6 @@ urlpatterns = [
     url(r'^help/guide1$', views.guide1),
     # http://127.0.0.1:8000/help/guide2
     url(r'^help/guide2$', views.guide2),
+    # http://127.0.0.1:8000/reg_dev
+    url(r'^reg_dev$', views.reg_dev),
 ]

@@ -4,6 +4,8 @@
 <head>
     <title>{% block title %}众包网站{% endblock %}</title>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="shortcut icon" href="{% static "images/favicon.ico" %}">
     <link rel="stylesheet" href="{% static "css/index.css" %}">
     <script src="{% static "js/jquery.min.js" %}"></script>
@@ -17,16 +19,15 @@
 
     {% endblock %}
 </head>
-<body>
 {% include 'head.html' %}
+<body>
 {#留出导航栏的固定宽度#}
 <div style="height: 80px"></div>
 {% block content %}
 
 {% endblock %}
-
-{% include 'footer.html' %}
 </body>
+{% include 'footer.html' %}
 {% block downjs %}
 
 {% endblock %}

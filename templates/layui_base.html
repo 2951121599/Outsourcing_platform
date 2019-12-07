@@ -1,0 +1,47 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="zh_CN">
+<head>
+    <title>{% block title %}众包网站{% endblock %}</title>
+    <meta charset="UTF-8">
+    <link rel="shortcut icon" href="{% static "images/favicon.ico" %}">
+    <link rel="stylesheet" href="{% static "css/index.css" %}">
+    <link rel="stylesheet" href="{% static "layui-v2.5.5/layui/css/layui.css" %}" media="all">
+    <script src="{% static "js/jquery.min.js" %}"></script>
+    <script src="{% static "js/scrollReveal.js" %}"></script>
+    <script type="text/javascript" src="{% static "layui-v2.5.5/layui/layui.js" %}"></script>
+
+    {% block css %}
+
+    {% endblock %}
+
+    {% block js %}
+
+    {% endblock %}
+</head>
+{% include 'head.html' %}
+<body>
+{#留出导航栏的固定宽度#}
+<div style="height: 80px"></div>
+{% block content %}
+
+{% endblock %}
+
+</body>
+{% include 'footer.html' %}
+{% block downjs %}
+
+{% endblock %}
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

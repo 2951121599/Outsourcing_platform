@@ -1,0 +1,875 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block title %}
+    项目列表
+{% endblock %}
+
+{% block css %}
+    <link rel='stylesheet' type='text/css' href='{% static '/css/projects/font-awesome.min.css' %}'>
+    <link rel='stylesheet' type='text/css' href='{% static '/css/projects/bootstrap.min.css' %}' media='all'>
+    <link rel='stylesheet' type='text/css' href='{% static '/css/projects/jquery.ui.customer-20140818.css' %}'
+          media='all'>
+    <link rel='stylesheet' type='text/css' href='{% static '/css/projects/web-20190904.css' %}' media="all">
+    <link href="{% static '/css/projects/bootstrapValidator.min.css' %}" rel="stylesheet">
+
+    <style type="text/css">
+        .state_jingbiaozhong,
+        .state_zhongbiao,
+        .state_luoxuan {
+            background: url(/static/images/projects/state_jingbiaozhong.png) no-repeat;
+            width: 45px;
+            height: 25px;
+            display: inline-block;
+            vertical-align: middle;
+            margin-right: 10px;
+        }
+
+        .state_zhongbiao {
+            background-position: 0 -50px;
+        }
+
+        .state_luoxuan {
+            background-position: 0 -25px;
+        }
+
+        .n_banner a {
+            background: url(
+            /static/images/projects/nei_banner.png) no-repeat center center;
+        }
+
+        .release a {
+            color: #ffffff !important;
+            text-align: center;
+            background-color: #2EB135;
+            width: 110px;
+            border-radius: 20px;
+        }
+
+        .release .btn:hover {
+            color: #ffffff;
+        }
+
+    </style>
+{% endblock %}
+
+{% block js %}
+    <script type="text/javascript">
+        var _hmt = _hmt || [];
+        (function () {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?d1e85a4de65b9e6f5c4aa9a756351e27";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+    <script src="{% static '/js/projects/jquery-1.9.1.js' %}" type="text/javascript"></script>
+    <script src="{% static '/js/projects/jquery-ui-1.10.4.custom-20140818.js' %}" type="text/javascript"></script>
+    <script src="{% static '/js/projects/formValidator-4.1.3-20190409.js' %}" type="text/javascript"></script>
+    <script src="{% static '/js/projects/bootstrap.min.js' %}" type="text/javascript"></script>
+    <script src="{% static '/js/projects/web-2018-11-19.js' %}"></script>
+    <script src="{% static '/js/projects/bootstrapValidator.min.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+    <body class="global-main">
+    <script type="text/javascript">
+        $(function () {
+            $('ul.dropdown-menu-search li a').click(function () {
+                var value = $(this).attr('data');
+                var data = $(this).html();
+                $('#sousuoleixing').val(value);
+                $('#datashowarea').html(data);
+                $('.dropdown-menu-search').hide();
+            });
+            $('.dropdown-toggle-search').click(function () {
+                $('.dropdown-menu-search').show();
+            });
+            $('.select').hover(function () {
+                $('.dropdown-menu-search').show();
+            }, function () {
+                $('.dropdown-menu-search').hide();
+            });
+            var viewWidth = $(window).innerWidth();
+            if (viewWidth < 1200) {
+                $('.navbar-meun li').css('padding', '0 10px');
+            }
+        });
+    </script>
+    <script type='text/javascript' src='{% static '/js/projects/bootstrap-paginator.min.js' %}'></script>
+    <script type='text/javascript' src='{% static '/js/projects/search-2018-11-19.js' %}'></script>
+    <script type='text/javascript' src='{% static '/js/projects/knockout-2.2.1.js' %}'></script>
+    <script type='text/javascript' src='{% static '/js/projects/knockout.autocomplete.js' %}'></script>
+    <script type='text/javascript' src='{% static '/js/projects/knockout.keys.js' %}'></script>
+    <script type='text/javascript' src='{% static '/js/projects/MultiCompletePorjectModel.js' %}'></script>
+    <link rel="stylesheet" href="{% static '/css/projects/autocomplete.css' %}">
+    <div class="container-fluid n_banner">
+        <a href="#"></a>
+    </div>
+    {#  按条件筛选  #}
+    <div class="container-fluid title">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <span>找项目——按条件筛选</span>
+                    <a href="">重置筛选条件</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <form id="searchform" style="display:none">
+        <input id="xiangmufenlei" type='hidden' name='category' value="">
+        <input id="SearchKey" type='hidden' name='keyword' value="">
+        <input id="address" type='hidden' name='suozaidi' value="">
+        <input id="SearchYusuan" type='hidden' name='yusuan' value="">
+        <input id="SearchState" type='hidden' name='xiangmuzhuangtai' value="jbz">
+        <input id="SearchDateFrom" type='hidden' name='fromTime' value="">
+        <input id="SearchDateTo" type='hidden' name='toTime' value="">
+        <input id="skills" type='hidden' name='suoxujishu' value="">
+        <input id="SearchOrderKey" type='hidden' name='orderKey' value="">
+    </form>
+    {# 搜索分类 #}
+    <div class="container-fluid  screen">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <ul class="list-unstyled proSearchType" datafrom="project">
+                        <li datatype="xiangmufenlei">
+                            <span class="span-title">项目分类</span>
+                            <a href="javascript:void(0);" id="hulianwang" class="" datatype="网站开发"
+                               onclick="_hmt.push(['_trackEvent', 'projectList', 'click', 'sort']);">网站开发</a>
+                            <a href="javascript:void(0);" id="zhuomian" class="" datatype="桌面应用"
+                               onclick="_hmt.push(['_trackEvent', 'projectList', 'click', 'sort']);">桌面应用</a>
+                            <a href="javascript:void(0);" id="yiydong" class="" datatype="APP"
+                               onclick="_hmt.push(['_trackEvent', 'projectList', 'click', 'sort']);">APP</a>
+                            <a href="javascript:void(0);" id="shejishuzi" class="" datatype="UI设计"
+                               onclick="_hmt.push(['_trackEvent', 'projectList', 'click', 'sort']);">UI设计</a>
+                            <a href="javascript:void(0);" id="shujufenxin" class="" datatype="数据采集与分析">数据采集与分析</a>
+                            <a href="javascript:void(0);" id="zhineng" class="" datatype="嵌入式与智能硬件">嵌入式与智能硬件</a>
+                            <a href="javascript:void(0);" id="weixin" class="" datatype="微信开发">微信开发</a>
+                            <a href="javascript:void(0);" id="guanli" class="" datatype="管理系统">管理系统</a>
+                            <a href="javascript:void(0);" id="HardwarePurchasing" datatype="硬件采购"
+                               onclick="_hmt.push(['_trackEvent', 'projectList', 'click', 'sort']);">硬件采购</a>
+                            <a href="javascript:void(0);" id="qita" datatype="其它分类项目"
+                               onclick="_hmt.push(['_trackEvent', 'projectList', 'click', 'sort']);">其它分类项目</a>
+
+                        </li>
+                        <li datatype="xiangmuyusuan">
+                            <span class="span-title">项目预算</span>
+                            <a href="javascript:void(0);" datatype="1000"
+                               onclick="_hmt.push(['_trackEvent', 'projectList', 'click', 'sort']);">1千以下</a>
+                            <a href="javascript:void(0);" datatype="5000"
+                               onclick="_hmt.push(['_trackEvent', 'projectList', 'click', 'sort']);">1千~5千</a>
+                            <a href="javascript:void(0);" datatype="10000"
+                               onclick="_hmt.push(['_trackEvent', 'projectList', 'click', 'sort']);">5千~1万</a>
+                            <a href="javascript:void(0);" datatype="50000"
+                               onclick="_hmt.push(['_trackEvent', 'projectList', 'click', 'sort']);">1万~5万</a>
+                            <a href="javascript:void(0);" datatype="100000"
+                               onclick="_hmt.push(['_trackEvent', 'projectList', 'click', 'sort']);">5万~10万</a>
+                            <a href="javascript:void(0);" datatype="100001"
+                               onclick="_hmt.push(['_trackEvent', 'projectList', 'click', 'sort']);">10万以上</a>
+                            <a href="javascript:void(0);" datatype="0"
+                               onclick="_hmt.push(['_trackEvent', 'projectList', 'click', 'sort']);">待商议</a>
+                        </li>
+                        <li datatype="status">
+                            <span class="span-title">项目状态</span>
+                            <a href="javascript:void(0);" class="on" datatype="jbz"
+                               onclick="_hmt.push(['_trackEvent', 'projectList', 'click', 'sort']);">竞标中</a>
+                            <a href="javascript:void(0);" datatype="kfz"
+                               onclick="_hmt.push(['_trackEvent', 'projectList', 'click', 'sort']);">开发中</a>
+                            <a href="javascript:void(0);" datatype="wg"
+                               onclick="_hmt.push(['_trackEvent', 'projectList', 'click', 'sort']);">完工</a>
+
+                        </li>
+                        <li class="li-address" datatype="address">
+                            <span class="span-title">所在地区</span>
+                            <a href="javascript:void(0);" datatype="北京市"
+                               onclick="_hmt.push(['_trackEvent', 'projectList', 'click', 'sort']);">北京市</a>
+                            <a href="javascript:void(0);" datatype="上海市"
+                               onclick="_hmt.push(['_trackEvent', 'projectList', 'click', 'sort']);">上海市</a>
+                            <a href="javascript:void(0);" datatype="天津市"
+                               onclick="_hmt.push(['_trackEvent', 'projectList', 'click', 'sort']);">天津市</a>
+                            <a href="javascript:void(0);" datatype="重庆市"
+                               onclick="_hmt.push(['_trackEvent', 'projectList', 'click', 'sort']);">重庆市</a>
+                            <a href="javascript:void(0);" datatype="河北省"
+                               onclick="_hmt.push(['_trackEvent', 'projectList', 'click', 'sort']);">河北省</a>
+                            <a href="javascript:void(0);" datatype="山西省"
+                               onclick="_hmt.push(['_trackEvent', 'projectList', 'click', 'sort']);">山西省</a>
+                            <a href="javascript:void(0);" datatype="河南省"
+                               onclick="_hmt.push(['_trackEvent', 'projectList', 'click', 'sort']);">河南省</a>
+                            <a href="javascript:void(0);" datatype="辽宁省"
+                               onclick="_hmt.push(['_trackEvent', 'projectList', 'click', 'sort']);">辽宁省</a>
+
+                            <a class="more_btn" href="javascript:;"
+                               onclick="_hmt.push(['_trackEvent', 'projectList', 'click', 'sort']);">更多 <i
+                                    class="glyphicon glyphicon-menu-down"></i></a>
+                            <div class="more_d">
+                                <a href="javascript:void(0);" datatype="吉林省">吉林省</a>
+                                <a href="javascript:void(0);" datatype="黑龙江省">黑龙江省</a>
+                                <a href="javascript:void(0);" datatype="内蒙古">内蒙古</a>
+                                <a href="javascript:void(0);" datatype="江苏省">江苏省</a>
+                                <a href="javascript:void(0);" datatype="山东省">山东省</a>
+                                <a href="javascript:void(0);" datatype="安徽省">安徽省</a>
+                                <a href="javascript:void(0);" datatype="浙江省">浙江省</a>
+                                <a href="javascript:void(0);" datatype="福建省">福建省</a>
+                                <a href="javascript:void(0);" datatype="湖北省">湖北省</a>
+                                <a href="javascript:void(0);" datatype="湖南省">湖南省</a>
+                                <a href="javascript:void(0);" datatype="广东省">广东省</a>
+                                <a href="javascript:void(0);" datatype="广西">广西</a>
+                                <a href="javascript:void(0);" datatype="江西省">江西省</a>
+                                <a href="javascript:void(0);" datatype="四川省">四川省</a>
+                                <a href="javascript:void(0);" datatype="海南省">海南省</a>
+                                <a href="javascript:void(0);" datatype="贵州省">贵州省</a>
+                                <a href="javascript:void(0);" datatype="云南省">云南省</a>
+                                <a href="javascript:void(0);" datatype="西藏">西藏</a>
+                                <a href="javascript:void(0);" datatype="陕西省">陕西省</a>
+                                <a href="javascript:void(0);" datatype="甘肃省">甘肃省</a>
+                                <a href="javascript:void(0);" datatype="青海省">青海省</a>
+                                <a href="javascript:void(0);" datatype="宁夏">宁夏</a>
+                                <a href="javascript:void(0);" datatype="新疆">新疆</a>
+                                <a href="javascript:void(0);" datatype="台湾">台湾</a>
+                                <a href="javascript:void(0);" datatype="香港">香港</a>
+                                <a href="javascript:void(0);" datatype="澳门">澳门</a>
+                                <a href="javascript:void(0);" datatype="国外">国外</a>
+                            </div>
+                        </li>
+                        <li datatype="skills" class="jn_menu" style="float:left;width:auto;">
+                            <span class="span-title">找项目</span>
+                            <div data-bind="with: multiComplete, css: 'div-bind' " style="float:left;width:auto;">
+                                <div class="completion" style="height:36px;position:relative;"
+                                     data-bind="click: focusInput">
+                                <span class="search-label"
+                                      style="display: inline;position:absolute;top: 5px;left:10px;right:0px;width:200px;color: #757575;font-size: xx-small;">输入技能标签</span>
+
+                                    <!-- ko foreach: completed -->
+                                    <input data-bind="css: 'input-item-stab',visible: editing(), value: value, valueUpdate: 'afterkeydown', hasfocus: editing, attr: { size: inputSize }, autocomplete: { data: $root.keywords, onSelect: select, separators: ',; ' }"
+                                           value="">
+                                    <span class="item" data-bind="visible: !editing()">
+									<span class="span-label " data-bind="text: value, click: edit"></span>
+									<a class="remove"
+                                       data-bind="click: function () { $parent.removeItem($index()); $parent.changeProject(); }"></a>
+								</span>
+                                    <!-- /ko -->
+
+                                    <input style="margin-top:-2px;float:left;margin-left:-1px;border:none;"
+                                           data-bind="css: 'input-item', attr: { size: inputSize, value: inputValue }, hasfocus: focused, value: value, valueUpdate: 'afterkeydown',onBackspace: removeLast, autocomplete: { data: items, onSelect: select, separators: ',; ' }, event: { blur: blurInput }"
+                                           value="">
+                                </div>
+                                <span class="span-description" data-bind="visible: !focused">请输入您要查找的标签</span>
+                            </div>
+                        </li>
+                        <li class="div-jiebaofang">
+                            <!--<span class="span-title">找项目</span>-->
+                            <input id="keyWord" class="span-input input-fix" type="text" value=""
+                                   data-bind="attr: {placeholder: '输入项目关键字'}">
+                            <!--<a class="btn btn-success icon-glyphicon-search" href="javascript:void(0);" onclick="_hmt.push(['_trackEvent', 'top功能', 'click', '找接包方']);">
+                                <i class="glyphicon glyphicon-search"></i>
+                            </a>-->
+                        </li>
+                        <li>
+                            <div class="date" style="float:left;">
+                                <span class="span-title">发布日期</span>
+                                <input id="from" type="text" class="input-date input-fix"
+                                       data-bind="attr: {placeholder: '开始日期'}">
+                                <span class="span-title text-center">至</span>
+                                <input id="to" type="text" class="input-date input-fix"
+                                       data-bind="attr: {placeholder: '结束日期'}">
+                                <a class="btn btn-success icon-glyphicon-search time-search  project-glyphicon-search"
+                                   href="javascript:void(0);"
+                                   onclick="_hmt.push(['_trackEvent', 'top功能', 'click', '找接包方']);">
+                                    <i class="glyphicon glyphicon-search"></i>
+                                </a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    {#  具体项目  #}
+    <div class="container" style="padding-bottom:30px;">
+        <div class="row">
+            <div class="col-lg-12 result">
+                <div class="sort projectListSort">
+                    <span>排序</span><a datatype="fabushijian" href="javascript:void(0);">发布日期</a><a
+                        datatype="xiangmuyusuan"
+                        href="javascript:void(0);">项目预算</a>
+                </div>
+            </div>
+            <div id="projectLists">
+                <script type='text/javascript' src='{% static '/js/projects/collection.js' %}'></script>
+                <div class="col-md-9 col-lg-9 list">
+                    <div class="row">
+                        <div class="col-md-6 col-lg-6"><span>共筛选出 <b class="green">44</b> 条满足条件的项目</span></div>
+                        <div class="col-md-6 col-lg-6 fr">
+                            <div id="pagination_up"></div>
+                        </div>
+                    </div>
+                    <ul class="list-unstyled">
+
+                        <li>
+                            <i class="icon_new"></i>
+                            <div class="left_2">
+                                <a href="#">管理系统</a>
+                                <span>
+                                <!--                                    -->                                                                            竞标中                                                                                                </span>
+                            </div>
+                            <div class="left_8">
+                                <h4>
+                                    <a style="color: #333;" href="88114.html" target="_blank">
+                                        JAVA后台管理系统二次开发 </a>
+                                </h4>
+
+                                <span>预算 <em class="green">1万~5万</em></span>
+                                <span>人气 <em>10</em></span><span>发布日期 <em>2019.12.04</em></span>
+                                <span>截止日期 <em>2019.12.14</em></span>
+                                <div style="margin-top: 28px;">
+                                    <span><i class="glyphicon glyphicon-map-marker"></i>上海市</span>
+                                    <span class="jineng-label">技能标签</span>
+                                    <span class='green'> Java</span><span class='green'> JavaScript</span><span
+                                        class='green'> CSS/DIV</span><span class='green'> MySQL</span></div>
+                            </div>
+                            <div class="left_2">
+                                <a href="project_88114.html"><i class="glyphicon glyphicon-heart gray"> 收藏</i></a>
+                            </div>
+                        </li>
+
+                        <li>
+                            <i class="icon_new"></i>
+                            <div class="left_2">
+                                <a href="#">嵌入式与智能硬件</a>
+                                <span>
+                                <!--                                    -->                                                                            竞标中                                                                                                </span>
+                            </div>
+                            <div class="left_8">
+                                <h4>
+                                    <a style="color: #333;" href="88112.html" target="_blank">
+                                        制作一个按钮，控制与亚马逊音箱连接的智能设备 </a>
+                                </h4>
+
+                                <span>预算 <em class="green">待商议</em></span>
+                                <span>人气 <em>105</em></span><span>发布日期 <em>2019.12.04</em></span>
+                                <span>截止日期 <em>2019.12.14</em></span>
+                                <div style="margin-top: 28px;">
+                                    <span class="jineng-label">技能标签</span>
+                                </div>
+                            </div>
+                            <div class="left_2">
+                                <a href="project_88112.html"><i class="glyphicon glyphicon-heart gray"> 收藏</i></a>
+                            </div>
+                        </li>
+
+                        <li>
+                            <div class="left_2">
+                                <a href="#">桌面应用</a>
+                                <span>
+                                <!--                                    -->                                                                            竞标中                                                                                                </span>
+                            </div>
+                            <div class="left_8">
+                                <h4>
+                                    <a style="color: #333;" href="88108.html" target="_blank">
+                                        通过C ++逆向工程实现自动买卖交易 </a>
+                                </h4>
+
+                                <span>预算 <em class="green">1千~5千</em></span>
+                                <span>人气 <em>439</em></span><span>发布日期 <em>2019.12.03</em></span>
+                                <span>截止日期 <em>2019.12.13</em></span>
+                                <div style="margin-top: 28px;">
+                                    <span class="jineng-label">技能标签</span>
+                                    <span class='green'> C/C++</span></div>
+                            </div>
+                            <div class="left_2">
+                                <a href="project_88108.html"><i class="glyphicon glyphicon-heart gray"> 收藏</i></a>
+                            </div>
+                        </li>
+
+                        <li>
+                            <div class="left_2">
+                                <a href="#">微信开发</a>
+                                <span>
+                                <!--                                    -->                                                                            竞标中                                                                                                </span>
+                            </div>
+                            <div class="left_8">
+                                <h4>
+                                    <a style="color: #333;" href="88107.html" target="_blank">
+                                        微信小程序搭建某运动爱好者平台 </a>
+                                </h4>
+
+                                <span>预算 <em class="green">5千~1万</em></span>
+                                <span>人气 <em>675</em></span><span>发布日期 <em>2019.12.03</em></span>
+                                <span>截止日期 <em>2019.12.13</em></span>
+                                <div style="margin-top: 28px;">
+                                    <span class="jineng-label">技能标签</span>
+                                    <span class='green'> PHP</span><span class='green'> MySQL</span></div>
+                            </div>
+                            <div class="left_2">
+                                <a href="project_88107.html"><i class="glyphicon glyphicon-heart gray"> 收藏</i></a>
+                            </div>
+                        </li>
+
+                        <li>
+                            <div class="left_2">
+                                <a href="#">管理系统</a>
+                                <span>
+                                <!--                                    -->                                                                            竞标中                                                                                                </span>
+                            </div>
+                            <div class="left_8">
+                                <h4>
+                                    <a style="color: #333;" href="88106.html" target="_blank">
+                                        大众点评批量访客收藏点赞预约软件开发 </a>
+                                </h4>
+
+                                <span>预算 <em class="green">待商议</em></span>
+                                <span>人气 <em>307</em></span><span>发布日期 <em>2019.12.03</em></span>
+                                <span>截止日期 <em>2019.12.13</em></span>
+                                <div style="margin-top: 28px;">
+                                    <span class="jineng-label">技能标签</span>
+                                </div>
+                            </div>
+                            <div class="left_2">
+                                <a href="project_88106.html"><i class="glyphicon glyphicon-heart gray"> 收藏</i></a>
+                            </div>
+                        </li>
+
+                        <li>
+                            <div class="left_2">
+                                <a href="#">数据采集与分析</a>
+                                <span>
+                                <!--                                    -->                                                                            竞标中                                                                                                </span>
+                            </div>
+                            <div class="left_8">
+                                <h4>
+                                    <a style="color: #333;" href="88104.html" target="_blank">
+                                        某产品读取与解析软件 </a>
+                                </h4>
+
+                                <span>预算 <em class="green">5千~1万</em></span>
+                                <span>人气 <em>368</em></span><span>发布日期 <em>2019.12.03</em></span>
+                                <span>截止日期 <em>2019.12.13</em></span>
+                                <div style="margin-top: 28px;">
+                                    <span class="jineng-label">技能标签</span>
+                                </div>
+                            </div>
+                            <div class="left_2">
+                                <a href="project_88104.html"><i class="glyphicon glyphicon-heart gray"> 收藏</i></a>
+                            </div>
+                        </li>
+
+                        <li>
+                            <div class="left_2">
+                                <a href="#">APP</a>
+                                <span>
+                                <!--                                    -->                                                                            竞标中                                                                                                </span>
+                            </div>
+                            <div class="left_8">
+                                <h4>
+                                    <a style="color: #333;" href="88096.html" target="_blank">
+                                        android游戏化地图功能开发 </a>
+                                </h4>
+
+                                <span>预算 <em class="green">1千以下</em></span>
+                                <span>人气 <em>1025</em></span><span>发布日期 <em>2019.12.02</em></span>
+                                <span>截止日期 <em>2019.12.12</em></span>
+                                <div style="margin-top: 28px;">
+                                    <span class="jineng-label">技能标签</span>
+                                </div>
+                            </div>
+                            <div class="left_2">
+                                <a href="project_88096.html"><i class="glyphicon glyphicon-heart gray"> 收藏</i></a>
+                            </div>
+                        </li>
+
+                        <li>
+                            <div class="left_2">
+                                <a href="#">桌面应用</a>
+                                <span>
+                                <!--                                    -->                                                                            竞标中                                                                                                </span>
+                            </div>
+                            <div class="left_8">
+                                <h4>
+                                    <a style="color: #333;" href="88094.html" target="_blank">
+                                        作图软件 </a>
+                                </h4>
+
+                                <span>预算 <em class="green">1千~5千</em></span>
+                                <span>人气 <em>566</em></span><span>发布日期 <em>2019.12.02</em></span>
+                                <span>截止日期 <em>2019.12.12</em></span>
+                                <div style="margin-top: 28px;">
+                                    <span class="jineng-label">技能标签</span>
+                                </div>
+                            </div>
+                            <div class="left_2">
+                                <a href="project_88094.html"><i class="glyphicon glyphicon-heart gray"> 收藏</i></a>
+                            </div>
+                        </li>
+
+                        <li>
+                            <div class="left_2">
+                                <a href="#">APP</a>
+                                <span>
+                                <!--                                    -->                                                                            竞标中                                                                                                </span>
+                            </div>
+                            <div class="left_8">
+                                <h4>
+                                    <a style="color: #333;" href="88077.html" target="_blank">
+                                        socks5 代理 </a>
+                                </h4>
+
+                                <span>预算 <em class="green">1万~5万</em></span>
+                                <span>人气 <em>1439</em></span><span>发布日期 <em>2019.12.01</em></span>
+                                <span>截止日期 <em>2019.12.11</em></span>
+                                <div style="margin-top: 28px;">
+                                    <span class="jineng-label">技能标签</span>
+                                </div>
+                            </div>
+                            <div class="left_2">
+                                <a href="project_88077.html"><i class="glyphicon glyphicon-heart gray"> 收藏</i></a>
+                            </div>
+                        </li>
+
+                        <li>
+                            <div class="left_2">
+                                <a href="#">网站开发</a>
+                                <span>
+                                <!--                                    -->                                                                            竞标中                                                                                                </span>
+                            </div>
+                            <div class="left_8">
+                                <h4>
+                                    <a style="color: #333;" href="88079.html" target="_blank">
+                                        优化修改现有建站系统软件二次开发集成宝塔阿里云私有云市场 </a>
+                                </h4>
+
+                                <span>预算 <em class="green">1万~5万</em></span>
+                                <span>人气 <em>1349</em></span><span>发布日期 <em>2019.12.01</em></span>
+                                <span>截止日期 <em>2019.12.11</em></span>
+                                <div style="margin-top: 28px;">
+                                    <span><i class="glyphicon glyphicon-map-marker"></i>浙江省 温州市</span>
+                                    <span class="jineng-label">技能标签</span>
+                                    <span class='green'> PHP</span><span class='green'> MySQL</span></div>
+                            </div>
+                            <div class="left_2">
+                                <a href="project_88079.html"><i class="glyphicon glyphicon-heart gray"> 收藏</i></a>
+                            </div>
+                        </li>
+                    </ul>
+                    <div id="pagination"></div>
+                </div>
+                <script>
+                    var options = {
+                        currentPage: 1,
+                        totalPages: 5,
+                        alignment: "right",
+                        numberOfPages: 5,
+                        onPageClicked: function (e, originalEvent, type, page) {
+                            submitFormProject(page);
+                        }
+                    }
+                    $('#pagination').bootstrapPaginator(options);
+                    $('#pagination_up').bootstrapPaginator(options);
+                    $('#pagination a').click(function () {
+                        window.scrollTo(0, 0);
+                    });
+
+
+                    $("#from").datepicker({
+                        defaultDate: null,
+                        changeMonth: true,
+                        //numberOfMonths: 3,
+                        maxDate: new Date(),
+                        onClose: function (selectedDate) {
+                            $("#to").datepicker("option", "minDate", selectedDate);
+                        }
+                    });
+                    $("#to").datepicker({
+                        defaultDate: "+1w",
+                        changeMonth: true,
+                        //numberOfMonths: 3,
+                        maxDate: new Date(),
+                        onClose: function (selectedDate) {
+                            $("#from").datepicker("option", "maxDate", selectedDate);
+                        }
+                    });
+                </script>
+            </div>
+            <style> .lable li a {
+                float: none;
+            } </style>
+            <div class="col-md-3 col-lg-3">
+                <div class="lable">
+                    <h4>大家都在看的项目TOP10</h4>
+                    <ul class="list-unstyled">
+                        <li class="nowrap">
+                            <b>01</b> <a class="nowrap" href="88054.html" target="_blank">
+                            订单管理小程序 </a>
+                        </li>
+                        <li class="nowrap">
+                            <b>02</b> <a class="nowrap" href="87871.html" target="_blank">
+                            公众号开发 </a>
+                        </li>
+                        <li class="nowrap">
+                            <b>03</b> <a class="nowrap" href="88052.html" target="_blank">
+                            跨境电商ERP </a>
+                        </li>
+                        <li class="nowrap">
+                            <i>04</i> <a class="nowrap" href="88066.html" target="_blank">
+                            数据管理统计小程序 </a>
+                        </li>
+                        <li class="nowrap">
+                            <i>05</i> <a class="nowrap" href="87870.html" target="_blank">
+                            抖音小程序开发 </a>
+                        </li>
+                        <li class="nowrap">
+                            <i>06</i> <a class="nowrap" href="87865.html" target="_blank">
+                            微信商城开发 </a>
+                        </li>
+                        <li class="nowrap">
+                            <i>07</i> <a class="nowrap" href="88043.html" target="_blank">
+                            小程序和微信公众号开发 </a>
+                        </li>
+                        <li class="nowrap">
+                            <i>08</i> <a class="nowrap" href="88010.html" target="_blank">
+                            微信小程序开发 </a>
+                        </li>
+                        <li class="nowrap">
+                            <i>09</i> <a class="nowrap" href="87866.html" target="_blank">
+                            国外网站爬虫先项目 </a>
+                        </li>
+                        <li class="nowrap">
+                            <i>10</i> <a class="nowrap" href="88053.html" target="_blank">
+                            WPF三维控件开发 </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="lable">
+                    <h4>竞争最激烈的项目TOP10</h4>
+                    <ul class="list-unstyled">
+                        <li class="nowrap">
+                            <b>01</b> <a class="nowrap" href="87865.html" target="_blank">
+                            微信商城开发 </a>
+                        </li>
+                        <li class="nowrap">
+                            <b>02</b> <a class="nowrap" href="88093.html" target="_blank">
+                            考试系统 </a>
+                        </li>
+                        <li class="nowrap">
+                            <b>03</b> <a class="nowrap" href="87871.html" target="_blank">
+                            公众号开发 </a>
+                        </li>
+                        <li class="nowrap">
+                            <i>04</i> <a class="nowrap" href="88063.html" target="_blank">
+                            Windows端燃料电池... </a>
+                        </li>
+                        <li class="nowrap">
+                            <i>05</i> <a class="nowrap" href="88040.html" target="_blank">
+                            网站问答频道开发项目 </a>
+                        </li>
+                        <li class="nowrap">
+                            <i>06</i> <a class="nowrap" href="88039.html" target="_blank">
+                            ios APP 项目外包 </a>
+                        </li>
+                        <li class="nowrap">
+                            <i>07</i> <a class="nowrap" href="88083.html" target="_blank">
+                            自助查询终端APP </a>
+                        </li>
+                        <li class="nowrap">
+                            <i>08</i> <a class="nowrap" href="88043.html" target="_blank">
+                            小程序和微信公众号开发 </a>
+                        </li>
+                        <li class="nowrap">
+                            <i>09</i> <a class="nowrap" href="88052.html" target="_blank">
+                            跨境电商ERP </a>
+                        </li>
+                        <li class="nowrap">
+                            <i>10</i> <a class="nowrap" href="87875.html" target="_blank">
+                            管理平台+APP+智能硬件 </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    {#  js  #}
+    <script type="text/javascript">
+        (function () {
+            var keywords = [
+                'ASP', 'AppleScript', 'BAISC', 'BASICA', 'bash', 'C', 'C++', 'C++/CLI',
+                'C++ Builder', 'Objective-C', 'C#', 'Delphi', 'DMDScript', 'ETBASIC', 'GVBASIC', 'HTML',
+                'Java ', 'JavaScript', 'JSP', 'Jscript', 'LINQ', 'Lua', 'Object Pascal', 'Pascal',
+                'Python', 'PHP', 'Perl ', 'PowerShell', 'QBASIC', 'Ruby', 'SQL', 'sh',
+                'sed', 'Visual Basic .Net', 'VBScript', 'VBA', 'xBase', 'Xquery', 'XAML', 'XHTML'
+            ];
+
+            var viewModel = {
+                keywords: keywords,
+                multiComplete: new labelseek.MultiCompleteModel(keywords),
+                flashWord: ko.observable()
+            };
+
+            viewModel.flashWord.subscribe(function (newValue) {
+                setTimeout(function () {
+                    if (viewModel.flashWord() === newValue) {
+                        viewModel.flashWord('');
+                    }
+                }, 1000);
+            });
+
+            ko.applyBindings(viewModel, document.getElementById('application'));
+
+            var listen_obj = $(".item").text();
+
+
+            $(".completion, .item").change(function () {
+
+                var send_obj = $(".completion").text().split(/\s+/);
+
+                if (send_obj) {
+
+                    send_obj = $.grep(send_obj, function (n, i) {
+                        return (n !== "" && n != null);
+                    });
+
+                    var send_obj_lenth = send_obj.length;
+
+                    if (send_obj_lenth) {
+                        if (1 === send_obj_lenth) {
+                            // only one label
+                            $("input[name='skills']").val(send_obj[0]);
+                            addFormValue('skills', send_obj[0]);
+
+
+                        } else {
+                            $("input[name='skills']").val(send_obj);
+                            addFormValue('skills', send_obj);
+                        }
+                        submitFormProject();
+
+                    } else {
+                        // 如果Input value有值
+
+                        if ($('.input-item').val()) {
+                            addFormValue('skills', $('.input-item').val());
+                        } else {
+                            addFormValue('skills', '');
+                        }
+
+                        submitFormProject();
+                    }
+                }
+            });
+        }());
+    </script>
+    {#  清除  #}
+    <div class="clear"></div>
+
+    {#右侧条#}
+    <style>
+        .sidebar_code2 {
+            display: block;
+            text-align: center;
+            width: 45px;
+            height: 45px;
+            cursor: pointer;
+        }
+
+        .sidebar_code2 .code2s {
+            text-align: center;
+            line-height: 45px;
+            font-size: 24px;
+            color: #ffffff;
+            position: relative;
+        }
+
+        .code2s:before {
+            position: relative;
+            z-index: 1;
+        }
+    </style>
+    <ul class="right-side-flyelem show">
+        <a href="#">
+            <li class="rsf-items fa fa-arrow-circle-up side-icon"></li>
+        </a>
+        <a target="_blank" href="javascript:;">
+            <li class="rsf-items  fa fa-qq fa-qq3 side-icon"></li>
+        </a>
+        <a target="_blank" href="help.html">
+            <li class="rsf-items  fa fa-question-circle side-icon"></li>
+        </a>
+
+        <li class="rsf-items  fa fa-phone side-icon"></li>
+        <a href="javascript:void(0);" act='/my/user/logout/1' msg='登录后可以写反馈哦' title='意见反馈' gotoaction='1'
+           class='jb_btn on  confirm'>
+            <li class="rsf-items fa-message glyphicon glyphicon-edit side-icon"></li>
+        </a>
+    </ul>
+
+    <script type="text/javascript">
+        $(function () {
+            $('#myCarousel1').carousel({
+                interval: 4000
+            });
+            $("div.accordion-heading-running").mousemove(function () {
+                $("div.accordion-body-running").removeClass("in");
+                $(this).next().addClass("in");
+                $(this).mouseout(function () {
+                    $(this).removeClass("in");
+                });
+            });
+            $("div.accordion-heading-finish").mousemove(function () {
+                $("div.accordion-body-finish").removeClass("in");
+                $(this).next().addClass("in");
+                $(this).mouseout(function () {
+                    $(this).removeClass("in");
+                });
+            });
+            $('.jbf_search_input').click(function () {
+                $('.jbf_search_input').val('');
+            });
+
+            if ($("#yzm").length > 0) {
+                cgpwd();
+                $("#yzm").click(function () {
+                    cgpwd();
+                });
+            }
+
+
+            $("#ad_float").animate({width: "100%"}, 2000);
+            // baiduAutomaticallyPull();
+        });
+
+
+        function cgpwd() {
+            $("#yzm").attr('src', '/authpic/getcode/' + new Date().getTime());
+            $("#authcode").val('');
+        }
+
+        function closeAd() {
+            $("#ad_float").animate({width: '0'}, 2000, function () {
+                $('#ad_float').find('p').css('display', 'none');
+
+            });
+        }
+
+        function skipTo() {
+            window.location.href = '/my/user/manage';
+        }
+    </script>
+    </body>
+{% endblock %}
+
+
+{% block downjs %}
+    <script>
+        (function () {
+            var bp = document.createElement('script');
+            var curProtocol = window.location.protocol.split(':')[0];
+            if (curProtocol === 'https') {
+                bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+            } else {
+                bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+            }
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(bp, s);
+        })();
+    </script>
+{% endblock %}
+

@@ -1,24 +1,192 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>用户注册</title>
-</head>
-<body>
-<form action="/user/reg" method="post">
-    {% csrf_token %}
-    <p>
-        用户名:<input type="text" name="username">
-    </p>
-    <p>
-        密码:<input type="text" name="password_1">
-    </p>
-    <p>
-        再次输入:<input type="text" name="password_2">
-    </p>
-    <p>
-        <input type="submit" value="注册">
-    </p>
-</form>
-</body>
-</html>
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block title %}注册{% endblock title %}
+{% block css %}
+    {#        <link rel="stylesheet" type="text/css" href="{% static '/css/user/main.css' %}">#}
+    <style>
+        /* 注册页面 */
+        .register_con {
+            height: 597px;
+            margin: 0 auto;
+            background-color: #2e2f33;
+        }
+
+        .l_con {
+            width: 40px;
+            height: 300px;
+        }
+
+
+        .reg_slogan {
+            font-size: 30px;
+            color: #f0f9e8;
+            text-align: center;
+            line-height: 36px;
+            margin: 120px 0 0 362px;
+        }
+
+
+        .r_con.fr {
+            width: 420px;
+            height: 512px;
+            border: 1px solid #c6c6c5;
+            background-color: #fff;
+            margin-top: 43px;
+            margin-right: 223px;
+        }
+
+
+        .reg_title {
+            width: 360px;
+            height: 50px;
+            float: left;
+            margin-left: 30px;
+            border-bottom: 1px solid #e0e0e0
+        }
+
+        .reg_title h1 {
+            height: 50px;
+            line-height: 50px;
+            float: left;
+            font-size: 24px;
+            color: #555;
+            font-weight: bold;
+        }
+
+        .reg_title a {
+            float: right;
+            height: 20px;
+            line-height: 20px;
+            font-size: 20px;
+            color: #4277ad;
+            padding-right: 30px;
+            margin-top: 32px
+        }
+
+        .reg_form {
+            width: 360px;
+            margin: 30px 0 0 30px;
+            float: left;
+            position: relative;
+        }
+
+        .reg_form li {
+            height: 70px;
+        }
+
+        .reg_form li label {
+            width: 70px;
+            height: 40px;
+            line-height: 40px;
+            float: left;
+            font-size: 14px;
+            color: #555
+        }
+
+        .reg_form li input {
+            width: 288px;
+            height: 38px;
+            border: 1px solid #4277ad;
+            border-radius: 5px;
+            float: left;
+            outline: none;
+            text-indent: 10px;
+            background-color: #f8f8f8
+        }
+
+        .reg_form li.agreement input {
+            width: 15px;
+            height: 15px;
+            float: left;
+            margin-top: 13px
+        }
+
+        .reg_form li.agreement label {
+            width: 300px;
+            float: left;
+            margin-left: 10px;
+        }
+
+        .reg_form li.reg_sub input {
+            width: 360px;
+            height: 40px;
+            background-color: #4277ad;
+            font-size: 22px;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        .reg_form li .error_tip {
+            float: left;
+            height: 30px;
+            line-height: 30px;
+            margin-left: 70px;
+            color: #e62e2e;
+            display: none;
+        }
+
+        .reg_form li .error_tip2 {
+            float: left;
+            height: 20px;
+            line-height: 20px;
+            color: #e62e2e;
+            display: none;
+        }
+
+    </style>
+
+{% endblock %}
+{% block content %}
+    <div class="register_con">
+        <div class="l_con fl">
+            <div class="reg_slogan">外包平台 · 众包网站</div>
+        </div>
+
+        <div class="r_con fr">
+            <div class="reg_title">
+                <h1>用户注册</h1>
+                <a href="/user/login">登录</a>
+            </div>
+            <div class="reg_form">
+                <form method="post" action="/user/register_handle/">
+                    {% csrf_token %}
+                    <ul>
+                        <li>
+                            <label>用户名:</label>
+                            <input type="text" name="username" id="user_name">
+                            <span class="error_tip">提示信息</span>
+                        </li>
+                        <li>
+                            <label>密码:</label>
+                            <input type="password" name="password" id="pwd">
+                            <span class="error_tip">提示信息</span>
+                        </li>
+                        <li>
+                            <label>确认密码:</label>
+                            <input type="password" name="password2" id="cpwd">
+                            <span class="error_tip">提示信息</span>
+                        </li>
+                        <li>
+                            <label>邮箱:</label>
+                            <input type="text" name="email" id="email">
+                            <span class="error_tip">提示信息</span>
+                        </li>
+                        <li class="agreement">
+                            <input type="checkbox" name="allow" id="allow" checked="checked">
+                            <label>同意”用户使用协议“</label>
+                            <span class="error_tip2">提示信息</span>
+                        </li>
+                        <li class="reg_sub">
+                            <input type="submit" value="注 册" name="">
+                            {{ errmsg }}
+                        </li>
+                    </ul>
+                </form>
+            </div>
+        </div>
+
+    </div>
+{% endblock %}
+
+
+	

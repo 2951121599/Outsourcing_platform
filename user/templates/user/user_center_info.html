@@ -1,0 +1,135 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block css %}
+    <style>
+        .main_con {
+            width: 1140px;
+            margin: 20px auto;
+            overflow: hidden;
+        }
+
+        .left_menu_con {
+            width: 200px;
+            float: left;
+        }
+
+        .left_menu_con h3 {
+            font-size: 18px;
+            line-height: 40px;
+            border-bottom: 2px solid #000;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .left_menu_con ul li {
+            line-height: 40px;
+            text-align: center;
+            font-size: 16px;
+        }
+
+        .left_menu_con ul li a {
+            color: #666;
+        }
+
+        .left_menu_con ul li .active {
+            color: #ac2925;
+            font-weight: bold;
+        }
+
+        .right_content {
+            width: 900px;
+            float: right;
+            min-height: 600px;
+        }
+
+        .info_con {
+            width: 980px;
+        }
+
+        .common_title2 {
+            height: 20px;
+            line-height: 20px;
+            font-size: 16px;
+            margin: 10px 0;
+        }
+
+        .user_info_list {
+            background-color: #f9f9f9;
+            margin: 10px 0 15px;
+            padding: 10px 0;
+            height: 90px;
+        }
+
+        .user_info_list li {
+            line-height: 30px;
+            text-indent: 30px;
+            font-size: 14px;
+        }
+
+        .user_info_list li span {
+            width: 100px;
+            float: left;
+            text-align: center;
+        }
+
+        .project_type_list {
+            margin: 10px auto 0;
+        }
+
+        .project_type_list li {
+            width: 196px;
+            float: left;
+            margin-bottom: 10px
+        }
+
+
+        .project_type_list li h4 {
+            width: 160px;
+            margin: 0 auto;
+        }
+
+        .project_type_list li h4 a {
+            font-weight: normal;
+            color: #111;
+            display: block;
+            width: 160px;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+    </style>
+{% endblock %}
+{% block content %}
+    <div class="main_con">
+        <div class="left_menu_con">
+            <h3>用户中心</h3>
+            <ul>
+                <li><a href="{% url 'user:user' %}" class="active">· 个人信息</a></li>
+            </ul>
+        </div>
+        <div class="right_content">
+            <div class="info_con">
+                <h3 class="common_title2">基本信息</h3>
+                <ul class="user_info_list">
+                    <li><span>用户名：</span>{{ request.session.username }}</li>
+                    {% if addr %}
+                        <li><span>联系方式：</span>{{ addr.recipent_phone }}</li>
+                        <li><span>联系地址：</span>{{ addr.recipent_addr }}</li>
+                    {% else %}
+                        <li><span>联系方式：</span>无</li>
+                        <li><span>联系地址：</span>无</li>
+                    {% endif %}
+                </ul>
+            </div>
+
+            <h3 class="common_title2">最近浏览</h3>
+            <div class="has_view_list">
+                <ul class="project_type_list">
+                    <li>
+                        <h4><a href="detail.html">项目名称列表</a></h4>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+{% endblock %}

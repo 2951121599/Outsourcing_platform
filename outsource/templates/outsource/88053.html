@@ -1,0 +1,1455 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta property="wb:webmaster" content="1b064b3c1397770d">
+    <meta name="robots" content="index,follow">
+    <meta name="baidu-site-verification" content="18c7RTDJgU">
+    <meta name="sogou_site_verification" content="mqYKK7ho0w">
+    <meta name="keywords" content="桌面应用">
+
+
+    <meta name="description" content="模仿matlab的三维成像控件，如下附件所示。具体功能包括支持缩放、旋转、定位、动态范围及颜色范围设定、截图等;
+提供项目源码，能够集成到wpf客户端软件中
+">
+    <title>软件开发公司_软件外包_项目外包平台WPF三维控件开发</title>
+    <link rel="archives" title="软件项目交易网" href="static/css/css">
+    <link rel='stylesheet' type='text/css' href='static/css/font-awesome.min.css'>
+    <link rel='stylesheet' type='text/css' href='static/css/bootstrap.min.css' media='all'>
+    <link rel='stylesheet' type='text/css' href='static/css/jquery.ui.customer-20140818.css' media='all'>
+    <link rel='stylesheet' type='text/css' href='static/css/web-20190904.css' media="all">
+    <script type="text/javascript">
+        var _hmt = _hmt || [];
+        (function () {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?d1e85a4de65b9e6f5c4aa9a756351e27";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+    <style type="text/css">
+        .state_jingbiaozhong,
+        .state_zhongbiao,
+        .state_luoxuan {
+            background: url(static/image/state_jingbiaozhong.png) no-repeat;
+            width: 45px;
+            height: 25px;
+            display: inline-block;
+            vertical-align: middle;
+            margin-right: 10px;
+        }
+
+        .state_zhongbiao {
+            background-position: 0 -50px;
+        }
+
+        .state_luoxuan {
+            background-position: 0 -25px;
+        }
+
+        .n_banner a {
+            background: url(static/image/nei_banner.png) no-repeat center center;
+        }
+
+        .release a {
+            color: #ffffff !important;
+            text-align: center;
+            background-color: #2EB135;
+            width: 110px;
+            border-radius: 20px;
+        }
+
+        .release .btn:hover {
+            color: #ffffff;
+        }
+
+    </style>
+    <script src="static/js/jquery-1.9.1.js" type="text/javascript"></script>
+    <script src="static/js/jquery-ui-1.10.4.custom-20140818.js" type="text/javascript"></script>
+    <script src="static/js/formValidator-4.1.3-20190409.js" type="text/javascript"></script>
+    <script src="static/js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="static/js/web-2018-11-19.js"></script>
+
+    <!--[if lt IE 8]>
+	<link href="static/css/bootstrap-ie7.css" rel="stylesheet">
+	<![endif]-->
+    <script src="static/js/bootstrapValidator.min.js"></script>
+    <link href="static/css/bootstrapValidator.min.css" rel="stylesheet">
+</head>
+<body class="global-main">
+<header class="navbar header-shadow clearfix" style="">
+    <div class="container help-width top">
+        <div class="row clearfix">
+            <div class="col-md-12 column">
+
+                <!--                    <button style="text-align: center; background-color: #ff8706; color: white; width: 100%;" class="btn">本站将在今晚(2018-02-27 21:00:00 ~ 23:00:00)进行维护，届时将不能在网站进行任何操作，对您造成不便敬请谅解！</button>-->
+
+
+                <nav class="navbar" role="navigation">
+                    <div class="navbar-header">
+                        <a class="logo" href="index.html"><img class="header-logo" src="static/picture/logo.png"
+                                                               alt="软件项目交易网"></a>
+                    </div>
+                    <div class="navbar-meun">
+                        <ul class="list-unstyled">
+                            <li class="service_nav">
+                                <a onclick="_hmt.push(['_trackEvent', 'nav', 'click', 'servicelist'])"
+                                   href="service.html">找服务</a>
+                            </li>
+
+                            <!--                            <li class="case_nav">-->
+                            <!--                                <a -->
+                            <!-- onclick="_hmt.push(['_trackEvent', 'nav', 'click', 'caselist'])" href="-->
+                            <!--">案例</a>-->
+                            <!--                            </li>-->
+                            <li class="user_nav">
+                                <a onclick="_hmt.push(['_trackEvent', 'nav', 'click', 'userlist'])" href="user.html">接包达人</a>
+                            </li>
+                            <li class="project_nav">
+                                <a class="active" onclick="_hmt.push(['_trackEvent', 'nav', 'click', 'projectlist'])"
+                                   href="project.html">找项目</a>
+                            </li>
+                            <!--                            <li class="article_nav">-->
+                            <!--								<a --><!--  -->
+                            <!--								onclick="_hmt.push(['_trackEvent', 'nav', 'click', 'articlelist'])" href="-->
+                            <!--">技术话题111</a>-->
+                            <!--                            </li>-->
+
+                            <!--							<li class="help_nav">-->
+                            <!--							   <a --><!-- -->
+                            <!--							   onclick="_hmt.push(['_trackEvent', 'nav', 'click', 'helplist'])" href="-->
+                            <!--">新手上路</a>-->
+                            <!--                           </li>-->
+
+                            <li class="company_nav">
+                                <img class="big-star" src="static/picture/star.png" alt="">
+
+                                <a onclick="_hmt.push(['_trackEvent', 'nav', 'click', '五星交付'])" href="company.html">大项目服务</a>
+                            </li>
+                            <!-- <li class="employ_nav">
+                                <a 								 onclick="_hmt.push(['_trackEvent', 'nav', 'click', 'recruitemlist'])" href="/page/recruitmenthome">招聘求职</a>
+                            </li> -->
+                        </ul>
+                    </div>
+
+                    <div class="navbar-login">
+                        <a class="login_btn" href="login.html">登录</a>
+                        <a class="reg_btn" href="register.html">注册</a>
+                    </div>
+
+                    <div class="release"><a class="btn" href="fastpub.html">发布项目</a></div>
+
+
+                    <form name="headsearhform" method="post" action="/page/help/search" target="_self">
+                        <div class="navbar-search">
+                            <div class="search">
+                                <div class="select">
+                                    <span><a class="dropdown-toggle dropdown-toggle-search" data-toggle="dropdown"
+                                             href="javascript:;"><span id="datashowarea">找接包方</span><span
+                                            class="caret"></span></a></span>
+                                    <ul class="dropdown-menu dropdown-menu-search">
+                                        <li><a data="user">找接包方</a></li>
+                                        <li><a data="project">找项目</a></li>
+                                        <li><a data="service">找服务</a></li>
+                                    </ul>
+                                    <ul class="list-unstyled">
+                                        <li><a href="javascript:;">找项目</a></li>
+                                        <li><a href="javascript:;">企业招聘</a></li>
+                                        <li><a href="javascript:;">个人求职</a></li>
+                                    </ul>
+                                </div>
+                                <form action="/project/show/88053" method="post" accept-charset="utf-8">
+                                    <div style="display:none">
+                                        <input type="hidden" name="csrf_sxsoft_name"
+                                               value="a98b9b783eb23f6cb16ab3ce6975e3d0">
+                                    </div>
+                                    <input type="hidden" id="sousuoleixing" name="sousuoleixing" value="user">
+                                    <input type="text" id="appendedDropdownButton" name='sousuoneirong'>
+                                    <a href="javascript:;"
+                                       onclick="_hmt.push(['_trackEvent', 'nav', 'click', 'search']);headsearhform.submit();"><span
+                                            class="glyphicon glyphicon-search"></span></a>
+                                </form>
+                            </div>
+                        </div>
+                    </form>
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
+<div class="clearfix" style="height: 80px"></div>
+<script type="text/javascript">
+    $(function () {
+        $('ul.dropdown-menu-search li a').click(function () {
+            var value = $(this).attr('data');
+            var data = $(this).html();
+            $('#sousuoleixing').val(value);
+            $('#datashowarea').html(data);
+            $('.dropdown-menu-search').hide();
+        });
+        $('.dropdown-toggle-search').click(function () {
+            $('.dropdown-menu-search').show();
+        });
+        $('.select').hover(function () {
+            $('.dropdown-menu-search').show();
+        }, function () {
+            $('.dropdown-menu-search').hide();
+        });
+        var viewWidth = $(window).innerWidth();
+        if (viewWidth < 1200) {
+            $('.navbar-meun li').css('padding', '0 10px');
+        }
+    });
+</script>
+<script type='text/javascript' src='static/js/collection.js'></script>
+<script src="static/js/the_bidding_card-2019-9-20.js"></script>
+<style>
+    #Real_Name {
+        cursor: pointer;
+    }
+</style>
+
+<div class="wrap">
+    <div class="bg-color-f5 pb-10 pt-20">
+        <div class="container">
+            <div class="project-progress  clearfix">
+                <div class="progress-bar1 clearfix">
+                    <div class="single-blank"></div>
+                    <div class="single status-color  clearfix">
+                        <div class="circle circle-color">
+                            <div class="project-status">
+                                <p class="title1">
+                                    发包方提交了项目
+                                </p>
+                                <p class="date">
+                                    2019-11-27 </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="single  clearfix ">
+                        <div class="circle circle-color">
+                            <div class="project-status">
+                                <p class="title1">
+                                    审批通过，项目发布
+                                </p>
+                                <p class="date">
+                                    2019-11-28 </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="single clearfix ">
+                        <div class="circle ">
+                            <div class="project-status">
+                                <p class="title1">
+                                    发包方选定承接人,项目进入开发
+                                </p>
+                                <p class="date">
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="single-blank clearfix">
+                        <div class="circle ">
+                            <div class="project-status">
+                                <p class="title1">
+                                    计划全部完成，项目完工
+                                </p>
+                                <p class="date">
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+    <div class="bg-color-f5 clearfix">
+        <div class="container">
+
+            <div class="clearfix">
+                <div class="project-detail clearfix">
+                    <div class="left">
+                        <div class="title-msg clearfix">
+                            <div class="col-sm-10 clearfix">
+                                <h1 class="project-title" title="WPF三维控件开发">
+                                    WPF三维控件开发                                    <!--                                -->
+                                    <span class="status">
+                                    竞标中:剩余3天                            </span>
+
+                                </h1>
+                            </div>
+                            <div class="col-sm-2">
+                                <p class="collect">
+
+                                </p>
+                            </div>
+
+                        </div>
+                        <div class="owner clearfix">
+                            <div class="col-sm-12">
+                                <p class="msg">
+                                    发包方<a target="_blank" href="309918.html"><span class="green">lixinmiao</span></a>
+                                    <span>
+                                        2019-11-28										                                    </span>
+                                </p>
+
+
+                            </div>
+
+                        </div>
+                        <div class="project-msg clearfix">
+                            <div class="col-sm-3">
+                                <div class="single">
+                                    <p class="cat-name">
+                                        桌面应用 </p>
+                                    <p class="cat-title">
+                                        项目类型
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="single">
+                                    <p class="cat-name">
+                                        1万~5万 </p>
+                                    <p class="cat-title">
+                                        项目预算
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="single">
+                                    <p class="cat-name">
+                                        30天 </p>
+                                    <p class="cat-title">
+                                        预计开发时间
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="single">
+                                    <p class="cat-name" title="不限 不限">
+                                        不限 不限 </p>
+
+
+                                    <p class="cat-title">
+                                        区域限制
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="technology-tag clearfix">
+                            <div class="col-sm-12">
+                                <div class="single">
+                                    <div class="tag">C#</div>
+                                    <div class="triangle"></div>
+                                </div>
+                            </div>
+
+
+                        </div>
+
+                        <div class="project-describe clearfix">
+                            <div class="col-sm-12">
+                                <p class="project-des-title">
+                                    项目内容描述
+                                </p>
+                                <div class="project-content clearfix">
+                                    <p>
+                                        模仿matlab的三维成像控件，如下附件所示。具体功能包括支持缩放、旋转、定位、动态范围及颜色范围设定、截图等;<br>
+                                        提供项目源码，能够集成到wpf客户端软件中<br>
+                                    </p>
+                                    <div class="col-sm-12">
+                                        <p>文档下载</p>
+                                        <a href="javascript:;" class="download"
+                                           id="/f/b4/af0d97d4fe34ef5a84270e530bbe0/021bfb6d1a23c7c454b10428b4669c24.mp4">
+                                            <i class="glyphicon glyphicon-paperclip"></i>
+                                            021bfb6d1a23c7c454b10428b4669c24.mp4 </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="bid clearfix">
+                            <div class="col-sm-12">
+                                <div class="col-sm-9 project-show">
+                                    <span>&nbsp;</span>
+                                    <p>
+                                        竞标人数：<span class="org pd-r-20">12人</span>
+                                        <span>剩余竞标席位：18人</span>
+                                    </p>
+                                </div>
+                                <div class="col-sm-3 bid-btn-div" style="overflow:hidden;">
+                                    <a href="javascript:;" onclick="userLogin()" class="jb_btn jb-btn-ok"> 我要竞标</a>
+                                    <div id="userLogin" class="modal fade" id="biddingMyModal" tabindex="-1"
+                                         role="dialog" aria-labelledby="myModalLabel">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <button type="button" class="close" data-dismiss="modal"
+                                                            aria-label="Close"><span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                    <h4 class="modal-title" id="myModalLabel">登录</h4>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="login-title">
+                                                        <p>登录之后方可竞标</p>
+                                                    </div>
+                                                    <form id="form" class="form-horizontal" name="form" method="post"
+                                                          action="/user/bidValidate">
+                                                        <input type="hidden" value="" name="forward">
+                                                        <div class="form-group">
+                                                            <label class="col-sm-1 col-md-1 col-lg-1control-label">&nbsp;</label>
+                                                            <div class="col-sm-10 col-md-10 col-lg-10">
+                                                                <div class="input-group">
+                                                                    <span class="input-group-addon"><i
+                                                                            class="glyphicon glyphicon-user"></i></span>
+                                                                    <input type="text" value="" class="form-control"
+                                                                           id="username" name="username"
+                                                                           placeholder="邮箱/手机号">
+                                                                </div>
+                                                            </div>
+                                                            <div class="warning-msg col-sm-offset-1 "><span
+                                                                    id="usernameTip"></span></div>
+                                                        </div>
+                                                        <br>
+                                                        <div class="form-group">
+                                                            <label class="col-sm-1 col-md-1 col-lg-1 control-label">&nbsp;</label>
+                                                            <div class="col-sm-10 col-md-10 col-lg-10">
+                                                                <div class="input-group">
+                                                                    <span class="input-group-addon"><i
+                                                                            class="glyphicon glyphicon-lock"></i></span>
+                                                                    <input type="password" id="mima"
+                                                                           class="form-control" name="pwd"
+                                                                           onpaste="return false;" placeholder="密码"
+                                                                           value=""
+                                                                           onclick="document.getElementById('mima').value='';">
+                                                                </div>
+                                                            </div>
+                                                            <div class="warning-msg col-sm-offset-1 "><span
+                                                                    id="mimaTip"></span></div>
+
+                                                        </div>
+                                                        <br>
+                                                        <div class="form-group">
+                                                            <label class="col-sm-1 col-md-1 col-lg-1 control-label">&nbsp;</label>
+                                                            <div class="col-sm-10 col-md-10 col-lg-10">
+                                                                <span><input type="checkbox" class="box" name="keepPsd">&nbsp;记住密码</span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-offset-1 returnError error-red">
+                                                            &nbsp;
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="col-sm-1 col-md-1 col-lg-1 control-label">&nbsp;</label>
+                                                            <div class="col-sm-10 col-md-10 col-lg-10">
+                                                                <input type="button" id="loginBid" value="登&nbsp;录"
+                                                                       class="btn btn-success">
+                                                                <span class="bottom_align" style="padding-left:40%;"><a
+                                                                        tabindex="-1" href="pass.html">忘记密码？</a></span>
+                                                            </div>
+                                                        </div>
+                                                        <input type="hidden" id="loginType" name="loginType"
+                                                               value="email">
+                                                    </form>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class=" related-recommend clearfix">
+                            <h4 class="recommend-title clearfix">
+                                相关项目推荐
+                            </h4>
+                            <ul class=" tj_det list-unstyled">
+                                <li><a href="87865.html"><span class="green">微信商城开发</span></a><span>项目预算：</span><span
+                                        class="font-color-3">待商议</span>
+                                    <span>技术要求：</span>
+                                    <span class="time">竞标中：于 今天                                                 截止竞标</span>
+                                </li>
+                                <li><a href="87866.html"><span class="green">国外网站爬虫先项目</span></a><span>项目预算：</span><span
+                                        class="font-color-3">5千~1万</span>
+                                    <span>技术要求：Python JavaScript PHP Java</span>
+                                    <span class="time">竞标中：于 今天                                                 截止竞标</span>
+                                </li>
+                                <li><a href="87867.html"><span class="green">微信小游戏</span></a><span>项目预算：</span><span
+                                        class="font-color-3">待商议</span>
+                                    <span>技术要求：Android iPhone</span>
+                                    <span class="time">竞标中：于 今天                                                 截止竞标</span>
+                                </li>
+                                <li><a href="87869.html"><span class="green">一个通讯类的项目</span></a><span>项目预算：</span><span
+                                        class="font-color-3">1千以下</span>
+                                    <span>技术要求：</span>
+                                    <span class="time">竞标中：于 今天                                                 截止竞标</span>
+                                </li>
+                                <li><a href="87870.html"><span class="green">抖音小程序开发</span></a><span>项目预算：</span><span
+                                        class="font-color-3">1千~5千</span>
+                                    <span>技术要求：</span>
+                                    <span class="time">竞标中：于 今天                                                 截止竞标</span>
+                                </li>
+                            </ul>
+                            <p class="more-project">
+                                <a href="project.html" target="_blank">
+                                    更多项目 >
+                                </a>
+                            </p>
+                        </div>
+
+
+                    </div>
+                    <div class="right">
+                        <div class="waring-message">
+                            <div class="message">
+                                <div>
+                                    <img src="static/picture/alert.jpg" alt="">
+                                </div>
+                                <div class="reminder">警告：线上交易可以保障您的资金安全，私自线下交易可能带来安全风险。</div>
+                                <span class="">
+                                </span>
+                            </div>
+                        </div>
+                        <div class="bidding-instructions">
+                            <p class="bid-title">
+                                竞标须知
+                            </p>
+                            <p class="single1 single">
+                                <a href="bid_joinings.html" target="_blank">
+                                    为什么要付费竞标？
+                                </a>
+                            </p>
+                            <p class="single2 single">
+                                <a href="bid_joinings.html" target="_blank">
+                                    付费竞标规则
+                                </a>
+                            </p>
+                            <p class="single3 single">
+                                <a href="bid_joinings.html" target="_blank">
+                                    什么情况下竞标退费？
+                                </a>
+                            </p>
+                            <p class="single4 single">
+                                <a href="bid_joinings.html">
+                                    如何提高竞标成功率？
+                                </a>
+                            </p>
+                        </div>
+                        <div class="contact-service">
+                            <p class="contact-title">
+                                如您有任何疑问，请咨询客服
+                            </p>
+                            <p class="qq">
+                                客服QQ
+                            </p>
+                            <p class="qq1">
+                                <span class="services_kefu">客服1:</span>
+                                <a href='javascript:;' target='_blank'>
+                                    <img border='0' title="点击这里给我发消息" alt='点击这里给我发消息'
+                                         src='static/picture/pa-282508818241.jpg'>
+                                </a></p>
+                            <p class="qq2">
+                                <span class="services_kefu">客服2:</span>
+                                <a href='javascript:;' target='_blank'>
+                                    <img border='0' title="点击这里给我发消息" alt='点击这里给我发消息'
+                                         src='static/picture/pa-282508818241.jpg'>
+                                </a></p>
+                        </div>
+                        <div class="service-email">
+                            <p class="service-email-title">
+                                客服邮箱
+                            </p>
+                            <p class="email">
+                                kefu@sxsoft.com
+                            </p>
+                        </div>
+                        <div class="service-phone">
+                            <p class="service-phone-title">
+                                客服电话
+                            </p>
+                            <p class="phone">
+                                010-62386352
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="bid-refund">
+
+            <div class="modal fade" id="myModalShow" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                <div class="modal-dialog modal-div" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header clearfix">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                    aria-hidden="true">&times;</span></button>
+                            <p class="modal-title" id="myModalLabel">温馨提示
+                            </p></div>
+                        <div class="modal-body">
+                            <div class="hint clearfix">
+                                <p class="msg pd-20">
+                                    <img src="static/picture/refund.png" alt="">
+                                    <span class="org ">
+                                                        您的账户还未认证不满意退款，认证后将获得更多机会！
+                                                    </span>
+                                </p>
+                            </div>
+                            <div class="inform clearfix">
+
+                                <ul>
+                                    <li>
+                                        一旦加入，就会在名片页及会员名显示处有独特的标识，向发包方做出承诺；
+                                    </li>
+                                    <li>
+                                        通过认证，表明自己的诚信度和开发质量，用实力和诚意赢得机会；
+                                    </li>
+                                    <li>
+                                        发包方更加信任和青睐，从而能够获得更多成功竞标的机会；
+                                    </li>
+                                    <li>
+                                        竞标推荐，当发包方有相关需求时，客服会优先推荐已认证接包方。
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="pd-20 clearfix">
+                                <img src="static/picture/eg.png" alt="">
+                            </div>
+                            <div class="footer pd-20 clearfix">
+                                <p class="approve">
+                                    <a href="javascript:void(0);"
+                                       onclick="approve() ; _hmt.push(['_trackEvent', 'bid', 'click', '认证']);"
+                                       class="jb_btn" data-dismiss="modal" aria-label="Close">
+                                        认证
+                                    </a>
+                                </p>
+
+
+                                <p class="skip">
+                                    <a href="javascript:void(0);"
+                                       onclick="_hmt.push(['_trackEvent', 'bid', 'click', '不认证']);SkipCertification()"
+                                       class="jb_btn" data-dismiss="modal" aria-label="Close">跳过</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="buy-bid-card">
+
+            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"
+                                    onclick="closePayWay()"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="myModalLabel">选择支付方式</h4>
+                        </div>
+                        <div class="modal-body">
+                            <p class="pay-title">
+                                请选择支付方式，本次支付金额：<span class="orange money">3.9</span> 元
+                            </p>
+                            <div class="clearfix">
+                                <div class="balance single">
+                                    <div onclick="selectWay(2,$(this))">
+                                        <img class="icon-fee" src="static/picture/balance.jpg" alt="">
+                                        <span class="way">余额支付(<span class="balance-of-account"></span>)</span>
+                                        <img src="static/picture/choose.png" class="choose choose-black" alt="">
+                                    </div>
+                                </div>
+                                <div class="single">
+                                    <div onclick="selectWay(5,$(this))"><!--支付宝支付暂定为5-->
+                                        <img src="static/picture/alipay.jpg" class="icon-fee" alt="">
+                                        <span class="way">支付宝支付</span>
+                                        <img src="static/picture/choose.png" class="choose choose-black" alt="">
+                                        <form id="alipay" class="alipay" action="/my/pay/alipay" method="post">
+                                            <input type="hidden" name="money" value="2">
+                                            <input type="hidden" name="project_id" value="88053">
+                                            <input type="hidden" name="source" value="project_detail">
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class=" single">
+                                    <div onclick="selectWay(4,$(this))">
+                                        <img src="static/picture/wechat-pay.jpg" alt="" class="icon-fee">
+                                        <span class="way">微信支付</span>
+                                        <img src="static/picture/choose.png" class="choose choose-black" alt="">
+                                    </div>
+                                </div>
+
+
+                                <div class="footer clearfix">
+                                    <span class="hint-message hint-blank">请选择支付方式</span>
+                                    <button class="btn btn-success balance-btn blank" onclick="payForCard(2)">去支付
+                                    </button>
+                                    <button class="btn btn-success wepay-btn blank" onclick="payForCard(4)">去支付
+                                    </button>
+                                    <button class="btn btn-success alipay-btn blank" onclick="payForCard(5)">去支付
+                                    </button>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal fade" id="card-wepay" tabindex="-1" role="dialog">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"
+                                    onclick="closePayWay()"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="myModalLabel">微信扫码支付</h4>
+                        </div>
+                        <div class="modal-body wepay">
+                            <p class="hint">
+                                需要支付金额:<span class="green money"> 3.9</span>元
+                            </p>
+                            <p class="QR-code-time">
+                                距离二维码过期还剩 <span class="time">60</span> 秒，过期后请刷新重新获取二维码。
+                            </p>
+                            <p class="refresh-QR-code">
+                                二维码已过期，<span class="refresh" onclick="refreshQRCode()">刷新</span>重新获取二维码。
+                            </p>
+                            <img class="QR-code" src="static/picture/weixin1.png" alt="">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <!--            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">-->
+            <!--                <div class="modal-dialog" role="document">-->
+            <!--                    <div class="modal-content">-->
+            <!--                        <div class="modal-header">-->
+            <!--                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>-->
+            <!--                            <h4 class="modal-title" id="myModalLabel">微信扫码支付</h4>-->
+            <!--                        </div>-->
+            <!--                        <div class="modal-body">-->
+            <!--							-->            <!--                                <p class="hint">-->
+            <!--                                    需要支付金额:<span class="green money"> 3.9</span>元-->
+            <!--                                </p>-->
+            <!--                                <p class="QR-code-time">-->
+            <!--                                    距离二维码过期还剩 <span class="time">60</span> 秒，过期后请刷新重新获取二维码。-->
+            <!--                                </p>-->
+            <!--  <p class="refresh-QR-code">
+                                    二维码已过期，<span class="refresh" onclick="refreshQRCode('//','//')">刷新</span>重新获取二维码。
+//                                </p>-->
+            <!--                            <img class="QR-code" src="/images/bidding/weixin.png" alt="">-->
+            <!--                            <p class="pay-status">-->
+            <!---->
+            <!--                            </p>-->
+            <!---->
+            <!---->
+            <!--                            <div class="clearfix">-->
+            <!--                                <p class="pay-way">-->
+            <!--									-->
+            <!--                                <form id="alipay" class="alipay" action="-->
+            <!--"  method="post">-->
+            <!---->
+            <!--                                    <input type="hidden" name="money">-->
+            <!--                                    <input type="hidden" name="project_id" value="-->
+            <!--">-->
+            <!--                                    <input type="hidden" name="source" value="project_detail">-->
+            <!---->
+            <!--                                    <span class="select-alipay" onclick="alipay()">支付宝支付</span>-->
+            <!--                                </form>-->
+            <!--								-->            <!--								-->
+            <!--                                    <span class="balance-pay" onclick="balanceBuy()">余额支付</span>-->
+            <!--								-->            <!--                                </p>-->
+            <!--                            </div>-->
+            <!---->
+            <!---->
+            <!--                        </div>-->
+            <!--                    </div>-->
+            <!--                </div>-->
+            <!--            </div>-->
+
+
+            <div class="modal fade" id="payStatus" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                    aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="myModalLabel">提示</h4>
+                        </div>
+                        <div class="modal-body">
+                            <p class="status">
+                                订单正在处理中，请稍候。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal fade" id="unable-buy" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                    aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="myModalLabel">提示</h4>
+                        </div>
+                        <div class="modal-body">
+                            <p class="hint">
+                                您账户中还有 <span class="orange"></span>张竟标卡，请使用完后再进行购买。
+                            </p>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal fade" id="balance-buy" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                    aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="myModalLabel">余额支付</h4>
+                        </div>
+                        <div class="modal-body">
+                            <p class="hint">
+                                需要支付金额: <span class="green">3.9</span>元
+                            </p>
+
+                            <p class="pay-btn">
+                                <img class="pay-icon" src="static/picture/pay.png" alt="">
+                                <span class="pay-title">余额支付 (<span class="green"></span>元)</span>
+                                <img class="choose" src="static/picture/choose.png" alt="">
+                            </p>
+
+                            <p class="footer">
+                        <span class="left" onclick="returnWepay()">
+                            < 返回微信支付
+                        </span>
+                                <span class="right">
+                            <button class="btn btn-success" onclick="confirmPayment()">去支付</button>
+                        </span>
+                            </p>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="modal fade" id="payment-password" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                    aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="myModalLabel">请输入平台支付密码</h4>
+                        </div>
+                        <div class="modal-body">
+                            <form class="form">
+                                <p class="balance-pay-title">
+                                    支付金额 <span class="green"></span> 元
+                                </p>
+
+                                <div class="form-group">
+                                    <input type="hidden" name="money">
+                                    <input type="password" name="password" class="form-control" placeholder="请输入支付密码">
+                                </div>
+                                <p class="msg">
+
+                                </p>
+                                <p class="pay">
+                                    <input type="button" class="btn btn-success" onclick="pay('project_detail')"
+                                           value="确认支付">
+                                </p>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script charset='utf-8'>
+
+            function showAC() {
+                $.ajax({
+                    type: 'GET',
+                    url: '/my/user/getUser',
+                    dataType: 'json',
+                    success: function (result) {
+                        if (result.data.bumanyituikuan == '1') {
+                            $('.bidding #bidding-form').modal({
+                                show: true,
+                                backdrop: 'static',
+                                keyboard: false
+                            });
+                        } else {
+                            var bid_login = "";
+                            if (bid_login == true) {
+                            }
+                            $('.bid-refund #myModalShow').modal('show');
+                        }
+                    }
+                })
+
+            };
+
+            $(function () {
+                var is_jbf = "";
+                var bid_login = "";
+                var is_bid = "";
+                var can_bid = "";
+                var LimitNumbe = "0";
+                var authentication = '';
+                if (authentication) {
+                    if (is_jbf && bid_login && !is_bid && can_bid) {
+                        showAC();
+                    }
+                } else {
+                    if (is_jbf && bid_login && !is_bid && LimitNumbe != '0' && can_bid) {
+                        showAC();
+                    }
+                }
+
+            });
+
+            $('.download').click(function () {
+                $('#fileurl').val('uploads/' + $(this).attr('id'));
+                $('#subform').submit();
+            });
+
+
+        </script>
+        <form id="subform" action="/up_down/download" method="post" target="upload_target">
+            <form action="/project/show/88053" method="post" accept-charset="utf-8">
+                <div style="display:none">
+                    <input type="hidden" name="csrf_sxsoft_name" value="a98b9b783eb23f6cb16ab3ce6975e3d0">
+                </div>
+                <input type="hidden" name='file' id="fileurl" value="">
+            </form>
+            <iframe id="upload_target" style="width:0; height:0;display:none;" name="upload_target"
+                    src="download.html"></iframe>
+            <script src="static/js/bid-2019-08-29.js"></script>
+        </form>
+    </div>
+
+    <div class="bidding">
+        <div class="modal fade" id="bidding-form" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">我要竞标</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p class="hint-title">
+                            欢迎您参与本项目的竞标，竞标费为 <span class="orange">2</span>元，竞标后，<span class="orange">请主动和发包方联系</span>，这是成功取得项目的<span
+                                class="orange">关键</span>之一。竞标信息是非公开的。只有您/发包方以及管理员能看到。
+                        </p>
+                        <form class="form-horizontal bidding-projects" method="post" role="form" id="form-bidding-msg">
+                            <form action="/project/show/88053" method="post" accept-charset="utf-8">
+                                <div style="display:none">
+                                    <input type="hidden" name="csrf_sxsoft_name"
+                                           value="a98b9b783eb23f6cb16ab3ce6975e3d0">
+                                </div>
+                                <input type="hidden" name="xiangmuid" value="88053">
+                                <input type="hidden" name="fabaofangid" value="309918">
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label"><span class="red">*</span>项目报价</label>
+                                    <div class="col-sm-10">
+                                        <div class="input-group">
+                                            <input class="form-control" name="xiangmubaojia" value="" type="text">
+                                            <span class="input-group-addon">元</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label"><span class="red">*</span>开发周期</label>
+                                    <div class="col-sm-10">
+                                        <div class="input-group">
+                                            <input class="form-control" name="kaifazhouqi" value="" type="text">
+                                            <span class="input-group-addon">天</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label"><span class="red">*</span>竞标方案</label>
+                                    <div class="col-sm-10">
+                                        <textarea name="jingbiaoliuyan" rows="6" class="form-control"
+                                                  placeholder="请输入双方约定好的相关合同条款，包括需求列表、交付时间、交付标准等。"></textarea>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label"><span class="red">*</span>联系方式</label>
+                                    <div class="col-sm-10">
+                                        <div class="row">
+                                            <div class="col-xs-6 clearfix">
+                                                <div class="input-group">
+                                                    <span class="input-group-btn">
+                                                        <div class="input-title">
+                                                            <span>手机号</span>
+                                                        </div>
+                                                    </span>
+                                                    <input autocomplete="off" type="text" name="mobile"
+                                                           class="form-control home-phoneCode" placeholder="请绑定手机号">
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-6 clearfix ">
+                                                <div class="input-group">
+                                                    <input autocomplete="off" type="text" id="phonecode"
+                                                           name="phoneCode" class="form-control home-phoneCode"
+                                                           placeholder="请输入验证码">
+
+                                                    <span class="input-group-btn">
+                                                        <div id="PhoneMsg" class="btn btn-default gain">
+                                                            <span id="Regain">立即获取</span>
+                                                            <span id="CountDown"></span>
+                                                        </div>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row pad-top-15">
+                                            <div class="clearfix col-sm-12">
+                                                <div class="input-group">
+                                                <span class="input-group-btn">
+                                                    <div class=" input-title">
+                                                        <span>邮箱</span>
+                                                    </div>
+                                                </span>
+                                                    <input type="text" name="email" class="form-control"
+                                                           placeholder="请输入邮箱" value="">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="clearfix footer pad-top-15">
+                                            <div class="not-approve clearfix">
+                                                <div class="no">
+                                                    <img src="static/picture/not-attestation.png" alt="">
+                                                    <p class="msg">
+                                                        <a href="refundagreement.html" target="_blank"
+                                                           style="color: #999999 !important;">
+                                                            未认证不满意退款
+                                                        </a>
+                                                        <a href="javascript:;" onclick="clickApprove()"
+                                                           class="btn btn-default btn-sm">点击认证</a>
+                                                    </p>
+                                                </div>
+                                                <div class="yes">
+                                                    <img src="static/picture/attestation.png" alt="">
+                                                    <p class="msg">
+                                                        已认证不满意退款
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <input class="btn btn-success approve-btn" type="button" id="btn-save-bid"
+                                                   onclick="saveBid()" value="确认">
+                                        </div>
+
+                                        <div class="waring-msg">
+                                            <p class="tip"></p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </form>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="bidding-pay-way">
+
+            <div class="modal fade" tabindex="-1" id="pay-way" role="dialog" aria-labelledby="myModalLabel">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                    aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title">支付竞标费用</h4>
+                        </div>
+                        <div class="modal-body">
+                            <p class="pay-title">
+                                请选择支付方式，本次竞标费为：<span class="orange">2元</span>
+                            </p>
+                            <div class="clearfix">
+                                <div class="clearfix">
+                                    <div class="single">
+                                        <div onclick="selectPayWay(5,$(this))"><!--支付宝支付暂定为5-->
+                                            <img src="static/picture/alipay.jpg" class="icon-fee" alt="">
+                                            <span class="way">支付宝支付</span>
+                                            <img src="static/picture/choose.png" class="choose choose-black" alt="">
+                                            <form id="alipay" class="alipay" action="/my/pay/payForBidding"
+                                                  method="post">
+                                                <input type="hidden" name="money" value="2">
+                                                <input type="hidden" name="project_id" value="88053">
+                                                <input type="hidden" name="source" value="pay_for_bidding">
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <div class=" single">
+                                        <div onclick="selectPayWay(4,$(this))">
+                                            <img src="static/picture/wechat-pay.jpg" alt="" class="icon-fee">
+                                            <span class="way">微信支付</span>
+                                            <img src="static/picture/choose.png" class="choose choose-black" alt="">
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="footer clearfix">
+                                    <span class="hint-message hint-blank">请选择支付方式</span>
+                                    <button class="btn btn-success balance-btn" onclick="goToPay(2)">去支付</button>
+                                    <button class="btn btn-success wepay-btn blank" onclick="goToPay(4,)">去支付
+                                    </button>
+                                    <button class="btn btn-success alipay-btn blank" onclick="goToPay(5)">去支付</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="pay-password">
+            <div class="modal fade" tabindex="-1" id="password-dialog" role="dialog" aria-labelledby="myModalLabel">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                    aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="myModalLabel">请输入平台支付密码</h4>
+                        </div>
+                        <div class="modal-body">
+                            <form class="form-pay">
+                                <p class="balance-pay-title">
+                                    支付金额 <span class="green">2</span> 元
+                                </p>
+
+                                <div class="form-group">
+                                    <input type="hidden" name="money" value="2">
+                                    <input type="hidden" name="project_id" value="">
+                                    <input type="password" name="password" class="form-control" placeholder="请输入支付密码">
+                                </div>
+                                <p class="pay">
+                                    <span class="msg">
+
+                                    </span>
+                                    <input type="button" class="btn btn-success" onclick="confirmPay('2')" value="确认支付">
+                                </p>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+        <div class="pay-status">
+            <div class="modal fade" tabindex="-1" id="status-dialog" role="dialog" aria-labelledby="myModalLabel">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"
+                                    onclick="reloadThePage()"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="myModalLabel">竞标申请结果</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="ok">
+                                <div class="left">
+                                    <img src="static/picture/ok.png" alt="">
+                                </div>
+                                <div class="right">
+                                    <p class="hint-msg orange"></p>
+                                    <p class="title-status">
+                                        竞标申请发送成功!
+                                    </p>
+                                    <p class="orange">
+                                        以下为发包方联系方式，请主动联系，获取项目机会
+                                    </p>
+                                    <p class="contact-mobile">
+                                        电话: <span class="mobile"></span>
+                                    </p>
+                                    <p class="contact-email">
+                                        email: <span class="email"></span>
+                                    </p>
+                                    <p class="contact-QQ">
+                                        QQ: <span class="QQ"></span>
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="processing">
+                                <div class="left">
+                                    <img src="static/picture/help_icon1.png" alt="">
+                                </div>
+                                <div class="right">
+                                    <p class="orange">
+                                        正在处理，请等待。如有疑问，请联系客服。
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="WeChat-pay">
+            <div class="modal fade" id="WeChat-pay-dialog" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                    aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="myModalLabel">微信扫码支付</h4>
+                        </div>
+                        <div class="modal-body">
+                            <p class="hint">
+                                需要支付金额:<span class="green money"> 2</span>元
+                            </p>
+                            <p class="QR-code-time">
+                                距离二维码过期还剩 <span class="time">60</span> 秒，过期后请刷新重新获取二维码。
+                            </p>
+                            <p class="refresh-QR-code">
+                                二维码已过期，<span class="refresh" onclick="againQrCode()">刷新</span>重新获取二维码。
+                            </p>
+                            <div class="div-img">
+                                <img class="QR-code" src="static/picture/weixin1.png" alt="">
+                            </div>
+                            <p class="pay-status">
+
+
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+<div class="clear"></div>
+
+
+<footer>
+    <div class="container">
+        <div class="row clearfix">
+            <div class="col-sm-4 col-md-4 col-lg-4 column">
+                <a href="#"><img src="static/picture/foot_logo.png" width="127" height="36" alt="软件项目交易网"></a>
+                <p>软件项目交易网 © 2002－2019 <br>北京易软天地互联网信息服务有限公司版权所有<br>[京ICP备13011411号-1] 标识<br>
+                    京公网安备 110102000335号</p>
+            </div>
+            <div class="col-sm-8 col-md-8 col-lg-8 link">
+                <ul class="list-unstyled">
+                    <li>
+                        <h4>新手指南</h4>
+                        <a href="register1.html">注册登录问题</a>
+                        <a href="process.html">项目交易流程</a>
+                        <a href="fund.html">充值提款问题</a>
+                        <a href="about_agreement">用户注册协议</a>
+                        <a href="bid_payings.html">为何付费竞标</a>
+                    </li>
+                    <li>
+                        <h4>特色服务</h4>
+                        <a href="renzheng.html">实名认证</a>
+                        <a href="searchs.html">精准搜索</a>
+                        <a href="workhour.html">小时报价</a>
+                        <a href="bumanyituikuan.html">不满意退款</a>
+                        <a href="bid_card.html">竞标卡规则</a>
+                    </li>
+                    <li>
+                        <h4>评价信誉</h4>
+                        <a href="pingjiadengm.html">操作演示</a>
+                        <a href="service_payings.html">服务收费</a>
+                        <a href="evaluations.html">用户评价</a>
+                        <a href="jifens.html">积分体系</a>
+                        <a href="controversy.html">争议解决</a>
+                    </li>
+                    <li>
+                        <h4>答疑中心</h4>
+                        <a href="pro_relase.html">项目发布问题</a>
+                        <a href="bid_joinings.html">参与竞标问题</a>
+                        <a href="pro_runnings.html">项目开发问题</a>
+                        <a href="pro_done.html">项目完工问题</a>
+                        <a href="it_realse.html">信息发布问题</a>
+                    </li>
+                    <li>
+                        <h4>联系我们</h4>
+                        <a href="about_us.html">关于SXSOFT</a>
+                        <a href="about_company.html">公司概况</a>
+                        <a href="contact_us.html">联系方式</a>
+                        <a href="about_advertising.html">广告投放</a>
+                        <a href="links.html">友情链接</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+<style>
+    .sidebar_code2 {
+        display: block;
+        text-align: center;
+        width: 45px;
+        height: 45px;
+        cursor: pointer;
+    }
+
+    .sidebar_code2 .code2s {
+        text-align: center;
+        line-height: 45px;
+        font-size: 24px;
+        color: #ffffff;
+        position: relative;
+    }
+
+    .code2s:before {
+        position: relative;
+        z-index: 1;
+    }
+
+    .code2b {
+        position: absolute;
+        width: 102px;
+        height: 102px;
+        left: -17px;
+        top: 233px;
+        z-index: 3;
+        border-right: none 0;
+        background-color: #fff;
+    }
+
+    .code2b img {
+        border: none 0;
+        width: 100px;
+        height: 100px;
+    }
+</style>
+<ul class="right-side-flyelem show">
+    <a href="#">
+        <li class="rsf-items fa fa-arrow-circle-up side-icon"></li>
+    </a>
+    <a target="_blank" href="javascript:;">
+        <li class="rsf-items  fa fa-qq fa-qq3 side-icon"></li>
+    </a>
+    <a target="_blank" href="help.html">
+        <li class="rsf-items  fa fa-question-circle side-icon"></li>
+    </a>
+
+    <li class="rsf-items  fa fa-phone side-icon"></li>
+    <a href="javascript:void(0);" act='/my/user/logout/1' msg='登录后可以写反馈哦' title='意见反馈' gotoaction='1'
+       class='jb_btn on  confirm'>
+        <li class="rsf-items fa-message glyphicon glyphicon-edit side-icon"></li>
+    </a>
+    <div class="sidebar_code2">
+        <a class="code2b">
+            <img src="static/picture/weixin.png" alt="微信">
+        </a>
+    </div>
+</ul>
+
+<script type="text/javascript">
+    $(function () {
+        $('#myCarousel1').carousel({
+            interval: 4000
+        });
+        $("div.accordion-heading-running").mousemove(function () {
+            $("div.accordion-body-running").removeClass("in");
+            $(this).next().addClass("in");
+            $(this).mouseout(function () {
+                $(this).removeClass("in");
+            });
+        });
+        $("div.accordion-heading-finish").mousemove(function () {
+            $("div.accordion-body-finish").removeClass("in");
+            $(this).next().addClass("in");
+            $(this).mouseout(function () {
+                $(this).removeClass("in");
+            });
+        });
+        $('.jbf_search_input').click(function () {
+            $('.jbf_search_input').val('');
+        });
+
+        if ($("#yzm").length > 0) {
+            cgpwd();
+            $("#yzm").click(function () {
+                cgpwd();
+            });
+        }
+
+
+        $("#ad_float").animate({width: "100%"}, 2000);
+        // baiduAutomaticallyPull();
+    });
+
+    // function baiduAutomaticallyPull() {
+    //   var bp = document.createElement('script');
+    //   var curProtocol = window.location.protocol.split(':')[0];
+    //   if (curProtocol === 'https') {
+    //     bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    //   }
+    //   else {
+    //     bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    //   }
+    //   var s = document.getElementsByTagName("script")[0];
+    //   s.parentNode.insertBefore(bp, s);
+    // }
+
+    function cgpwd() {
+        $("#yzm").attr('src', '/authpic/getcode/' + new Date().getTime());
+        $("#authcode").val('');
+    }
+
+    function closeAd() {
+        $("#ad_float").animate({width: '0'}, 2000, function () {
+            $('#ad_float').find('p').css('display', 'none');
+
+        });
+    }
+
+    function skipTo() {
+        window.location.href = '/my/user/manage';
+    }
+</script>
+
+</body>
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+</html>

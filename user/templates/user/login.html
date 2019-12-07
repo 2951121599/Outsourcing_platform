@@ -1,24 +1,200 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>用户登录</title>
-</head>
-<body>
-<form action="/user/login" method="post">
-    {% csrf_token %}
-    <p>
-        用户名:<input type="text" name="username">
-    </p>
-    <p>
-        密码:<input type="text" name="password">
-    </p>
-    <p>
-        <input type="checkbox" name="remember">下次免登陆
-    </p>
-    <p>
-        <input type="submit" value="登录">
-    </p>
-</form>
-</body>
-</html>
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block title %}登录{% endblock %}
+{% block css %}
+    {#    <link rel="stylesheet" type="text/css" href="{% static '/css/user/main.css' %}">#}
+    <style>
+        /* 登录页 */
+
+        .login_form_bg {
+            height: 597px;
+            {#background-color: #4277ad#}
+            background-color: #2e2f33
+        }
+
+
+        .login_form_wrap {
+            width: 960px;
+            height: 480px;
+            margin: 0 auto;
+        }
+
+
+        .slogan {
+            width: 40px;
+            height: 300px;
+            font-size: 30px;
+            color: #f0f9e8;
+            text-align: center;
+            line-height: 36px;
+            margin: 126px 0 0 120px
+        }
+
+        .login_form {
+            width: 368px;
+            height: 378px;
+            border: 1px solid #c6c6c5;
+            background-color: #fff;
+            margin-top: 105px;
+        }
+
+        .login_title {
+            height: 60px;
+            width: 308px;
+            margin: 10px auto;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .login_title h1 {
+            font-size: 24px;
+            height: 60px;
+            line-height: 60px;
+            color: #555;
+            float: left;
+            font-weight: bold;
+            margin-left: 10px;
+        }
+
+        .login_title a {
+            width: 100px;
+            height: 20px;
+            display: block;
+            font-size: 18px;
+            color: #4277ad;
+            text-indent: 26px;
+            background: url("../../../static/images/user/icons02.png") left 5px no-repeat;
+            float: left;
+            margin: 34px 0 0 36px
+        }
+
+        .form_input {
+            width: 308px;
+            height: 250px;
+            margin: 20px auto;
+            position: relative;
+        }
+
+        .name_input, .pass_input {
+            width: 306px;
+            height: 36px;
+            border: 1px solid #4277ad;
+            border-radius: 5px;
+            outline: none;
+            font-size: 14px;
+            text-indent: 10px;
+            position: absolute;
+            left: 0;
+            top: 0
+        }
+
+        .pass_input {
+            top: 65px;
+            background-position: 280px -95px;
+        }
+
+        .user_error, .pwd_error {
+            color: #f00;
+            position: absolute;
+            left: 0;
+            top: 43px;
+            display: none
+        }
+
+        .pwd_error {
+            top: 110px;
+        }
+
+        .more_input {
+            position: absolute;
+            left: 0;
+            top: 130px;
+            width: 100%
+        }
+
+        .more_input input {
+            float: left;
+            margin-top: 2px;
+        }
+
+        .more_input label {
+            float: left;
+            margin-left: 10px;
+        }
+
+        .more_input a {
+            float: right;
+            color: #666
+        }
+
+        .more_input a:hover {
+            color: red;
+        }
+
+        .input_submit {
+            width: 100%;
+            height: 40px;
+            position: absolute;
+            left: 0;
+            top: 180px;
+            background-color: #4277ad;
+            color: #fff;
+            font-size: 22px;
+            border: 0;
+            cursor: pointer;
+        }
+    </style>
+{% endblock %}
+{% block js %}
+    <script>
+        $(function () {
+            $('#btnLogin').click(function () {
+                var username = $("#username").val()
+                var password = $("#pwd").val()
+                var remember = $("input[name='remember']").prop('checked')
+                var csrf = $('input[name="csrfmiddlewaretoken"]').val()
+
+                var params = {
+                    "username": username,
+                    "password": password,
+                    "csrfmiddlewaretoken": csrf,
+                    "remember": remember,
+                }
+                $.post('/user/login_check/', params, function (data) {
+                    if (data.res == 1) {
+                        location.href = data.turn_to;
+                    } else if (data.res == 2) {
+                        alert('数据不完整');
+                    } else if (data.res == 0) {
+                        alert('用户名或密码错误');
+                    }
+                })
+            })
+        })
+    </script>
+{% endblock %}
+{% block content %}
+    <div class="login_form_bg">
+        <div class="login_form_wrap">
+            <div class="slogan fl">外包平台 · 众包网站</div>
+            <div class="login_form fr">
+                <div class="login_title">
+                    <h1>用户登录</h1>
+                    <a href="/user/register">立即注册</a>
+                </div>
+                <div class="form_input">
+                    {% csrf_token %}
+                    <input type="text" id="username" class="name_input" value="{{ username }}" placeholder="请输入用户名">
+                    <div class="user_error">输入错误</div>
+                    <input type="password" id="pwd" class="pass_input" placeholder="请输入密码">
+                    <div class="pwd_error">输入错误</div>
+                    <div class="more_input">
+                        <input type="checkbox" name="remember" {{ checked }}>
+                        <label>记住用户名</label>
+                        <a href="#">忘记密码</a>
+                    </div>
+                    <input type="button" id="btnLogin" value="登录" class="input_submit">
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
