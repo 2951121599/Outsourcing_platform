@@ -3,7 +3,6 @@ import re
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import *
 from .models import *
-import hashlib
 from functions.decorators import login_required
 
 
@@ -38,8 +37,7 @@ def register_handle(request):
     except Exception as e:
         print("e:", e)
         return render(request, 'user/register.html', {'errmsg': '用户名已存在'})
-    # 开发中，注册完返回登录页
-    # return redirect(reverse('use'))
+    # 注册完返回登录页
     return render(request, 'user/login.html')
 
 
@@ -103,7 +101,7 @@ def logout(request):
 @login_required
 def user(request):
     passport_id = request.session.get('passport_id')
-    print(passport_id)  # 数据表中的id
+    print("passport_id", passport_id)  # 数据表中的id
     print(locals())
     return render(request, 'user/user_center_info.html', locals())
 
