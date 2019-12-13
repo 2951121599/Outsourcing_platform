@@ -1,56 +1,47 @@
 {% extends 'base.html' %}
+{% load staticfiles %}
 {% block title %}
     帮助页面
 {% endblock %}
 {% block css %}
     <style>
         #all {
-            {#background: url("../../../static/images/Simon01.jpeg");#}
             width: 1140px;
+            height: 556px;
             background-color: #fff;
-            margin: 80px auto 0 auto;
+            margin: 20px auto;
             padding: 0;
             overflow: hidden;
-        {#border: red 1px solid;#}
         }
 
         #all > #a_set, #all > #b_set {
             display: inline-block;
             width: 45%;
             height: 500px;
-            {#background-color: #fff;#}
         }
 
         #a_set {
             float: left;
-            margin: 0 0 90px 0;
+            {#margin: 0 0 90px 0;#}
         }
-        #a_set>a{
+
+        #a_set > a {
             display: block;
-            margin: 194px 67px 194px 124px;
+            margin: 40px 67px 194px 124px;
         }
 
         #b_set {
             float: right;
             margin: 0 0 90px 0;
         }
-        #b_set>a{
+
+        #b_set > a {
             display: block;
-            margin: 194px 124px 194px 67px;
+            margin: 40px 124px 194px 67px;
         }
 
         #topic {
             padding: 50px;
-
-        }
-
-        #topic > #p1, #topic > #p2 {
-            text-align: center;
-
-        }
-
-        #topic > #p2 {
-            padding-left: 200px;
         }
     </style>
 {% endblock %}
@@ -58,15 +49,12 @@
     <div id="all">
         <div id="topic">
             <h1>帮助</h1>
-            <p id="p1">人有失手 马有失蹄</p>
-            <p id="p2">————鲁迅</p>
-
         </div>
         <div id="a_set">
-            <a href="/help/guide1"><img src="../../../static/images/requester.png" alt=""></a>
+            <a href="/help/guide1"><img src="{% static "/images/requester.png" %}" alt=""></a>
         </div>
         <div id="b_set">
-            <a href="/help/guide2"><img src="../../../static/images/developer.png" alt=""></a>
+            <a href="/help/guide2"><img src="{% static "/images/developer.png" %}" alt=""></a>
         </div>
     </div>
 {% endblock %}

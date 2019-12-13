@@ -1,0 +1,122 @@
+#mart-help-center .help-wrapper .help-body .content-wrapper .right-list.guide ul li {
+    list-style: inherit;
+    margin-left: 0;
+    margin-top: 68px;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center
+}
+
+#mart-help-center .help-wrapper .help-body .content-wrapper .right-list.guide ul li:first-child {
+    margin-top: 0
+}
+
+#mart-help-center .help-wrapper .help-body .content-wrapper .right-list.guide ul li .bg {
+    width: 112px;
+    height: 112px;
+    display: inline-block
+}
+
+#mart-help-center .help-wrapper .help-body .content-wrapper .right-list.guide ul li .mobile {
+    display: none
+}
+
+#mart-help-center .help-wrapper .help-body .content-wrapper .right-list.guide ul li .customer-bg1 {
+    background: url(../image/0c545201-b1d5-427e-a7cc-5a69f562.png) no-repeat;
+    background-size: 112px 112px;
+    margin-right: 30px
+}
+
+#mart-help-center .help-wrapper .help-body .content-wrapper .right-list.guide ul li .customer-bg2 {
+    background: url(../image/d19909cc-ed2b-4c8b-9d3b-2087426b.png) no-repeat;
+    background-size: 112px 112px;
+    margin-left: 30px
+}
+
+#mart-help-center .help-wrapper .help-body .content-wrapper .right-list.guide ul li .customer-bg3 {
+    background: url(../image/4096abd1-a9e3-4f0d-ba0e-44d06e0e.png) no-repeat;
+    background-size: 112px 112px;
+    margin-right: 30px
+}
+
+#mart-help-center .help-wrapper .help-body .content-wrapper .right-list.guide ul li .customer-bg4 {
+    background: url(../image/5611906b-f6e6-4bb8-ad98-fbce49ae.png) no-repeat;
+    background-size: 112px 112px;
+    margin-left: 30px
+}
+
+#mart-help-center .help-wrapper .help-body .content-wrapper .right-list.guide ul li .developer-bg1 {
+    background: url(../image/dbfe9267-b9b9-46bb-8d85-8c18b489.png) no-repeat;
+    background-size: 112px 112px;
+    margin-right: 30px
+}
+
+#mart-help-center .help-wrapper .help-body .content-wrapper .right-list.guide ul li .developer-bg2 {
+    background: url(../image/ae28cd21-b680-4228-bc7c-e9a364a0.png) no-repeat;
+    background-size: 112px 112px;
+    margin-left: 30px
+}
+
+#mart-help-center .help-wrapper .help-body .content-wrapper .right-list.guide ul li .developer-bg3 {
+    background: url(../image/fb7bc399-3d3e-4fba-ab72-3d1fab31.png) no-repeat;
+    background-size: 112px 112px;
+    margin-right: 30px
+}
+
+#mart-help-center .help-wrapper .help-body .content-wrapper .right-list.guide ul li .developer-bg4 {
+    background: url(../image/518388bd-d24a-47ec-9359-bbd2fd70.png) no-repeat;
+    background-size: 112px 112px;
+    margin-left: 30px
+}
+
+#mart-help-center .help-wrapper .help-body .content-wrapper .right-list.guide ul li .developer-bg5 {
+    background: url(../image/85ec9372-d7ef-4595-a077-2ef8b052.png) no-repeat;
+    background-size: 112px 112px;
+    margin-right: 30px
+}
+
+#mart-help-center .help-wrapper .help-body .content-wrapper .right-list.guide ul li .steps {
+    width: calc(100% - 145px)
+}
+
+#mart-help-center .help-wrapper .help-body .content-wrapper .right-list.guide ul li h2 {
+    font-size: 21px;
+    color: #414952
+}
+
+#mart-help-center .help-wrapper .help-body .content-wrapper .right-list.guide ul li p {
+    color: #979FA8;
+    line-height: 1.8;
+    margin-top: 10px
+}
+
+@media screen and (max-width: 452px) {
+    #mart-help-center .help-wrapper .help-body .content-wrapper .right-list.guide ul li .steps, #mart-help-center .help-wrapper .help-body .content-wrapper .right-list.guide ul li:nth-child(even), #mart-help-center .help-wrapper .help-body .content-wrapper .right-list.guide ul li:nth-child(odd) {
+        width: 100%
+    }
+
+    #mart-help-center .help-wrapper .help-body .content-wrapper .right-list.guide ul li {
+        display: list-item;
+        margin-top: 2.5em
+    }
+
+    #mart-help-center .help-wrapper .help-body .content-wrapper .right-list.guide ul li .customer-bg1, #mart-help-center .help-wrapper .help-body .content-wrapper .right-list.guide ul li .customer-bg2, #mart-help-center .help-wrapper .help-body .content-wrapper .right-list.guide ul li .customer-bg3, #mart-help-center .help-wrapper .help-body .content-wrapper .right-list.guide ul li .customer-bg4, #mart-help-center .help-wrapper .help-body .content-wrapper .right-list.guide ul li .developer-bg1, #mart-help-center .help-wrapper .help-body .content-wrapper .right-list.guide ul li .developer-bg2, #mart-help-center .help-wrapper .help-body .content-wrapper .right-list.guide ul li .developer-bg3, #mart-help-center .help-wrapper .help-body .content-wrapper .right-list.guide ul li .developer-bg4, #mart-help-center .help-wrapper .help-body .content-wrapper .right-list.guide ul li .developer-bg5, #mart-help-center .help-wrapper .help-body .content-wrapper .right-list.guide ul li span.bg {
+        width: 100%;
+        background-position-x: 50%;
+        margin-left: 0;
+        margin-right: 0
+    }
+
+    #mart-help-center .help-wrapper .help-body .content-wrapper .right-list.guide ul li .mobile {
+        display: block
+    }
+
+    #mart-help-center .help-wrapper .help-body .content-wrapper .right-list.guide ul li .web {
+        display: none
+    }
+}

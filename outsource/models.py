@@ -22,6 +22,25 @@ class News(models.Model):
         return self.news_title
 
 
+# class PublishProject(models.Model):
+#     user = models.ForeignKey(User)  # 外键关联 用户表(一对多)
+#     project_name = models.CharField(max_length=100, null=False, verbose_name="项目名称")
+#     kind = models.CharField(max_length=100, default=OTHER, verbose_name="项目类别")
+#     budget = models.CharField(max_length=20, blank=True, null=True, verbose_name="预算")
+#     language = models.CharField(max_length=100, default=Other, verbose_name="开发语言")
+#     cycles = models.IntegerField(verbose_name="开发周期", blank=True, null=True)
+#     project_desc = models.TextField(max_length=500, default="项目描述", verbose_name="项目描述")
+#     post_datetime = models.DateTimeField(auto_now_add=True, verbose_name="发布时间")
+#
+#     class Meta:
+#         db_table = "publish_project"
+#         verbose_name = "发布项目表"
+#         verbose_name_plural = verbose_name
+#
+#     def __str__(self):
+#         return str(self.project_name)
+
+
 class ProjectsManager(models.Manager):
     # sort = 'new' 按照创建时间排序
     # sort = 'hot' 按照关注度排序
@@ -80,18 +99,16 @@ class Projects(models.Model):
     develop_language_choices = ((k, v) for k, v in DEVELOP_LANGUAGE.items())
     user = models.ForeignKey(User)  # 外键关联 用户表(一对多)
     project_name = models.CharField(max_length=100, verbose_name="项目名称")
-    kind = models.SmallIntegerField(choices=projects_type_choices, default=OTHER, verbose_name="项目类别")
+    kind = models.CharField(max_length=100, default=OTHER, verbose_name="项目类别")
     budget = models.CharField(max_length=20, verbose_name="预算", null=True)
     # language = models.CharField(max_length=100, choices=PROJECTS_TYPE, default="other", verbose_name="开发语言")
-    language = models.SmallIntegerField(choices=develop_language_choices, default=Other, verbose_name="开发语言")
+    language = models.CharField(max_length=100, default=Other, verbose_name="开发语言")
     cycles = models.IntegerField(verbose_name="开发周期", null=True)
     project_desc = models.TextField(max_length=300, default="项目描述", verbose_name="项目描述")
     post_datetime = models.DateTimeField(auto_now_add=True, verbose_name="发布时间")
     views = models.IntegerField(default=0, verbose_name='浏览数量')
     is_Active = models.BooleanField(default=True, verbose_name="项目状态")  # 默认True代表发布状态 False代表已成功接单
 
-    # category = models.ForeignKey(Category, blank=True, null=True, verbose_name='分类')
-    # tag = models.ManyToManyField(Tag, verbose_name='标签')
     objects = ProjectsManager()
 
     class Meta:
@@ -127,20 +144,28 @@ class LanguageChoice(models.Model):
         return str("%s" % self.language_name)
 
 
-class PublishProject(models.Model):
-    user = models.ForeignKey(User)  # 外键关联 用户表(一对多)
-    project_name = models.CharField(max_length=100, null=False, verbose_name="项目名称")
-    kind = models.CharField(max_length=100, default=OTHER, verbose_name="项目类别")
-    budget = models.CharField(max_length=20, blank=True, null=True, verbose_name="预算")
-    language = models.CharField(max_length=100, default=Other, verbose_name="开发语言")
-    cycles = models.IntegerField(verbose_name="开发周期", blank=True, null=True)
-    project_desc = models.TextField(max_length=500, default="项目描述", verbose_name="项目描述")
-    post_datetime = models.DateTimeField(auto_now_add=True, verbose_name="发布时间")
+# 开发者注册表
+class Developers(models.Model):
+    name = models.CharField(max_length=50, verbose_name='真实姓名')
+    nickname = models.CharField(max_length=50, verbose_name="昵称")
+    email = models.EmailField(max_length=50, verbose_name='邮箱')
+    phone = models.CharField(max_length=50, verbose_name='手机号')
+    price_min = models.CharField(max_length=50, verbose_name='最低价')
+    price_max = models.CharField(max_length=50, verbose_name='最高价')
+    work_status = models.CharField(max_length=50, verbose_name='工作状态')
+    work_direction = models.CharField(max_length=50, verbose_name='职业方向')
+    language_direction = models.CharField(max_length=50, verbose_name='语言方向')
+    sex = models.CharField(max_length=50, verbose_name='工作状态')
+    person_introduce = models.TextField(max_length=500, verbose_name='个人介绍')
+    work_experience = models.TextField(max_length=500, verbose_name='工作经历')
+    project_works = models.TextField(max_length=500, verbose_name='开发作品')
+    created_time = models.DateTimeField(auto_now_add=True, verbose_name='创建时间')
+    updated_time = models.DateTimeField(auto_now=True, verbose_name='更新时间')
 
     class Meta:
-        db_table = "publish_project"
-        verbose_name = "发布项目表"
+        db_table = 'developers'
+        verbose_name = "开发者信息表"
         verbose_name_plural = verbose_name
 
     def __str__(self):
-        return str(self.project_name)
+        return "姓名: " + self.name

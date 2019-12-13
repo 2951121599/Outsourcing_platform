@@ -22,7 +22,7 @@ urlpatterns = [
     # 分类列表页
     url(r'^projects/(?P<kind>\d+)/(?P<page>\d+)/$', views.projects_list, name='projects_list'),  # 列表页
     # http://127.0.0.1:8000/projects/detail/projects_id  项目详情页
-    url(r'^projects/detail/(\d+)$', views.projects_detail),
+    url(r'^projects/detail/(?P<projects_id>\d+)$', views.projects_detail, name='detail'),
     # http://127.0.0.1:8000/developers
     url(r'^developers$', views.developers),
     # http://127.0.0.1:8000/developers/detail/developers_id  开发者详情页
@@ -31,8 +31,8 @@ urlpatterns = [
     url(r'^help$', views.help_menu),
     # http://127.0.0.1:8000/publish
     url(r'^publish$', views.publish),
-    # # http://127.0.0.1:8000/reg
-    # url(r'^reg$', views.reg),
+    # http://127.0.0.1:8000/reg_dev
+    url(r'^reg_dev$', views.reg_dev, name="reg_dev"),
     # # http://127.0.0.1:8000/login
     # url(r'^login$', views.login),
     # # http://127.0.0.1:8000/user
