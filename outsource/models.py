@@ -7,16 +7,18 @@ from outsource.enums import *
 # Create your models here.
 # 主页新闻列表页
 class News(models.Model):
-    news_title = models.CharField(max_length=50, verbose_name="新闻标题")
-    news_tip = models.CharField(max_length=100, verbose_name="文章摘要")
-    image_url = models.ImageField(upload_to='news/%Y/%m', verbose_name='图片路径')
+    news_detail_url = models.URLField(default='#', verbose_name='详情页链接')
+    news_title = models.CharField(max_length=200, verbose_name="新闻标题")
+    news_tip = models.CharField(max_length=200, verbose_name="文章摘要")
+    # image_url = models.ImageField(upload_to='news/%Y/%m', verbose_name='图片路径')
+    image_url = models.ImageField(verbose_name='图片路径')
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="创建时间")
-    index = models.IntegerField(default=999, verbose_name='排列顺序(从小到大)')
+    # index = models.IntegerField(default=999, verbose_name='排列顺序(从小到大)')
 
     class Meta:
         verbose_name = '新闻列表页'
         verbose_name_plural = verbose_name
-        ordering = ['index', 'id']
+        # ordering = ['index', 'id']
 
     def __str__(self):
         return self.news_title

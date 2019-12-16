@@ -195,66 +195,49 @@ a {
 }
 
 /*右侧广告图 box*/
-#layer1 .lright .box {
-    position: relative;
+.box {
+    float: left;
+    width: 366px;
     height: 216px;
+    background: #555;
+}
+
+.box:last-child {
+    margin-bottom: 0;
+}
+
+.pub {
+    width: 190px;
+    height: 40px;
+    background: #327ACC;
+    border-radius: 5px;
+    margin: 20px 86px;
+    line-height: 40px;
+}
+
+.pub a {
+    color: #FFF;
+    display: block;
+    margin: 0 46px;
+}
+
+.proImg1, .proImg2 {
+    margin: 22px auto;
+    height: 110px;
+}
+
+.proImg1 {
+    background: url(/static/images/index/proImg1.png) no-repeat center top;
+}
+
+.proImg2 {
+    background: url(/static/images/index/proImg2.png) no-repeat center top;
 }
 
 /*过滤器*/
-#layer1 .lright .box:nth-child(2) {
-    margin-top: 20px;
-}
-
-#layer1 .lright .box .btitle,
-#layer1 .lright .box p {
-    position: absolute;
-}
-
-#layer1 .lright .box .btitle {
-    background-color: #555;
-    color: white;
-    border-radius: 3px;
-    font-size: 13px;
-    top: 15px;
-    left: 15px;
-    padding: 5px;
-}
-
-#layer1 .lright .box p {
-    bottom: 0;
-    left: 0;
-    padding: 10px 0 10px 20px;
-    width: 345px;
-    background-color: rgba(0, 0, 0, 0.5);
-    color: white;
-}
-
-
-/*登陆的背景*/
-#bg {
-    opacity: 0.3;
-    position: fixed;
-}
-
-#log {
-    width: 480px;
-    height: 336px;
-    background-color: white;
-    border-radius: 8px;
-    position: absolute;
-    left: 50%;
-    margin-left: -240px;
-    top: 50%;
-    margin-top: -168px;
-}
-
-#log h3 {
-    text-align: center;
-}
-
-#log form {
-    margin-left: 30px;
-}
+/*#layer1 .lright .box:nth-child(2) {*/
+/*    margin-top: 20px;*/
+/*}*/
 
 
 /*第二层 layer2 内容页样式开始*/

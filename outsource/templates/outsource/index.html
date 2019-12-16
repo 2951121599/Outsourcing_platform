@@ -19,20 +19,12 @@
         <div class="lright">
             <!-- 首页的图片广告 -->
             <div class="box">
-                <img src="/static/images/toppic01.jpg" width="366" height="216" alt="">
-                <p>
-                    <a href="/publish">
-                    <button>免费发布需求</button>
-                    </a>
-                </p>
+                <div class="proImg1"></div>
+                <div class="pub"><a href="/publish">免费发布需求</a></div>
             </div>
-            <div class="box">
-                <img src="/static/images/toppic01.jpg" width="366" height="216" alt="">
-                <p>
-                    <a href="/reg_dev">
-                    <button>申请签约接单</button>
-                    </a>
-                </p>
+            <div class="box" style="margin-top: 20px">
+                <div class="proImg2"></div>
+                <div class="pub"><a href="/reg_dev">申请签约接单</a></div>
             </div>
         </div>
     </div>
@@ -45,11 +37,11 @@
             {% for news in all_news %}
                 <div class="ccon" data-scroll-reveal="top|bottom 10px 3 3">
                     <div class="cctitle">
-                        {{ news.news_title }}
+                        <a href="{{ news.news_detail_url }}" style="text-decoration: none; color: #000000" target="_blank">{{ news.news_title }}</a>
                     </div>
                     <div class="ccframe">
                         <div>
-                            <img src="{{ news.image_url.url }}" width="300" alt="">
+                            <img src="{{ news.image_url }}" width="300" alt="">
                         </div>
                         <div class="ccframe-right">
                             <div class="ccright">
@@ -85,7 +77,7 @@
 
 {% block downjs %}
     <!-- 加载js -->
-    <script src="/static/js/index.js"></script>
+    <script src="{% static 'js/index.js' %}"></script>
     <script>
         //调用获取焦点的函数
         getFocus($("#l1 a"))

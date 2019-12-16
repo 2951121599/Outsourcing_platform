@@ -8,7 +8,6 @@ from django.urls import reverse
 from user.models import User
 import json
 
-
 # Create your views here.
 
 # def logging_check(fn):
@@ -40,10 +39,6 @@ import json
 def index(request):
     all_news = News.objects.all()
     return render(request, 'outsource/index.html', locals())
-
-
-def news_detail(request, news_id):
-    return render(request, 'outsource/news_detail.html')
 
 
 # 项目列表页

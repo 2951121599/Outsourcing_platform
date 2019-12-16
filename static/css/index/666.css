@@ -1,0 +1,20 @@
+.fbText { width: 1200px; height: 35px; font-size: 30px; margin: 40px auto 0; color: #2b75e3; font-weight: normal; }
+.fbPro_border {width: 1200px; margin: 0 auto; }
+.fbPro_border:after { clear: both; height: 0; display: block; content: ""; }
+.fbPro_wrapper {background: url(../image/fbProBg.png) no-repeat center center;  padding: 58px 0}
+.everyFb{float: left;width: 290px;background: #FFF;margin-right: 8px;}
+.fbPro_border .everyFb:last-child { margin-right: 0;}
+.fbTitle { height: 66px; background: url(../image/proTopImg.png) no-repeat 0 0;text-align: center;}
+.fbTitle span {font-size: 18px;color: #FFF;line-height: 60px;margin:0 70px;}
+.fbTitle2 {height: 40px; line-height: 20px; margin: 0 36px; font-size: 12px; color: #646464; margin-top: 8px; }
+.fbPro_border ul { height: 40px;margin:0 85px;}
+.fbPro_border ul li { padding-left: 34px; height: 26px; line-height: 26px; background: url(../image/proClick.png) 0 0  no-repeat; font-size: 14px; color: #646464; }
+.fbProA {width: 190px;height: 40px;background: #327ACC; border-radius: 5px;margin: 20px 50px;line-height: 36px;}
+.fbProA a{color: #FFF;display: block;margin:0 46px;}
+.proImg1, .proImg2, .proImg3, .proImg4{ margin: 24px auto; height: 110px; }
+.proImg1 { background: url(../image/proImg1.png) no-repeat center top; }
+.proImg2 { background: url(../image/proImg2.png) no-repeat center top; }
+.proImg3 { background: url(../image/proImg3.png) no-repeat center top; }
+.proImg4 { background: url(../image/proImg4.png) no-repeat center top; }
+.fbProject { text-decoration: none; width: 175px; height: 40px; line-height: 40px; text-align: center; color: #323232; cursor: pointer; display: block; font-size: 20px; border: 1px solid #aaa; border-radius: 20px; }
+.fbProject:hover { background: #2b75e3; border-color: #2b75e3; color: #fff !important }
