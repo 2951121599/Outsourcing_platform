@@ -6,12 +6,14 @@
 {% block css %}
     <style>
         .step-form .message-tip {
+            width: 535px;
             margin: 25px;
             padding: 10px 20px;
             background-color: #ebf5fe;
-            border: 1px solid #badefb;
-            color: #73afe0;
-            font-size: 12px;
+            border: 1px solid #555;
+            border-radius: 5px;
+            color: #327ACC;
+            font-size: 16px;
         }
 
         input[type="submit"] {
@@ -83,7 +85,7 @@
             background: #fff;
             border: 1px solid rgba(39, 41, 43, .15);
             color: rgba(0, 0, 0, .8);
-            border-radius: .2857rem;
+            border-radius: 5px;
             box-shadow: 0 0 0 0 transparent inset;
             -webkit-transition: background-color .2s ease, color .2s ease, box-shadow .2s ease, border-color .2s ease;
             transition: background-color .2s ease, color .2s ease, box-shadow .2s ease, border-color .2s ease;
@@ -106,7 +108,7 @@
                 <div style="height: 40px"></div>
                 <input id="projectname" type="text" class="project-name" name="project_name"
                        placeholder="请输入项目名称，1-20个字以内" value="" maxlength="20"
-                       style="width: 535px !important;display: block">
+                       style="border:1px solid #555;width: 535px !important;display: block">
                 <div style="height: 40px"></div>
             </div>
 
@@ -167,7 +169,12 @@
                     </div>
                 </div>
                 <div>
-                    <input type="submit" value="发布" onclick="location.href='/projects'" style="margin-right:10px;margin-bottom: 25px ">
+                    <input type="submit" value="发布" id="pub_btn" style="margin-right:10px;margin-bottom: 25px ">
+                    <script>
+                        $('#pub_btn').on('click',function () {
+                            alert("发布成功!")
+                        })
+                    </script>
                 </div>
             </div>
         </form>

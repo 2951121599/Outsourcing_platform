@@ -195,15 +195,7 @@
                                     </div>
                                 </div>
                             </div>
-                            {# 语言标签 #}
-                            {#                            <div class="technology-tag">#}
-                            {#                                <div class="col-sm-12">#}
-                            {#                                    <div class="single">#}
-                            {#                                        <div class="tag">{{ project.language }}</div>#}
-                            {#                                        <div class="triangle"></div>#}
-                            {#                                    </div>#}
-                            {#                                </div>#}
-                            {#                            </div>#}
+
                             <div class="project-describe">
                                 <div class="col-sm-12">
                                     <p class="project-des-title">
@@ -214,11 +206,11 @@
                                             {{ project.project_desc }}
                                         </p>
                                         <div class="col-sm-12">
-                                            <p>文档下载</p>
+                                            <p>资料下载</p>
                                             <a href="javascript:;" class="download"
                                                id="/f/b4/af0d97d4fe34ef5a84270e530bbe0/021bfb6d1a23c7c454b10428b4669c24.mp4">
                                                 <i class="glyphicon glyphicon-paperclip"></i>
-                                                021bfb6d1a23c7c454b10428b4669c24.mp4 </a>
+                                                暂无资料 </a>
                                         </div>
                                     </div>
                                 </div>
@@ -228,7 +220,7 @@
                                     <div class="col-sm-9 project-show">
                                         <span>&nbsp;</span>
                                         <p>
-                                            接单人数：<span class="org pd-r-20">12人</span>
+                                            竞标人数：<span class="org pd-r-20">12人</span>
                                         </p>
                                     </div>
                                     <div class="col-sm-3 bid-btn-div" style="overflow:hidden;">
@@ -266,46 +258,6 @@
                                                                 <div class="warning-msg col-sm-offset-1 "><span
                                                                         id="usernameTip"></span></div>
                                                             </div>
-                                                            <br>
-                                                            <div class="form-group">
-                                                                <label class="col-sm-1 col-md-1 col-lg-1 control-label">&nbsp;</label>
-                                                                <div class="col-sm-10 col-md-10 col-lg-10">
-                                                                    <div class="input-group">
-                                                                    <span class="input-group-addon"><i
-                                                                            class="glyphicon glyphicon-lock"></i></span>
-                                                                        <input type="password" id="mima"
-                                                                               class="form-control" name="pwd"
-                                                                               onpaste="return false;" placeholder="密码"
-                                                                               value=""
-                                                                               onclick="document.getElementById('mima').value='';">
-                                                                    </div>
-                                                                </div>
-                                                                <div class="warning-msg col-sm-offset-1 "><span
-                                                                        id="mimaTip"></span></div>
-
-                                                            </div>
-                                                            <br>
-                                                            <div class="form-group">
-                                                                <label class="col-sm-1 col-md-1 col-lg-1 control-label">&nbsp;</label>
-                                                                <div class="col-sm-10 col-md-10 col-lg-10">
-                                                                    <span><input type="checkbox" class="box"
-                                                                                 name="keepPsd">&nbsp;记住密码</span>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-sm-offset-1 returnError error-red">
-                                                                &nbsp;
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label class="col-sm-1 col-md-1 col-lg-1 control-label">&nbsp;</label>
-                                                                <div class="col-sm-10 col-md-10 col-lg-10">
-                                                                    <input type="button" id="loginBid" value="登&nbsp;录"
-                                                                           class="btn btn-success">
-                                                                    <span class="bottom_align"
-                                                                          style="padding-left:40%;"><a
-                                                                            tabindex="-1"
-                                                                            href="pass.html">忘记密码？</a></span>
-                                                                </div>
-                                                            </div>
                                                             <input type="hidden" id="loginType" name="loginType"
                                                                    value="email">
                                                         </form>
@@ -325,7 +277,8 @@
                                 <ul class=" tj_det list-unstyled">
                                     {% for recommend_project in recommend_projects %}
                                         <li>
-                                            <a href="87865.html"><span class="green">{{ recommend_project.project_name }}</span></a>
+                                            <a href="/projects/detail/{{ recommend_project.id }}"><span
+                                                    class="green">{{ recommend_project.project_name }}</span></a>
                                             <span class="font-color-3">项目预算：{{ recommend_project.budget }}元</span>
                                             <span class="font-color-3">技术要求：{{ recommend_project.language }}</span>
                                         </li>
@@ -341,12 +294,7 @@
                         <div class="right">
                             <div class="waring-message">
                                 <div class="message">
-                                    <div>
-                                        <img src="static/picture/alert.jpg" alt="">
-                                    </div>
                                     <div class="reminder">警告：线上交易可以保障您的资金安全，私自线下交易可能带来安全风险。</div>
-                                    <span class="">
-                                </span>
                                 </div>
                             </div>
                             <div class="bidding-instructions">
@@ -354,22 +302,22 @@
                                     竞标须知
                                 </p>
                                 <p class="single1 single">
-                                    <a href="bid_joinings.html" target="_blank">
+                                    <a href="#" target="_blank">
                                         为什么要付费竞标？
                                     </a>
                                 </p>
                                 <p class="single2 single">
-                                    <a href="bid_joinings.html" target="_blank">
+                                    <a href="#" target="_blank">
                                         付费竞标规则
                                     </a>
                                 </p>
                                 <p class="single3 single">
-                                    <a href="bid_joinings.html" target="_blank">
+                                    <a href="#" target="_blank">
                                         什么情况下竞标退费？
                                     </a>
                                 </p>
                                 <p class="single4 single">
-                                    <a href="bid_joinings.html">
+                                    <a href="#">
                                         如何提高竞标成功率？
                                     </a>
                                 </p>
@@ -378,15 +326,10 @@
                                 <p class="contact-title">
                                     如您有任何疑问，请咨询客服
                                 </p>
-                                <p class="qq">
-                                    客服QQ
-                                </p>
                                 <p class="qq1">
-                                    <span class="services_kefu">客服:</span>
-                                    <a href='javascript:;' target='_blank'>
-                                        <img border='0' title="点击这里给我发消息" alt='点击这里给我发消息'
-                                             src="{% static '/images/projects/button_11.gif' %}">
-                                    </a></p>
+                                    <span class="services_kefu">客服QQ:</span>
+                                    <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=2951121599&site=qq&menu=yes"><img border="0" src="http://wpa.qq.com/pa?p=2:2951121599:51" alt="点击这里给我发消息" title="点击这里给我发消息"/></a>
+                                </p>
                             </div>
                             <div class="service-email">
                                 <p class="service-email-title">
@@ -552,53 +495,6 @@
                     </div>
                 </div>
 
-
-                <!--            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">-->
-                <!--                <div class="modal-dialog" role="document">-->
-                <!--                    <div class="modal-content">-->
-                <!--                        <div class="modal-header">-->
-                <!--                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>-->
-                <!--                            <h4 class="modal-title" id="myModalLabel">微信扫码支付</h4>-->
-                <!--                        </div>-->
-                <!--                        <div class="modal-body">-->
-                <!--							-->            <!--                                <p class="hint">-->
-                <!--                                    需要支付金额:<span class="green money"> 3.9</span>元-->
-                <!--                                </p>-->
-                <!--                                <p class="QR-code-time">-->
-                <!--                                    距离二维码过期还剩 <span class="time">60</span> 秒，过期后请刷新重新获取二维码。-->
-                <!--                                </p>-->
-                <!--  <p class="refresh-QR-code">
-                                        二维码已过期，<span class="refresh" onclick="refreshQRCode('//','//')">刷新</span>重新获取二维码。
-    //                                </p>-->
-                <!--                            <img class="QR-code" src="/images/bidding/weixin.png" alt="">-->
-                <!--                            <p class="pay-status">-->
-                <!---->
-                <!--                            </p>-->
-                <!---->
-                <!---->
-                <!--                            <div class="clearfix">-->
-                <!--                                <p class="pay-way">-->
-                <!--									-->
-                <!--                                <form id="alipay" class="alipay" action="-->
-                <!--"  method="post">-->
-                <!---->
-                <!--                                    <input type="hidden" name="money">-->
-                <!--                                    <input type="hidden" name="project_id" value="-->
-                <!--">-->
-                <!--                                    <input type="hidden" name="source" value="project_detail">-->
-                <!---->
-                <!--                                    <span class="select-alipay" onclick="alipay()">支付宝支付</span>-->
-                <!--                                </form>-->
-                <!--								-->            <!--								-->
-                <!--                                    <span class="balance-pay" onclick="balanceBuy()">余额支付</span>-->
-                <!--								-->            <!--                                </p>-->
-                <!--                            </div>-->
-                <!---->
-                <!---->
-                <!--                        </div>-->
-                <!--                    </div>-->
-                <!--                </div>-->
-                <!--            </div>-->
 
 
                 <div class="modal fade" id="payStatus" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -786,7 +682,7 @@
                             </p>
                             <form class="form-horizontal bidding-projects" method="post" role="form"
                                   id="form-bidding-msg">
-                                <form action="/project/show/88053" method="post" accept-charset="utf-8">
+                                <form action="/outsource/88053" method="post" accept-charset="utf-8">
                                     <div style="display:none">
                                         <input type="hidden" name="csrf_sxsoft_name"
                                                value="a98b9b783eb23f6cb16ab3ce6975e3d0">
@@ -1064,8 +960,6 @@
                                     <img class="QR-code" src="static/picture/weixin1.png" alt="">
                                 </div>
                                 <p class="pay-status">
-
-
                                 </p>
                             </div>
                         </div>

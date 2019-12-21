@@ -41,6 +41,7 @@ urlpatterns = [
     url(r'^help/guide1$', views.guide1),
     # http://127.0.0.1:8000/help/guide2
     url(r'^help/guide2$', views.guide2),
-    # http://127.0.0.1:8000/reg_dev
-    url(r'^reg_dev$', views.reg_dev),
+    # http://127.0.0.1:8000/collection
+    url(r'^collection/$', views.collection, name='collection'),
+
 ]

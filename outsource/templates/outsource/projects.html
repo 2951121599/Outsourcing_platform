@@ -5,8 +5,8 @@
 {% endblock %}
 
 {% block css %}
-    <link rel='stylesheet' type='text/css' href='{% static '/css/projects/bootstrap.min.css' %}' media='all'>
-    <link rel='stylesheet' type='text/css' href='{% static '/css/projects/web-20190904.css' %}' media="all">
+    <link rel='stylesheet' type='text/css' href='{% static '/css/projects/bootstrap.min.css' %}'>
+    <link rel='stylesheet' type='text/css' href='{% static '/css/projects/web-20190904.css' %}'>
     <link href="{% static '/css/projects/bootstrapValidator.min.css' %}" rel="stylesheet">
 {% endblock %}
 
@@ -42,18 +42,88 @@
                                         <a style="color: #333;" href="/projects/detail/{{ page_.id }}" target="_blank">
                                             {{ page_.project_name }} </a>
                                     </h4>
-                                    <span>预算 <em class="green">{{ page_.budget }}</em></span>
+                                    <span>预算 <em class="green">{{ page_.budget }}元</em></span>
                                     <span>开发语言
                                             <em class='green'>{{ page_.language }}</em>
+{#                                            <em class='green'>{{ request.session.passport_id }}</em>#}
+{#                                            <em class='green'>{{ page_.id }}</em>#}
                                     </span>
-                                    <span>开发周期 <em class='green'>{{ page_.cycles }}</em></span>
+                                    <span>开发周期 <em class='green'>{{ page_.cycles }}天</em></span>
                                     <div style="margin-top: 28px;">
                                         <span>发布日期</span><span class='green'>{{ page_.post_datetime }}</span>
                                     </div>
                                 </div>
                                 <div class="left_2">
-                                    <a href="project_88114.html"><i class="glyphicon glyphicon-heart gray">
-                                        收藏</i></a>
+                                    {% if page_.id not in collected_list  %}
+                                        <a href="#">
+                                            <i class="glyphicon gray active" id="heart_btn"
+                                               onclick="collection(this,{{ page_.id }},{{ request.session.passport_id }})">
+                                                收藏
+                                            </i>
+                                            <script>
+                                                function collection(obj, projects_id, user) {
+                                                    var is_collect = "True";
+                                                    $.ajax(
+                                                        {
+                                                            url: "{% url 'outsource:collection' %}",
+                                                            type: 'GET',
+                                                            data: {
+                                                                is_collect: is_collect,
+                                                                projects_id: projects_id,
+                                                                user: user
+                                                            },
+                                                            contentType: "application/json",
+                                                            cache: false,
+                                                            success: function (data) {
+                                                                console.log(data);
+                                                                alert("收藏成功");
+                                                                window.location.reload()
+                                                            },
+                                                            error: function (xhr) {
+                                                                console.log(xhr);
+                                                                console.log(xhr.responseText);
+                                                                window.location.reload()
+                                                            }
+                                                        }
+                                                    );
+                                                }
+                                            </script>
+                                        </a>
+                                    {% else %}
+                                        <a href="#">
+                                            <i class="glyphicon gray active" id="heart_btn"
+                                               onclick="collection(this,{{ page_.id }},{{ request.session.passport_id }})">
+                                                已收藏
+                                            </i>
+                                            <script>
+                                                function collection(obj, projects_id, user) {
+                                                    var is_collect = "True";
+                                                    $.ajax(
+                                                        {
+                                                            url: "{% url 'outsource:collection' %}",
+                                                            type: 'GET',
+                                                            data: {
+                                                                is_collect: is_collect,
+                                                                projects_id: projects_id,
+                                                                user: user
+                                                            },
+                                                            contentType: "application/json",
+                                                            cache: false,
+                                                            success: function (data) {
+                                                                console.log(data);
+                                                                window.location.reload()
+                                                            },
+                                                            error: function (xhr) {
+                                                                console.log(xhr);
+                                                                alert(xhr.responseText);
+                                                                window.location.reload()
+                                                            }
+                                                        }
+                                                    );
+                                                }
+                                            </script>
+                                        </a>
+                                    {% endif %}
                                 </div>
                             </li>
                         {% endfor %}

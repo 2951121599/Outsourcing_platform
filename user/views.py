@@ -1,7 +1,10 @@
+import json
 import re
 
-from django.http import HttpResponse, JsonResponse
+from django.http import JsonResponse
 from django.shortcuts import *
+
+from outsource.models import Projects, Collection
 from .models import *
 from functions.decorators import login_required
 
@@ -103,12 +106,9 @@ def user(request):
     if request.method == 'GET':
         passport_id = request.session.get('passport_id')  # 数据表中的id
         user = User.objects.get(id=passport_id)
-        print(user)
         return render(request, 'user/user_center_info.html', locals())
     else:
-        passport_id = request.session.get('passport_id')  # 数据表中的id
-        user = User.objects.get(id=passport_id)
-        return render(request, 'user/user_center_info.html', locals())
+        return HttpResponse("请使用GET请求数据!")
 
 
 @login_required
@@ -132,4 +132,55 @@ def user_change(request):
         user.name = name
         user.description = desc
         user.save()
-        return render(request, 'user/user_center_info.html')
+        # return render(request, 'user/user_center_info.html')
+        return redirect(reverse('user:user'))
+
+
+def SuccessResponse(code):
+    data = {}
+    data['status'] = 'SUCCESS'
+    data['code'] = code
+    return JsonResponse(data)
+
+
+def ErrorResponse(code, message):
+    data = {}
+    data['status'] = 'ERROR'
+    data['code'] = code
+    data['message'] = message
+    return JsonResponse(data)
+
+
+# def collection(request):
+#     if request.method == 'GET':
+#         passport_id = request.session.get('passport_id')  # 数据表中的id
+#         # user = User.objects.get(id=passport_id)
+#         collection_obj = Collection.objects.filter(user_id=passport_id)
+#         if not collection_obj:
+#             item = {}
+#             return render(request, 'user/collection.html', item)
+#         item = {}
+#         for project_obj in collection_obj:
+#             # print(project_obj.projects_id_id)  # <QuerySet [<Projects: 众筹系统源码购买>]>
+#             projects = Projects.objects.filter(id=project_obj.projects_id_id)
+#             # ..........获取数据库的N条数据 存储为字典
+#             item['projects'] = projects
+#             print(item)
+#             return render(request, 'user/collection.html', item)
+#     else:
+#         return HttpResponse('请使用GET进行请求!')
+def collection(request):
+    if request.method == 'GET':
+        passport_id = request.session.get('passport_id')  # 数据表中的id
+        # user = User.objects.get(id=passport_id)
+        collection_obj = Collection.objects.filter(user_id=passport_id)
+
+        if not collection_obj:
+            item = {}
+            return render(request, 'user/collection.html', item)
+        project_list = []
+        for project_obj in collection_obj:
+            project1 = Projects.objects.filter(id=project_obj.projects_id_id)
+            project_list.append(project1)
+
+        return render(request, 'user/collection.html', locals())

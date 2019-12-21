@@ -13,40 +13,20 @@ class News(models.Model):
     # image_url = models.ImageField(upload_to='news/%Y/%m', verbose_name='图片路径')
     image_url = models.ImageField(verbose_name='图片路径')
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="创建时间")
-    # index = models.IntegerField(default=999, verbose_name='排列顺序(从小到大)')
 
     class Meta:
+        db_table = 'news'
         verbose_name = '新闻列表页'
         verbose_name_plural = verbose_name
-        # ordering = ['index', 'id']
 
     def __str__(self):
         return self.news_title
 
 
-# class PublishProject(models.Model):
-#     user = models.ForeignKey(User)  # 外键关联 用户表(一对多)
-#     project_name = models.CharField(max_length=100, null=False, verbose_name="项目名称")
-#     kind = models.CharField(max_length=100, default=OTHER, verbose_name="项目类别")
-#     budget = models.CharField(max_length=20, blank=True, null=True, verbose_name="预算")
-#     language = models.CharField(max_length=100, default=Other, verbose_name="开发语言")
-#     cycles = models.IntegerField(verbose_name="开发周期", blank=True, null=True)
-#     project_desc = models.TextField(max_length=500, default="项目描述", verbose_name="项目描述")
-#     post_datetime = models.DateTimeField(auto_now_add=True, verbose_name="发布时间")
-#
-#     class Meta:
-#         db_table = "publish_project"
-#         verbose_name = "发布项目表"
-#         verbose_name_plural = verbose_name
-#
-#     def __str__(self):
-#         return str(self.project_name)
-
-
 class ProjectsManager(models.Manager):
     # sort = 'new' 按照创建时间排序
     # sort = 'hot' 按照关注度排序
-    # sort = 'price' 按照价格进行排序
+    # sort = 'budget' 按照预算进行排序
     # sort = 'default' 默认排序
     # sort = 'kind' 按照类别分类 (未做)
     def get_projects_by_type(self, kind, limit=None, sort='default'):
@@ -77,33 +57,12 @@ class ProjectsManager(models.Manager):
 
 # 项目(发布)表
 class Projects(models.Model):
-    # class_id = models.IntegerField(verbose_name='项目类别')
-    # PROJECTS_TYPE = (
-    #     (u'APP', u'APP'),
-    #     (u'桌面应用', u'桌面应用'),
-    #     (u'管理系统', u'管理系统'),
-    #     (u'PC网站', u'PC网站'),
-    #     (u'UI设计', u'UI设计'),
-    #     (u'微信开发', u'微信开发'),
-    #     (u'游戏开发', u'游戏开发'),
-    #     (u'其它分类', u'其它分类'),
-    # )
-
-    # LANGUAGE_TYPE = (
-    #     ('Python', 'Python'),  # 前面是展示在前端界面的内容,后面的是真正存在数据库中的
-    #     ('C', 'C'),
-    #     ('C++', 'C++'),
-    #     ('C#', 'C#'),
-    #     ('Java', 'Java'),
-    #     ('Android', 'Android'),
-    # )
     projects_type_choices = ((k, v) for k, v in PROJECTS_TYPE.items())
     develop_language_choices = ((k, v) for k, v in DEVELOP_LANGUAGE.items())
     user = models.ForeignKey(User)  # 外键关联 用户表(一对多)
     project_name = models.CharField(max_length=100, verbose_name="项目名称")
     kind = models.CharField(max_length=100, default=OTHER, verbose_name="项目类别")
     budget = models.CharField(max_length=20, verbose_name="预算", null=True)
-    # language = models.CharField(max_length=100, choices=PROJECTS_TYPE, default="other", verbose_name="开发语言")
     language = models.CharField(max_length=100, default=Other, verbose_name="开发语言")
     cycles = models.IntegerField(verbose_name="开发周期", null=True)
     project_desc = models.TextField(max_length=300, default="项目描述", verbose_name="项目描述")
@@ -146,8 +105,15 @@ class LanguageChoice(models.Model):
         return str("%s" % self.language_name)
 
 
+# 用户收藏项目表
+class Collection(models.Model):
+    user = models.ForeignKey(User)
+    projects_id = models.ForeignKey(Projects)
+
+
 # 开发者注册表
 class Developers(models.Model):
+    user = models.OneToOneField(User)  # 外键关联 用户表(一对多)
     name = models.CharField(max_length=50, verbose_name='真实姓名')
     nickname = models.CharField(max_length=50, verbose_name="昵称")
     email = models.EmailField(max_length=50, verbose_name='邮箱')
@@ -165,7 +131,7 @@ class Developers(models.Model):
     updated_time = models.DateTimeField(auto_now=True, verbose_name='更新时间')
 
     class Meta:
-        db_table = 'developers'
+        db_table = 'user_dev'
         verbose_name = "开发者信息表"
         verbose_name_plural = verbose_name
 

@@ -34,7 +34,7 @@ class NewsSpider(object):
         created_at = info[-1]
         news_detail_url = info[1]
         # ins = 'insert into outsource_news(news_title,news_tip,image_url,created_at,index,news_detail_url) values(%s,%s,%s,%s,%s,%s)'
-        ins = 'insert into outsource_news(news_title, news_tip, image_url, created_at, news_detail_url) values(%s,%s,%s,%s,%s)'
+        ins = 'insert into news(news_title, news_tip, image_url, created_at, news_detail_url) values(%s,%s,%s,%s,%s)'
         print([news_title, news_tip, image_url, created_at, news_detail_url])
         self.cursor.execute(ins, [news_title, news_tip, image_url, created_at, news_detail_url])
         self.db.commit()

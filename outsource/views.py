@@ -8,6 +8,7 @@ from django.urls import reverse
 from user.models import User
 import json
 
+
 # Create your views here.
 
 # def logging_check(fn):
@@ -74,6 +75,12 @@ def projects(request):
     # 定义上下文
     obj = Projects.objects.all().values("kind")
     print("obj******************", obj)  # obj****************** <QuerySet [{'kind': 4}]>
+
+    user = request.session.get("passport_id")
+    u_project_id = Collection.objects.filter(user_id=user)
+    collected_list = []
+    for obj in u_project_id:
+        collected_list.append(obj.projects_id_id)
 
     return render(request, 'outsource/projects.html', locals())
 
@@ -184,7 +191,7 @@ def publish(request):
         passport_id = request.session.get('passport_id')
         Projects.objects.create(project_name=project_name, kind=kind, budget=budget, language=languages, cycles=cycles,
                                 project_desc=project_desc, user_id=passport_id)
-        return render(request, 'outsource/publish.html', locals())
+        return redirect('outsource:projects')
 
 
 def help_menu(request):
@@ -199,7 +206,8 @@ def guide2(request):
     return render(request, 'outsource/guide2.html')
 
 
-#
+# 开发者注册
+@login_required
 def reg_dev(request):
     if request.method == 'GET':
         return render(request, 'outsource/reg_dev.html')
@@ -217,7 +225,61 @@ def reg_dev(request):
         person_introduce = request.POST.get('person_introduce')
         work_experience = request.POST.get('work_experience')
         project_works = request.POST.get('project_works')
+        # 创建
+        passport_id = request.session.get('passport_id')
         Developers.objects.create(name=name, nickname=nickname, email=email, phone=phone, price_min=price_min,
                                   price_max=price_max, work_status=work_status, work_direction=work_direction,
                                   language_direction=language_direction, sex=sex, person_introduce=person_introduce,
-                                  work_experience=work_experience, project_works=project_works)
+                                  work_experience=work_experience, project_works=project_works, user_id=passport_id)
+        return redirect('outsource:projects')
+
+
+def SuccessResponse(code):
+    data = {}
+    data['status'] = 'SUCCESS'
+    data['code'] = code
+    return JsonResponse(data)
+
+
+def ErrorResponse(code, message):
+    data = {}
+    data['status'] = 'ERROR'
+    data['code'] = code
+    data['message'] = message
+    return JsonResponse(data)
+
+
+def collection(request):
+    is_collect = request.GET.get("is_collect")
+    projects_id = request.GET.get('projects_id')
+    user = request.GET.get('user')
+    print(projects_id)
+
+    # print('is_collect***********', is_collect)  # true
+    # print('projects_id***********', projects_id)  # 1
+    # print('user***********', user)  # 1
+    # 处理数据
+    if is_collect == 'True':
+        # 要收藏
+        collection, created = Collection.objects.get_or_create(projects_id_id=projects_id, user_id=user)
+        if created:
+            # 未收藏过 进行收藏
+            Collection.objects.get(projects_id_id=projects_id, user_id=user)
+            return SuccessResponse(200)
+        else:
+            # 已收藏过 不能重复收藏
+            return ErrorResponse(402, '已收藏过 不能重复收藏')
+    else:
+        # 要取消收藏
+        if Collection.objects.filter(projects_id_id=projects_id, user_id=user).exists():
+            # 有收藏过 取消收藏
+            collection = Collection.objects.get(projects_id_id=projects_id, user_id=user)
+            collection.delete()
+            return SuccessResponse(201)
+        else:
+            # 没有收藏过 不能取消
+            return ErrorResponse(403, '没有收藏过 不能取消')
+
+
+
+

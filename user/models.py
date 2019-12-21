@@ -3,6 +3,8 @@ from functions.get_hash import get_hash
 
 
 # Create your models here.
+
+
 class PassportManager(models.Manager):
     # 添加账户信息
     def add_one_passport(self, username, password, email):

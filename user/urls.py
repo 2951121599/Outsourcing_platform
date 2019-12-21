@@ -4,7 +4,8 @@ from user import views
 app_name = 'user'
 urlpatterns = [
     url(r'^$', views.user, name='user'),
-    url(r'^user_change$', views.user_change, name='user_change'),
+    url(r'^collection/$', views.collection, name='collection'),
+    url(r'^user_change/$', views.user_change, name='user_change'),
     url(r'^register/$', views.register, name='register'),
     url(r'^register_handle/$', views.register_handle, name='register_handle'),
     url(r'^login/$', views.login, name='login'),

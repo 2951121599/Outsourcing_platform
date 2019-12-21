@@ -85,7 +85,7 @@
         <div class="right_content">
             <div class="info_con">
                 <h3 class="common_title2">基本信息</h3>
-                <form action="/user/" method="post">
+                <form action="/user/user_change/" method="post">
                     {% csrf_token %}
                     <ul class="user_info_list">
                         <li><span>用户名：</span>{{ request.session.username }}</li>
@@ -93,10 +93,15 @@
                         <li><span>昵称：</span><input name="nickname" type="text"></li>
                         <li><span>真实姓名：</span><input name="name" type="text"></li>
                         <li><span>个人描述：</span><textarea name="desc" id="" cols="30" rows="10"></textarea></li>
-                        <li><span>.</span><input type="submit" value="保存"></li>
+                        <li><span>.</span><input type="submit" value="保存"id="save_btn"></li>
                     </ul>
                 </form>
             </div>
         </div>
     </div>
+    <script>
+        $('#save_btn').on('click',function () {
+            alert("保存成功! ")
+        })
+    </script>
 {% endblock %}
