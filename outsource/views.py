@@ -5,36 +5,7 @@ from outsource.models import KindChoice, LanguageChoice, Projects, News
 from outsource.models import *
 from functions.decorators import login_required
 from django.urls import reverse
-from user.models import User
 import json
-
-
-# Create your views here.
-
-# def logging_check(fn):
-#     def wrap(request, *args, **kwargs):
-#         # 检查登录状态
-#         # session没登录
-#         if not request.session.get('uid') or not request.session.get('username'):
-#             # cookies没登录
-#             if not request.COOKIES.get('uid') or not request.COOKIES.get('username'):
-#                 return HttpResponseRedirect('/user/login')
-#             # 有cookies
-#             else:
-#                 # 有cookies 回写session
-#                 uid = request.COOKIES.get('uid')
-#                 username = request.COOKIES.get("username")
-#                 request.session['uid'] = uid
-#                 request.session['username'] = username
-#         # 1.将用户的uid绑定给request对象 传递给视图函数
-#         uid = request.session.get('uid')
-#         # 2.直接查询出用户数据 将用户对象绑定给request
-#         # user = User.Objects.get(id = uid)
-#         # request.my_user = user
-#         request.my_uid = uid
-#         return fn(request, *args, **kwargs)
-#
-#     return wrap
 
 
 def index(request):
@@ -63,18 +34,18 @@ def projects(request):
 
     # 分页
     paginator = Paginator(all_projects, 5)
-    print('当前对象的总个数是:', paginator.count)
-    print('当前对象的面码范围是:', paginator.page_range)
-    print('总页数是：', paginator.num_pages)
-    print('每页最大个数:', paginator.per_page)
+    # print('当前对象的总个数是:', paginator.count)
+    # print('当前对象的面码范围是:', paginator.page_range)
+    # print('总页数是：', paginator.num_pages)
+    # print('每页最大个数:', paginator.per_page)
     cur_page = request.GET.get('page', 1)  # 得到默认的当前页
     page_obj = paginator.page(cur_page)
-    print('locals--------------', locals())
+    # print('locals--------------', locals())
     # 右侧展示
     # Projects.objects.order_by('?')[:2]
     # 定义上下文
     obj = Projects.objects.all().values("kind")
-    print("obj******************", obj)  # obj****************** <QuerySet [{'kind': 4}]>
+    # print("obj******************", obj)  # obj****************** <QuerySet [{'kind': 4}]>
 
     user = request.session.get("passport_id")
     u_project_id = Collection.objects.filter(user_id=user)
@@ -279,7 +250,3 @@ def collection(request):
         else:
             # 没有收藏过 不能取消
             return ErrorResponse(403, '没有收藏过 不能取消')
-
-
-
-

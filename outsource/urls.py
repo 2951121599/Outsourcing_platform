@@ -28,7 +28,7 @@ urlpatterns = [
     # http://127.0.0.1:8000/developers/detail/developers_id  开发者详情页
     url(r'^developers/detail/(\d+)$', views.developers_detail),
     # http://127.0.0.1:8000/help
-    url(r'^help$', views.help_menu),
+    url(r'^help$', views.help_menu,name='help'),
     # http://127.0.0.1:8000/publish
     url(r'^publish$', views.publish),
     # http://127.0.0.1:8000/reg_dev

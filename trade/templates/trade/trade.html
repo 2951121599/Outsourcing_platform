@@ -17,17 +17,18 @@
                     <div class="r_div">
                         <div><a href="
                             {#  p_url  详情页    #}
-                         1"><b>{{ project.title }}</b></a><span>{{ project.tag }}
+                         #"><b>{{ project.title }}</b></a><span>{{ project.tag }}
                         {#{{ language|upper }}#}
                     </span></div>
                         <div id="ccright">
-                            <p>{{ project.content }}</p>
+                            <div>{{ project.content }}</div>
                         </div>
                     </div>
                     <div class="tb_info">
                     <span>
-                        {{ project.collection }}收藏</a><br>
-                        {{ project.comments }}<a href="">评论</a>
+                        <b>收藏</b> {{ project.collection }}<br>
+                        <hr width="180px">
+                        <a href="">评论</a><br>{{ project.comments }}
                     </span>
                     </div>
                 </div>
