@@ -1,6 +1,6 @@
 certifi==2019.11.28
 chardet==3.0.4
-Django==1.11.8
+Django==1.11.23
 idna==2.8
 Pillow==6.2.1
 PyMySQL==0.9.3
