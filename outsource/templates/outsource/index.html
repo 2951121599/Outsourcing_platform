@@ -24,7 +24,17 @@
             </div>
             <div class="box" style="margin-top: 20px">
                 <div class="proImg2"></div>
-                <div class="pub"><a href="/reg_dev">申请签约接单</a></div>
+                <div class="pub">
+                    {% if user %}
+                        {% if databases_user_id.user_id == user %}
+                            <a href="/projects">申请签约接单</a>
+                        {% else %}
+                            <a href="/reg_dev">申请签约接单</a>
+                        {% endif %}
+                    {% else %}
+                        <a href="/user/login">申请签约接单</a>
+                    {% endif %}
+                </div>
             </div>
         </div>
     </div>
@@ -37,7 +47,8 @@
             {% for news in all_news %}
                 <div class="ccon" data-scroll-reveal="top|bottom 10px 3 3">
                     <div class="cctitle">
-                        <a href="{{ news.news_detail_url }}" style="text-decoration: none; color: #000000" target="_blank">{{ news.news_title }}</a>
+                        <a href="{{ news.news_detail_url }}" style="text-decoration: none; color: #000000"
+                           target="_blank">{{ news.news_title }}</a>
                     </div>
                     <div class="ccframe">
                         <div>
@@ -59,7 +70,7 @@
 
         <!-- 推荐页 -->
         <div class="cright">
-            <h3>新闻排行榜</h3>
+            <h3>新闻汇总</h3>
             <div class="line"></div>
             <ul class="side-list">
                 <li><a href="#">12月2日每日新闻：鸿蒙2020年将超Linux，成全球第五大操作系统</a></li>

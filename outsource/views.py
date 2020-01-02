@@ -7,9 +7,15 @@ from functions.decorators import login_required
 from django.urls import reverse
 import json
 
-
 def index(request):
-    all_news = News.objects.all()
+    all_news = News.objects.order_by('-id')[:12]
+    user = None
+    try:
+        user = request.session.get("passport_id")
+        databases_user_id = Developers.objects.get(user_id=user)
+    except Exception as e:
+        print(e)
+        return render(request, 'outsource/index.html', locals())
     return render(request, 'outsource/index.html', locals())
 
 

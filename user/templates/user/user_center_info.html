@@ -61,25 +61,35 @@
 
         }
 
-        .user_info_list li {
+        .user_info_list p {
             line-height: 30px;
             text-indent: 30px;
             font-size: 14px;
+            display: inline-block;
+            width: 100%;
         }
 
-        .user_info_list li span {
+        .user_info_list p #alter_a {
+            display: inline-block;
+            width: 100px;
+            font-size: 20px;
+            border: 1px black solid;
+            border-radius: 5px;
+            padding: 2px;
+            color: #eee;
+            background-color: dimgrey;
+        }
+
+        .user_info_list p .span1 {
             width: 100px;
             float: left;
-            text-align: center;
+            text-align: left;
         }
-
-        .user_info_list li a {
-            background-color: #39b8da;
-            color: #000;
-            font-size: 14px;
-            padding: 2px;
-            border: solid black 1px;
-            border-radius: 5px
+        .user_info_list p .span2 {
+            display: inline-block;
+            width: 500px;
+            float: left;
+            text-align: left;
         }
     </style>
 {% endblock %}
@@ -96,20 +106,31 @@
         <div class="right_content">
             <div class="info_con">
                 <h3 class="common_title2">基本信息</h3>
-                <ul class="user_info_list">
-                    <li><span>用户名：</span>{{ request.session.username }}</li>
-                    <li><span>邮箱：</span>{{ user.email }}</li>
-                    <li><span>手机号码：</span>{{ user.phone }}</li>
-                    <li><span>昵称：</span>{{ user.nickname }}</li>
-                    <li><span>真实姓名：</span>{{ user.name }}</li>
-                    <li><span>个人描述：</span>{{ user.description }}</li>
-                    <li>
-                        <span>&nbsp;</span>
-                        <a href="{% url 'user:user_change' %}">
+                <div class="user_info_list">
+                    <p>
+                        <span class="span1">用户名：</span><span class="span2">{{ request.session.username }}</span>
+                    </p>
+                    <p>
+                        <span class="span1">邮箱：</span><span class="span2">{{ user.email }}</span>
+                    </p>
+                    <p>
+                        <span class="span1">手机号码：</span><span class="span2">{{ user.phone }}</span>
+                    </p>
+                    <p>
+                        <span class="span1">昵称：</span><span class="span2">{{ user.nickname }}</span>
+                    </p>
+                    <p>
+                        <span class="span1">真实姓名：</span><span class="span2">{{ user.name }}</span>
+                    </p>
+                    <p>
+                        <span class="span1">个人描述：</span><span class="span2">{{ user.description }}</span>
+                    </p>
+                    <p>
+                        <a href="{% url 'user:user_change' %}" id="alter_a">
                             修改
                         </a>
-                    </li>
-                </ul>
+                    </p>
+                </div>
             </div>
         </div>
     </div>
