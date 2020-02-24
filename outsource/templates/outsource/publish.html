@@ -71,7 +71,7 @@
         .step-form {
             width: 1140px;
             background: white;
-            margin: 100px auto 50px;
+            margin: 20px auto 50px;
         }
 
         .project-name {
@@ -179,4 +179,13 @@
             </div>
         </form>
     </div>
+{% endblock %}
+
+{% block downjs %}
+    <!-- 加载js -->
+    <script src="{% static 'js/index.js' %}"></script>
+    <script>
+        //调用获取焦点的函数
+        getFocus($("#l7 a"))
+    </script>
 {% endblock %}

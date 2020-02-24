@@ -3,22 +3,22 @@
         <div class="log">众包网站</div>
         <ul>
             <li id="l1"><a href="/" class="focus">网站首页</a></li>
-            <li id="l2"><a href="/projects">项目列表</a></li>
-            <li id="l3"><a href="/developers">开发者</a></li>
-            <li id="l4"><a href="/circle">技术圈</a></li>
-            <li id="l5"><a href="/trade">项目交易</a></li>
-            <li id="l6"><a href="/help">帮助</a>
+            <li id="l2"><a href="{% url 'outsource:projects' %}">项目列表</a></li>
+            <li id="l3"><a href="{% url 'outsource:developers' %}">开发者</a></li>
+            <li id="l4"><a href="{% url 'circle:index' %}">技术圈</a></li>
+            <li id="l5"><a href="{% url 'trade:index' %}">项目分享</a></li>
+            <li id="l6"><a href="{% url 'outsource:help' %}">帮助</a>
                 <ul id="sub_nav">
-                    <li><a href="/help/guide1">需求方指南 </a></li>
-                    <li><a href="/help/guide2">开发者指南 </a></li>
+                    <li><a href="{% url 'outsource:guide1' %}">需求方指南 </a></li>
+                    <li><a href="{% url 'outsource:guide2' %}">开发者指南 </a></li>
                 </ul>
             </li>
-            <li id="l7"><a href="/publish">发布项目</a></li>
+            <li id="l7"><a href="{% url 'outsource:publish' %}">发布项目</a></li>
         </ul>
         <div class="act">
             {% if request.session.islogin %}
                 <a href="{% url 'user:logout' %}">登出</a>
-                <a href="{% url 'user:user' %}">{{ request.session.username }}  的个人中心</a>
+                <a href="{% url 'user:user' %}">{{ request.session.username }} 的个人中心</a>
             {% else %}
                 <a href="{% url 'user:login' %}">登录</a>
                 <a href="{% url 'user:register' %}">注册</a>

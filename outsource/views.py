@@ -7,6 +7,7 @@ from functions.decorators import login_required
 from django.urls import reverse
 import json
 
+
 def index(request):
     all_news = News.objects.order_by('-id')[:12]
     user = None
@@ -24,9 +25,40 @@ def projects(request):
     # 显示项目 -- 分页 加装饰器(只有GET请求)
     if request.method != 'GET':
         return HttpResponse("请使用GET请求数据! ")
+
     # 有查询字符串 参考 day04  没有查询字符串的情况下 按照发布时间 降序排序
     all_projects = Projects.objects.filter().order_by("-post_datetime")
-    # 查询每种项目类型的5个最新    和４个最多浏览的信息
+
+    # 1.按照类别分类搜索
+    all_kind = KindChoice.objects.all()
+    # 取出筛选项目类型
+    kind = request.GET.get('kind', '')
+    # 在结果集里面做筛选
+    if kind:
+        all_projects = all_projects.filter(kind=kind)
+
+    # 2.按照开发语言搜索
+    all_language = LanguageChoice.objects.all()
+    # 取出筛选开发语言类型
+    language = request.GET.get('language', '')
+    if language:
+        all_projects = all_projects.filter(language=language)
+    '''
+    # 3.按照项目预算搜索
+    budget = request.GET.get('budget', '')
+    # budget = Projects.objects.extra(select={'budget': 'budget+0'})
+    # print('*' * 100, type(budget))
+    if budget == '1000':
+        all_projects = Projects.objects.extra(select={'budget': 'budget+0'}).extra(order_by=["-budget"]).filter(
+            budget__range=(0, 1000))
+    elif budget == '5000':
+        all_projects = Projects.objects.extra(select={'budget': 'budget+0'}).extra(order_by=["-budget"]).filter(budget__range=(1000, 5000))
+    elif budget == '10000':
+        all_projects = Projects.objects.filter(budget__range=(5000, 10000))
+    else:
+        all_projects = all_projects.all()
+    '''
+    # 查询每种项目类型的5个最新  和４个最多浏览的信息
     app_data_new = Projects.objects.get_projects_by_type(APP, limit=5, sort='new')
     desktop_data_new = Projects.objects.get_projects_by_type(DESK_APP, limit=5, sort='new')
     manage_data_new = Projects.objects.get_projects_by_type(MANAGE_SYSTEM, limit=5, sort='new')
@@ -40,19 +72,18 @@ def projects(request):
 
     # 分页
     paginator = Paginator(all_projects, 5)
-    # print('当前对象的总个数是:', paginator.count)
-    # print('当前对象的面码范围是:', paginator.page_range)
-    # print('总页数是：', paginator.num_pages)
-    # print('每页最大个数:', paginator.per_page)
     cur_page = request.GET.get('page', 1)  # 得到默认的当前页
     page_obj = paginator.page(cur_page)
-    # print('locals--------------', locals())
-    # 右侧展示
-    # Projects.objects.order_by('?')[:2]
-    # 定义上下文
-    obj = Projects.objects.all().values("kind")
-    # print("obj******************", obj)  # obj****************** <QuerySet [{'kind': 4}]>
 
+    # 右侧top10展示 按照预算的高低 存储的是字符串 先转成数字
+    projects_top10 = Projects.objects.extra(select={'budget': 'budget+0'})
+    projects_top10 = projects_top10.extra(order_by=["-budget"])
+    # projects_top10 = Projects.objects.order_by('budget')
+
+    # 按照项目类别分类
+    obj = Projects.objects.all().values("kind")
+
+    # 用户收藏
     user = request.session.get("passport_id")
     u_project_id = Collection.objects.filter(user_id=user)
     collected_list = []

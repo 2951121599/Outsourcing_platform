@@ -1,19 +1,33 @@
 from django.db import models
+from user.models import User
 
 
-# Create your models here.
 class Project(models.Model):
-    id = models.AutoField(primary_key=True)
-    title = models.CharField(max_length=50, verbose_name="项目名称")
-    tag = models.CharField(max_length=20, verbose_name="标签")
-    content = models.CharField(max_length=200, verbose_name="项目介绍")
-    collection = models.IntegerField(verbose_name="收藏")
-    comments = models.CharField(max_length=200, verbose_name="评论")
+    user = models.ForeignKey(User)
+    title = models.CharField(max_length=100, verbose_name="项目名称")
+    link = models.URLField(max_length=100, default="", verbose_name="项目网址")
+    desc = models.CharField(max_length=200, verbose_name="项目介绍")
+    # like = models.IntegerField(default=0, verbose_name="点赞数")  点赞数存redis
+    # 后台管理页面上传图片
+    image_url = models.ImageField(upload_to='img', default="", verbose_name='图片路径')
     add_time = models.DateTimeField(auto_now_add=True, verbose_name='添加时间')
 
     class Meta:
-        verbose_name = '项目交易'
+        db_table = "trade_projects"
+        verbose_name = '项目分享'
         verbose_name_plural = verbose_name
 
     def __str__(self):
         return self.title
+
+
+# 用于记录点赞数量
+class LikeNum(models.Model):
+    project = models.OneToOneField(Project)
+    like_num = models.IntegerField(default=0, verbose_name="点赞数")
+
+
+# 点赞用户
+class LikeUser(models.Model):
+    like_user = models.ForeignKey(User)
+    project = models.ForeignKey(Project)

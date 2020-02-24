@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'circle',
     'trade',
     'user',
+    'payment',
 ]
 
 MIDDLEWARE = [
@@ -74,13 +75,6 @@ WSGI_APPLICATION = 'Outsourcing_platform.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-#     }
-# }
 
 DATABASES = {
     'default': {
@@ -131,9 +125,12 @@ STATIC_URL = '/static/'
 # 静态文件的存储目录
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
 
-MEDIA_URL = '/static/files/'
+MEDIA_URL = '/static/media/'
 # 存储用户主动上传的文件 用来记录上传文件的位置
-MEDIA_ROOT = os.path.join(BASE_DIR, 'static/files')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'static/media')
 
 # 去除自动补/
 # APPEND_SLASH = False
+
+ALIPAY_KEY_DIRS = os.path.join(BASE_DIR, 'static/key_file/')
+ALIPAY_APP_ID = "2016101700705690"

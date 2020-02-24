@@ -1,0 +1,75 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="zh_CN">
+<head>
+    <meta charset="utf-8">
+    <title>
+        {% block title %}
+            众包网站交流社区
+        {% endblock %}
+    </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="shortcut icon" href="{% static "images/favicon.ico" %}">
+    <link rel="stylesheet" href="{% static "css/index.css" %}">
+    <link rel="stylesheet" href="{% static 'layui-v3.0/res/layui/css/layui.css' %}">
+    <link rel="stylesheet" href="{% static 'layui-v3.0/res/css/global.css' %}">
+    <script src="{% static "js/jquery.min.js" %}"></script>
+
+
+    {% block css %}
+
+    {% endblock %}
+
+    {% block js %}
+
+    {% endblock %}
+</head>
+{% include 'head.html' %}
+<body>
+{#留出导航栏的固定宽度#}
+<div style="height: 20px"></div>
+<div class="fly-panel fly-column">
+    <div class="layui-container">
+        <ul class="layui-clear">
+            <li class="layui-hide-xs layui-this"><a href="/circle">首页</a></li>
+            <li><a href="jie/index">提问</a></li>
+            <li><a href="jie/index">分享</a></li>
+            <li><a href="jie/index">讨论</a></li>
+            <li><a href="jie/index">建议</a></li>
+            <li><a href="jie/index">公告</a></li>
+        </ul>
+
+        <div class="fly-column-right layui-hide-xs">
+            <a href="{% url 'circle:add' %}" class="layui-btn">发表新帖</a>
+        </div>
+
+    </div>
+</div>
+{% block content %}
+
+{% endblock %}
+
+</body>
+{% include 'footer.html' %}
+<!-- 加载js -->
+<script src="{% static 'js/index.js' %}"></script>
+<script>
+    //调用获取焦点的函数
+    getFocus($("#l4 a"))
+</script>
+{% block downjs %}
+
+{% endblock %}
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

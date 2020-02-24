@@ -5,6 +5,15 @@
     主页
 {% endblock %}
 
+{% block js %}
+    <script src="{% static 'js/index.js' %}"></script>
+    <script>
+        //调用获取焦点的函数
+        getFocus($("#l1 a"))
+    </script>
+    <script src="{% static "js/scrollReveal.js" %}"></script>
+{% endblock %}
+
 {% block content %}
     <!-- 第一层 包含轮播图 和右侧区域 -->
     <div id="layer1">
@@ -84,13 +93,4 @@
     <!-- 推荐页 结束 -->
     </div>
     <!-- 第二层 结束 -->
-{% endblock %}
-
-{% block downjs %}
-    <!-- 加载js -->
-    <script src="{% static 'js/index.js' %}"></script>
-    <script>
-        //调用获取焦点的函数
-        getFocus($("#l1 a"))
-    </script>
 {% endblock %}

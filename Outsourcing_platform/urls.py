@@ -29,4 +29,6 @@ urlpatterns = [
     url(r'^trade/', include('trade.urls')),
     # http://127.0.0.1:8000/user/xxx
     url(r'^user/', include('user.urls')),
+    # http://127.0.0.1:8000/payment/xxx
+    url(r'^payment/', include('payment.urls'))
 ]

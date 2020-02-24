@@ -4,7 +4,6 @@ from user.models import User
 from outsource.enums import *
 
 
-# Create your models here.
 # 主页新闻列表页
 class News(models.Model):
     news_detail_url = models.URLField(default='#', verbose_name='详情页链接')

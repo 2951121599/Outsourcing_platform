@@ -1,0 +1,70 @@
+{% extends 'circle_base.html' %}
+{% load staticfiles %}
+
+{% block title %}
+    技术圈 | 用户主页
+{% endblock %}
+
+{% block content %}
+    <div class="fly-home fly-panel">
+        <img src="{% static 'images/default_user.jpg' %}" alt="用户头像">
+        <h1>
+            {{ user.username }}
+        </h1>
+        <p class="fly-home-info">
+            <i class="iconfont icon-shijian"></i><span>{{ user.created_time | date}} 加入</span>
+        </p>
+        <p class="fly-home-sign">个人描述: {{ user.description }}</p>
+    </div>
+
+    <div class="layui-container">
+        <div class="layui-row layui-col-space15">
+            <div class="layui-col-md6 fly-home-jie">
+                <div class="fly-panel">
+                    <h3 class="fly-panel-title">{{ user.username }} 最近的提问</h3>
+                    <ul class="jie-row">
+                        {% for question in questions %}
+                            <li>
+                                <a href="/circle/jie/detail/{{ question.id }}" class="jie-title">{{ question.title | linenumbers}}</a>
+                                <i>{{ question.created_time }}</i>
+                                <em class="layui-hide-xs">1136阅/27答</em>
+                            </li>
+                        {% endfor %}
+
+
+                    </ul>
+                </div>
+            </div>
+
+            <div class="layui-col-md6 fly-home-da">
+                <div class="fly-panel">
+                    <h3 class="fly-panel-title">{{ user.username }} 最近的回答</h3>
+                    <ul class="home-jieda">
+                        <li>
+                            <p>
+                                <span>1分钟前</span>
+                                在<a href="" target="_blank">tips能同时渲染多个吗?</a>中回答：
+                            </p>
+                            <div class="home-dacontent">
+                                尝试给layer.photos加上这个属性试试：
+                                <pre>
+full: true         
+</pre>
+                                文档没有提及
+                            </div>
+                        </li>
+                        <li>
+                            <p>
+                                <span>5分钟前</span>
+                                在<a href="" target="_blank">在Fly社区用的是什么系统啊?</a>中回答：
+                            </p>
+                            <div class="home-dacontent">
+                                Fly社区采用的是NodeJS。分享出来的只是前端模版
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

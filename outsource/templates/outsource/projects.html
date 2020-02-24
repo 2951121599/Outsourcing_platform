@@ -19,9 +19,29 @@
         <div class="row">
             <div class="col-lg-12 result">
                 <div class="sort projectListSort">
-                    <span>排序</span><a datatype="fabushijian" href="javascript:void(0);">发布日期</a><a
-                        datatype="xiangmuyusuan"
-                        href="javascript:void(0);">项目预算</a>
+                    <div>
+                        <span>项目分类</span>
+                        {% for kind in all_kind %}
+                            <a href="?kind={{ kind }}">{{ kind }}</a>
+                        {% endfor %}
+                    </div>
+
+                    <div>
+                        <span>开发语言</span>
+                        {% for language in all_language %}
+                            <a href="?language={{ language }}">{{ language }}</a>
+                        {% endfor %}
+
+                    </div>
+
+                    {#                    <div>#}
+                    {#                        <span>预算金额</span>#}
+                    {#                        <a href="?budget=1000">1千以下</a>#}
+                    {#                        <a href="?budget=5000">1千~5千</a>#}
+                    {#                        <a href="?budget=10000">5千~1万</a>#}
+                    {#                        <a href="?budget=''">其它</a>#}
+                    {#                    </div>#}
+
                 </div>
             </div>
 
@@ -45,8 +65,6 @@
                                     <span>预算 <em class="green">{{ page_.budget }}元</em></span>
                                     <span>开发语言
                                             <em class='green'>{{ page_.language }}</em>
-{#                                            <em class='green'>{{ request.session.passport_id }}</em>#}
-{#                                            <em class='green'>{{ page_.id }}</em>#}
                                     </span>
                                     <span>开发周期 <em class='green'>{{ page_.cycles }}天</em></span>
                                     <div style="margin-top: 28px;">
@@ -54,7 +72,7 @@
                                     </div>
                                 </div>
                                 <div class="left_2">
-                                    {% if page_.id not in collected_list  %}
+                                    {% if page_.id not in collected_list %}
                                         <a href="#">
                                             <i class="glyphicon gray active" id="heart_btn"
                                                onclick="collection(this,{{ page_.id }},{{ request.session.passport_id }})">
@@ -153,68 +171,29 @@
                     {% endif %}
                 </div>
             </div>
-
             {#  右侧  #}
             <div class="col-md-3 col-lg-3">
                 <div class="lable">
-                    <h4>大家都在看的项目TOP10</h4>
-                    <ul class="list-unstyled">
-                        <li class="nowrap">
-                            <b>01</b> <a class="nowrap" href="88054.html" target="_blank">
-                            订单管理小程序 </a>
-                        </li>
-                        <li class="nowrap">
-                            <b>02</b> <a class="nowrap" href="87871.html" target="_blank">
-                            公众号开发 </a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="lable">
                     <h4>竞争最激烈的项目TOP10</h4>
                     <ul class="list-unstyled">
-                        <li class="nowrap">
-                            <b>01</b> <a class="nowrap" href="87865.html" target="_blank">
-                            微信商城开发 </a>
-                        </li>
-                        <li class="nowrap">
-                            <b>02</b> <a class="nowrap" href="88093.html" target="_blank">
-                            考试系统 </a>
-                        </li>
-                        <li class="nowrap">
-                            <b>03</b> <a class="nowrap" href="87871.html" target="_blank">
-                            公众号开发 </a>
-                        </li>
-                        <li class="nowrap">
-                            <i>04</i> <a class="nowrap" href="88063.html" target="_blank">
-                            Windows端燃料电池... </a>
-                        </li>
-                        <li class="nowrap">
-                            <i>05</i> <a class="nowrap" href="88040.html" target="_blank">
-                            网站问答频道开发项目 </a>
-                        </li>
-                        <li class="nowrap">
-                            <i>06</i> <a class="nowrap" href="88039.html" target="_blank">
-                            ios APP 项目外包 </a>
-                        </li>
-                        <li class="nowrap">
-                            <i>07</i> <a class="nowrap" href="88083.html" target="_blank">
-                            自助查询终端APP </a>
-                        </li>
-                        <li class="nowrap">
-                            <i>08</i> <a class="nowrap" href="88043.html" target="_blank">
-                            小程序和微信公众号开发 </a>
-                        </li>
-                        <li class="nowrap">
-                            <i>09</i> <a class="nowrap" href="88052.html" target="_blank">
-                            跨境电商ERP </a>
-                        </li>
-                        <li class="nowrap">
-                            <i>10</i> <a class="nowrap" href="87875.html" target="_blank">
-                            管理平台+APP+智能硬件 </a>
-                        </li>
+                        {% for project in projects_top10 %}
+                            <li class="nowrap">
+                                <b> {{ forloop.counter }}</b>
+                                <a class="nowrap" href="/projects/detail/{{ project.id }}" target="_blank">
+                                    {{ project.project_name }} </a>
+                            </li>
+                        {% endfor %}
                     </ul>
                 </div>
             </div>
         </div>
     </div>
+{% endblock %}
+{% block downjs %}
+    <!-- 加载js -->
+    <script src="{% static 'js/index.js' %}"></script>
+    <script>
+        //调用获取焦点的函数
+        getFocus($("#l2 a"))
+    </script>
 {% endblock %}

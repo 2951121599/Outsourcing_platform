@@ -1,162 +1,176 @@
-{% extends 'base.html' %}
+{% extends 'circle_base.html' %}
 {% load staticfiles %}
+
 {% block title %}
-    技术圈
+    众包网站 | 技术圈
 {% endblock %}
-{% block css %}
-    <style>
-        {# 页面主体的样式 #}
-        #all {
-            width: 1140px;
-            margin: 20px auto;
-            background-color: #555555;
-        }
 
-        {# 导航栏下的标题栏样式 #}
-        #title {
-            padding-left: 300px;
-            background-color: #ddd;
-        }
-
-        {# 主标题下的文字 #}
-        #title > span {
-            padding-left: 50px;
-            background-color: #ddd;
-        }
-
-        {# 内容主体 #}
-        #content {
-            padding: 10px;
-        }
-
-        #msg {
-            border-radius: 5px;
-            width: 800px;
-            height: 150px;
-            margin-bottom: 20px;
-            margin-left: 10px;
-            padding: 20px;
-            background-color: #fff;
-        }
-
-        #msg a h3{
-            {#margin-left: 40px;#}
-        }
-
-        {# 右侧个人信息栏 #}
-        #personal {
-            float: right;
-            width: 240px;
-            height: 600px;
-            background-color: #fff;
-            margin: 10px;
-            padding: 10px;
-            border-radius: 5px;
-        }
-    #personal img{
-        width: 150px;
-        margin: 100px 0 0 40px;
-    }
-    </style>
-{% endblock %}
 {% block content %}
-    <div id="all">
-        <div style="height: 80px"></div>
-        <div>
-            {# 主标题 #}
-            <div id="title">
-                <h2>技术圈</h2>
-                <span>“人，是会思考的芦苇。”——帕斯卡，《思想录》</span>
+    <div class="layui-container">
+        <div class="layui-row layui-col-space15">
+            <div class="layui-col-md8">
+                <div class="fly-panel">
+                    <div class="fly-panel-title fly-filter">
+                        <a>置顶</a>
+                    </div>
+                    <ul class="fly-list">
+                        <li>
+                            <a href="/circle/user/home/{{ question.user_id }}" class="fly-avatar">
+                                <img src="https://ftp.bmp.ovh/imgs/2020/02/17b3122d1d013a56.jpg"
+                                     alt="默认用户头像">
+                            </a>
+                            <h2>
+                                <a class="layui-badge">公告</a>
+                                <a href="jie/detail.html">基于 layui 的极简社区页面模版</a>
+                            </h2>
+                            <div class="fly-list-info">
+                                <a href="/circle/user/home/{{ question.user_id }}" link>
+                                    <cite>管理员</cite>
+                                </a>
+                                <span>刚刚</span>
+                                <span class="fly-list-nums">
+                                    <i class="iconfont" title="人气">&#xe60b;</i> 9619
+                                </span>
+                            </div>
+                            <div class="fly-list-badge">
+                            </div>
+                        </li>
+                        <li>
+                            <a href="/circle/user/home/{{ question.user_id }}" class="fly-avatar">
+                                <img src="https://ftp.bmp.ovh/imgs/2020/02/17b3122d1d013a56.jpg"
+                                     alt="默认用户头像">
+                            </a>
+                            <h2>
+                                <a class="layui-badge">公告</a>
+                                <a href="jie/detail.html">基于 layui 的极简社区页面模版</a>
+                            </h2>
+                            <div class="fly-list-info">
+                                <a href="/circle/user/home/{{ question.user_id }}" link>
+                                    <cite>管理员</cite>
+                                </a>
+                                <span>2017-11-30</span>
+
+                                <span class="fly-list-nums">
+                                    <i class="iconfont" title="人气">&#xe60b;</i> 9619
+                                </span>
+                            </div>
+                            <div class="fly-list-badge">
+                            </div>
+                        </li>
+                        <li>
+                            <a href="/circle/user/home/{{ question.user_id }}" class="fly-avatar">
+                                <img src="https://ftp.bmp.ovh/imgs/2020/02/17b3122d1d013a56.jpg"
+                                     alt="默认用户头像">
+                            </a>
+                            <h2>
+                                <a class="layui-badge">公告</a>
+                                <a href="jie/detail.html">基于 layui 的极简社区页面模版</a>
+                            </h2>
+                            <div class="fly-list-info">
+                                <a href="/circle/user/home/{{ question.user_id }}" link>
+                                    <cite>管理员</cite>
+                                </a>
+                                <span>刚刚</span>
+
+                                <span class="fly-list-nums">
+                                    <i class="iconfont" title="人气">&#xe60b;</i> 9619
+                                </span>
+                            </div>
+                            <div class="fly-list-badge"></div>
+                        </li>
+                        <li>
+                            <a href="/circle/user/home/{{ question.user_id }}" class="fly-avatar">
+                                <img src="https://ftp.bmp.ovh/imgs/2020/02/17b3122d1d013a56.jpg"
+                                     alt="默认用户头像">
+                            </a>
+                            <h2>
+                                <a class="layui-badge">公告</a>
+                                <a href="jie/detail.html">基于 layui 的极简社区页面模版</a>
+                            </h2>
+                            <div class="fly-list-info">
+                                <a href="/circle/user/home/{{ question.user_id }}" link>
+                                    <cite>管理员</cite>
+                                </a>
+                                <span>111</span>
+
+                                <span class="fly-list-nums">
+                                    <i class="iconfont" title="人气">&#xe60b;</i> 9619
+                                </span>
+                            </div>
+                            <div class="fly-list-badge">
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="fly-panel" style="margin-bottom: 0;">
+                    <div class="fly-panel-title fly-filter">
+                        <a href="" class="layui-this">综合</a>
+                        <span class="fly-mid"></span>
+                        <a href="">未结</a>
+                        <span class="fly-mid"></span>
+                        <a href="">已结</a>
+                        <span class="fly-mid"></span>
+                        <a href="">精华</a>
+                        <span class="fly-filter-right layui-hide-xs">
+            <a href="" class="layui-this">按最新</a>
+            <span class="fly-mid"></span>
+            <a href="">按热议</a>
+          </span>
+                    </div>
+                    <ul class="fly-list">
+                        {% for question in questions %}
+                            <li>
+                                <a href="" class="fly-avatar">
+                                    <img src="https://ftp.bmp.ovh/imgs/2020/02/17b3122d1d013a56.jpg"
+                                         alt="默认用户头像">
+                                </a>
+                                <h2>
+                                    <a class="layui-badge">问题</a>
+                                    <a href="/circle/jie/detail/{{ question.id }}">{{ question.title }}</a>
+                                </h2>
+                                <div class="fly-list-info">
+                                    <a href="/circle/user/home/{{ question.user_id }}" link>
+                                        <cite>{{ question.user.username }}</cite>
+                                    </a>
+                                    <span>{{ question.created_time }}</span>
+
+                                    <span class="fly-list-nums">
+                                        <i class="iconfont icon-pinglun1" title="回答"></i> 回答
+                                    </span>
+                                </div>
+                                <div class="fly-list-badge">
+                                </div>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                    <div style="text-align: center">
+                        <div class="laypage-main">
+                            <a href="{% url 'circle:index' %}" class="laypage-next">更多帖子</a>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <hr>
-            {# 右侧个人信息显示栏 #}
-            <div id="personal">
-{#                <span>个人信息</span>#}
-                <div>&nbsp;</div>
-                <div>&nbsp;</div>
-                <div>&nbsp;</div>
-                <div>&nbsp; </div>
-                <div></div>
-                <h3 align="center">广告位招租! </h3>
-                <img  src="{% static '/images/erweima.png' %}" alt="">
-            </div>
-            {# 内容区 #}
-            <div id="content">
+            <div class="layui-col-md4">
+                <dl class="fly-panel fly-list-one">
+                    <dt class="fly-panel-title">本周热议</dt>
+                    {% for hot_question in hot_questions %}
+                        <dd>
+                            <a href="/circle/jie/detail/{{ hot_question.id }}">{{ hot_question.title }}</a>
+                        </dd>
+                    {% endfor %}
+                </dl>
 
-
-                <div id="msg">
-                    <a href="https://jishuin.proginn.com/p/5043.html" title="题目">
-                        <h3>
-                            {% block title_circle %}
-                                一条来自面试官的忠告:一定要非常熟悉你负责的业务
-                            {% endblock %}
-                        </h3>
-                    </a>
-                    <p>
-                        {% block p_circle %}
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;前两天，在公众号上发了一个招聘贴，为我们自己团队招人，我的原帖中有一条岗位要求：有互联网金融经验优先。
-
-
-                            其实，关于这种规则，很多岗位的JD种都会或多或少有一些，尤其是一些相对专业的领域，如电商、支付、金融、社交、营销、游戏等行业领域。
-
-
-
-                            包括在一些招聘网站上，也会有一条筛选项是...
-                        {% endblock %}
-                    </p>
+                <div class="fly-panel">
+                    <div class="fly-panel-title">
+                        诚招广告
+                    </div>
+                    <div class="fly-panel-main">
+                        <p class="fly-zanzhu"
+                           style="background-color: #5FB878;">联系方式QQ:2951121599</p>
+                    </div>
                 </div>
 
-
-                <div id="msg">
-                    <a href="https://jishuin.proginn.com/p/5042.html" title="题目">
-                        <h3>你真的懂云计算吗?</h3>
-                    </a>
-                    <p>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;掐指一算，云计算已经有了十年的历史，发展到今天几乎可以算是近十年最伟大的技术进步之一。 「云计算」这个术语，也早已从一个新鲜词汇，成为了妇孺皆知的流行语。
-                        任何事物的诞生和发展一定有其前提条件和土壤，云计算亦是如此。那么，云计算到底是什么？诞生及蓬勃发展的原因...
-                    </p>
-                </div>
-                <div id="msg">
-                    <a href="https://jishuin.proginn.com/p/5041.html" title="题目">
-                        <h3>Python爬取的BOSS直聘的数据</h3>
-                    </a>
-                    <p>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;临近年末，“互联网寒冬”的来临让大家倍感压力，大家纷纷感叹寒冬将至。但是，越是这个时候，越要明确自己的奋斗目标，不断的充实自己，提高自己的能力，为找工作打下坚实的基础。
-
-
-                        本次我们爬取了招聘网站上关于计算机视觉方向的招聘信息，并对于招聘信息进行分析，看一下目前计算机视觉方向对于应聘者的需求如何。
-
-
-                        首先招聘信息的爬取采用的是selenium 库，对boss 直聘招...
-                    </p>
-                </div>
-                <div id="msg">
-                    <a href="https://jishuin.proginn.com/p/5038.html" title="题目">
-                        <h3>送几本优质技术书籍,数据分析,爬虫,机器学习一网打尽</h3>
-                    </a>
-                    <p>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;有名人说过：”说不清是哪本书影响了我的追求和命运，唯有感恩，感恩于那个时候读到的每一本书。”
-
-
-                        在此给大家送一波福利，这次联系了 9个好友一起给各位送书，每个号送 3本，一共 30本，还包邮哦，具体书籍种类、介绍信息文中有详细介绍。
-
-
-                        感谢北京大学出版社对本次活动的赞助。
-
-
-                        书怎...
-                    </p>
-                </div>
-                <div id="msg">
-                    <a href="https://jishuin.proginn.com/p/5037.html" title="题目">
-                        <h3>原来这些牛逼的 App 都是 Python 开发的</h3>
-                    </a>
-                    <p>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;如今 Python 越来越火，已登顶编程语言榜首，很多人开始知道或者学习 Python，今天就介绍几款由 Python 开发的世界大牌 App，让你再次认识它。
-
-                        下面一睹为快，看看有没有你不知道的。App 想必你应该很熟悉，不少人也玩过，前...
-                    </p>
-                </div>
             </div>
         </div>
     </div>

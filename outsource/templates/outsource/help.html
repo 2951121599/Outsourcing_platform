@@ -22,7 +22,6 @@
 
         #a_set {
             float: left;
-            {#margin: 0 0 90px 0;#}
         }
 
         #a_set > a {
@@ -51,10 +50,19 @@
             <h1>帮助</h1>
         </div>
         <div id="a_set">
-            <a href="/help/guide1"><img src="{% static "/images/requester.png" %}" alt=""></a>
+            <a href="{% url 'outsource:guide1' %}"><img src="{% static "/images/requester.png" %}" alt=""></a>
         </div>
         <div id="b_set">
-            <a href="/help/guide2"><img src="{% static "/images/developer.png" %}" alt=""></a>
+            <a href="{% url 'outsource:guide2' %}"><img src="{% static "/images/developer.png" %}" alt=""></a>
         </div>
     </div>
+{% endblock %}
+
+{% block downjs %}
+    <!-- 加载js -->
+    <script src="{% static 'js/index.js' %}"></script>
+    <script>
+        //调用获取焦点的函数
+        getFocus($("#l6 a"))
+    </script>
 {% endblock %}

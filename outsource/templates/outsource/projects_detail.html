@@ -224,49 +224,76 @@
                                         </p>
                                     </div>
                                     <div class="col-sm-3 bid-btn-div" style="overflow:hidden;">
-                                        <a href="javascript:;" onclick="userLogin()" class="jb_btn jb-btn-ok"> 我要接单</a>
-                                        <div id="userLogin" class="modal fade" id="biddingMyModal" tabindex="-1"
-                                             role="dialog" aria-labelledby="myModalLabel">
-                                            <div class="modal-dialog" role="document">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <button type="button" class="close" data-dismiss="modal"
-                                                                aria-label="Close"><span
-                                                                aria-hidden="true">&times;</span>
-                                                        </button>
-                                                        <h4 class="modal-title" id="myModalLabel">登录</h4>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <div class="login-title">
-                                                            <p>登录之后方可竞标</p>
-                                                        </div>
-                                                        <form id="form" class="form-horizontal" name="form"
-                                                              method="post"
-                                                              action="/user/bidValidate">
-                                                            <input type="hidden" value="" name="forward">
-                                                            <div class="form-group">
-                                                                <label class="col-sm-1 col-md-1 col-lg-1control-label">&nbsp;</label>
-                                                                <div class="col-sm-10 col-md-10 col-lg-10">
-                                                                    <div class="input-group">
-                                                                    <span class="input-group-addon"><i
-                                                                            class="glyphicon glyphicon-user"></i></span>
-                                                                        <input type="text" value="" class="form-control"
-                                                                               id="username" name="username"
-                                                                               placeholder="邮箱/手机号">
-                                                                    </div>
-                                                                </div>
-                                                                <div class="warning-msg col-sm-offset-1 "><span
-                                                                        id="usernameTip"></span></div>
-                                                            </div>
-                                                            <input type="hidden" id="loginType" name="loginType"
-                                                                   value="email">
-                                                        </form>
-                                                    </div>
+                                        <script src="/static/js/jquery-1.11.3.js"></script>
+                                        <script>
+                                            $(document).ajaxSend(function (event, xhr, settings) {
+                                                function getCookie(name) {
+                                                    var cookieValue = null;
+                                                    if (document.cookie && document.cookie != '') {
+                                                        var cookies = document.cookie.split(';');
+                                                        for (var i = 0; i < cookies.length; i++) {
+                                                            var cookie = jQuery.trim(cookies[i]);
+                                                            // Does this cookie string begin with the name we want?
+                                                            if (cookie.substring(0, name.length + 1) == (name + '=')) {
+                                                                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                                                                break;
+                                                            }
+                                                        }
+                                                    }
+                                                    return cookieValue;
+                                                }
 
-                                                </div>
-                                            </div>
-                                        </div>
+                                                function sameOrigin(url) {
+                                                    // url could be relative or scheme relative or absolute
+                                                    var host = document.location.host; // host + port
+                                                    var protocol = document.location.protocol;
+                                                    var sr_origin = '//' + host;
+                                                    var origin = protocol + sr_origin;
+                                                    // Allow absolute or scheme relative URLs to same origin
+                                                    return (url == origin || url.slice(0, origin.length + 1) == origin + '/') ||
+                                                        (url == sr_origin || url.slice(0, sr_origin.length + 1) == sr_origin + '/') ||
+                                                        // or any other URL that isn't scheme relative or absolute i.e relative.
+                                                        !(/^(\/\/|http:|https:).*/.test(url));
+                                                }
 
+                                                function safeMethod(method) {
+                                                    return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+                                                }
+
+                                                if (!safeMethod(settings.type) && sameOrigin(settings.url)) {
+                                                    xhr.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
+                                                }
+                                            });
+                                        </script>
+                                        {#                                        <button id="btn">支付定金</button>#}
+                                        <a href="javascript:;" class="jb_btn jb-btn-ok" id="btn"> 我要接单 支付定金</a>
+
+                                        <script>
+                                            //测试期间 支付过后的订单号不可重复使用
+                                            var order_id = '201912091234888';
+                                            //var order_id = '项目编号' + {{ project.id }};
+                                            post_data = {"order_id": order_id};
+
+                                            $(function () {
+                                                $('#btn').click(function () {
+                                                    $.ajax({
+                                                        url: "http://127.0.0.1:8000/payment/jump",
+                                                        type: "post",
+                                                        contentType: "application/json",
+                                                        dataType: "json",
+                                                        data: JSON.stringify(post_data),
+                                                        success: function (data) {
+                                                            //获取 支付宝 链接地址
+                                                            window.location.href = data.pay_url;
+                                                            console.log('---request is ok')
+                                                        },
+                                                        error: function (errors) {
+                                                            console.log('---django is wrong!!')
+                                                        }
+                                                    })
+                                                })
+                                            })
+                                        </script>
                                     </div>
                                 </div>
                             </div>
@@ -328,7 +355,10 @@
                                 </p>
                                 <p class="qq1">
                                     <span class="services_kefu">客服QQ:</span>
-                                    <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=2951121599&site=qq&menu=yes"><img border="0" src="http://wpa.qq.com/pa?p=2:2951121599:51" alt="点击这里给我发消息" title="点击这里给我发消息"/></a>
+                                    <a target="_blank"
+                                       href="http://wpa.qq.com/msgrd?v=3&uin=2951121599&site=qq&menu=yes"><img
+                                            border="0" src="http://wpa.qq.com/pa?p=2:2951121599:51" alt="点击这里给我发消息"
+                                            title="点击这里给我发消息"/></a>
                                 </p>
                             </div>
                             <div class="service-email">
@@ -427,16 +457,20 @@
                                 <div class="clearfix">
                                     <div class="balance single">
                                         <div onclick="selectWay(2,$(this))">
-                                            <img class="icon-fee" src="static/picture/balance.jpg" alt="">
+                                            <img class="icon-fee" src="{% static 'images/projects/balance.jpg' %}"
+                                                 alt="">
                                             <span class="way">余额支付(<span class="balance-of-account"></span>)</span>
-                                            <img src="static/picture/choose.png" class="choose choose-black" alt="">
+                                            <img src="{% static 'images/projects/choose.png' %}"
+                                                 class="choose choose-black" alt="">
                                         </div>
                                     </div>
                                     <div class="single">
                                         <div onclick="selectWay(5,$(this))"><!--支付宝支付暂定为5-->
-                                            <img src="static/picture/alipay.jpg" class="icon-fee" alt="">
+                                            <img src="{% static 'images/projects/alipay.jpg' %}" class="icon-fee"
+                                                 alt="">
                                             <span class="way">支付宝支付</span>
-                                            <img src="static/picture/choose.png" class="choose choose-black" alt="">
+                                            <img src="{% static 'images/projects/choose.png' %}"
+                                                 class="choose choose-black" alt="">
                                             <form id="alipay" class="alipay" action="/my/pay/alipay" method="post">
                                                 <input type="hidden" name="money" value="2">
                                                 <input type="hidden" name="project_id" value="88053">
@@ -494,7 +528,6 @@
                         </div>
                     </div>
                 </div>
-
 
 
                 <div class="modal fade" id="payStatus" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">

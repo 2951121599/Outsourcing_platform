@@ -1,0 +1,119 @@
+{% extends 'trade_base.html' %}
+{% load staticfiles %}
+{% block content %}
+    <div class="fly-case-header">
+        <p class="fly-case-year">项目分享</p>
+        <div class="fly-case-btn">
+            <a href="{% url 'trade:push' %}" class="layui-btn layui-btn-big fly-case-active">提交项目</a>
+            <a href="{% url 'trade:mine' %}" class="layui-btn layui-btn-primary layui-btn-big">我的项目</a>
+            <a href="{% url 'trade:require' %}" class="layui-btn layui-btn-primary layui-btn-big">项目要求</a>
+        </div>
+    </div>
+
+    <div class="fly-main" style="overflow: hidden;">
+        <ul class="fly-case-list">
+            {% for project in projects %}
+                <li data-id="123">
+                    <a class="fly-case-img" href="{{ project.link }}" target="_blank">
+                        <img src="static/media/{{ project.image_url }}" alt="项目封面">
+                        <cite class="layui-btn layui-btn-primary layui-btn-small">去围观</cite>
+                    </a>
+                    <h2><a href="{{ project.link }}" target="_blank">{{ project.title }}</a></h2>
+                    <p class="fly-case-desc">{{ project.desc }}</p>
+                    <div class="fly-case-info">
+                        <a href="{% url 'trade:mine' %}" class="fly-case-user">
+                            <img src="{% static 'images/default_user.jpg' %}" alt="默认用户头像">
+                        </a>
+                        <p class="layui-elip" style="font-size: 12px;"><span
+                                style="color: #666;">{{ project.user.username }}</span> {{ project.add_time | date }}
+                        </p>
+                        <p>获得
+                            <a class="fly-case-nums fly-case-active" href="javascript:;" data-type="showPraise"
+                               style=" padding:0 5px; color: #01AAED;">{{ project.likenum.like_num }}</a>个赞
+                        </p>
+                        {% if project.id not in like_list %}
+                            <button class="layui-btn layui-btn-primary fly-case-active" data-type="praise"
+                                    onclick="like(this,{{ project.id }},{{ request.session.passport_id }});">
+                                点赞
+                                <script>
+                                    function like(obj, project_id, user) {
+                                        var is_like = "True";
+                                        {#$.ajaxSetup({data: {csrfmiddlewaretoken: '{{csrf_token}}'}});#}
+                                        $.ajax({
+                                            url: '{% url 'trade:like' %}',
+                                            type: 'GET',
+                                            data: {
+                                                is_like: is_like,
+                                                project_id: project_id,
+                                                user: user
+                                            },
+                                            async: false,
+                                            contentType: "application/json",
+                                            cache: false,
+                                            success: function (data) {
+                                                console.log(data);
+                                                var result = JSON.stringify(data);//string
+                                                var results = JSON.parse(result);//obj
+                                                if (results.code === 200) {
+                                                    alert("点赞成功! ")
+                                                } else if (results.code === 402) {
+                                                    alert(results.message);
+                                                }
+                                                window.location.reload()
+                                            },
+                                            error: function (xhr) {
+                                                console.log(xhr);
+                                                alert(xhr.responseText);
+                                                window.location.reload()
+                                            }
+                                        })
+                                    }
+                                </script>
+                            </button>
+                        {% else %}
+                            <button class="layui-btn layui-btn-primary fly-case-active" data-type="praise"
+                                    onclick="like(this,{{ project.id }},{{ request.session.passport_id }});">
+                                已赞
+                                <script>
+                                    function like(obj, project_id, user) {
+                                        var is_like = "False";
+                                        {#$.ajaxSetup({data: {csrfmiddlewaretoken: '{{csrf_token}}'}});#}
+                                        $.ajax(
+                                            {
+                                                url: '{% url 'trade:like' %}',
+                                                type: 'GET',
+                                                data: {
+                                                    is_like: is_like,
+                                                    project_id: project_id,
+                                                    user: user
+                                                },
+                                                async: false,
+                                                contentType: "application/json",
+                                                cache: false,
+                                                success: function (data) {
+                                                    {#console.log(data);#}
+                                                    var result = JSON.stringify(data);
+                                                    var results = JSON.parse(result);
+                                                    {#console.log(results.code);#}
+                                                    if (results.code === 201) {
+                                                        alert("取消点赞成功! ")
+                                                    }
+                                                    window.location.reload()
+                                                },
+                                                error: function (xhr) {
+                                                    console.log(xhr);
+                                                    alert(JSON.stringify(xhr));
+                                                    window.location.reload()
+                                                }
+                                            }
+                                        );
+                                    }
+                                </script>
+                            </button>
+                        {% endif %}
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock %}
