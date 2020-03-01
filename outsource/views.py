@@ -1,13 +1,12 @@
 from django.core.paginator import Paginator
 from django.http import *
 from django.shortcuts import render, redirect
-from outsource.models import KindChoice, LanguageChoice, Projects, News
 from outsource.models import *
 from functions.decorators import login_required
 from django.urls import reverse
-import json
 
 
+# 主页
 def index(request):
     all_news = News.objects.order_by('-id')[:12]
     user = None
@@ -93,62 +92,7 @@ def projects(request):
     return render(request, 'outsource/projects.html', locals())
 
 
-# 项目搜素列表页
-def projects_list(request, kind, page):
-    # 获取排序方式
-    sort = request.GET.get('sort', 'default')
-    # 判断type_id是否合法
-    if int(kind) not in PROJECTS_TYPE.keys():
-        return redirect(reverse('outsource:index'))
-    # 根据种类id和排序方式查询商品
-    projects_li = Projects.objects.get_projects_by_type(kind=kind, sort=sort)
-    for i in projects_li:
-        print("*" * 30)
-        print(i)
-
-    # 分页
-    paginator = Paginator(projects_li, 1)
-    # 获取分页后的总页数
-    num_pages = paginator.num_pages
-    # 获取第page页的数据
-    if page == '' or int(page) > num_pages:
-        page = 1
-    else:
-        page = int(page)
-    projects_li = paginator.page(page)
-
-    # 页码控制
-    # 1.总页数<5, 显示所有页码
-    # 2.当前页是前3页，显示1-5页
-    # 3.当前页是后3页，显示后5页 10 9 8 7
-    # 4.其他情况，显示当前页前2页，后2页，当前页
-    if num_pages < 5:
-        pages = range(1, num_pages + 1)
-    elif num_pages <= 3:
-        pages = range(1, 6)
-    elif num_pages - page <= 2:
-        pages = range(num_pages - 4, num_pages + 1)
-    else:
-        pages = range(page - 2, page + 3)
-
-    # 新品推荐
-    projects_new = Projects.objects.get_projects_by_type(kind=kind, limit=2, sort='new')
-    # 定义上下文
-    type_title = PROJECTS_TYPE[int(kind)]
-    context = {
-        'projects_li': projects_li,
-        'projects_new': projects_new,
-        'kind': kind,
-        'sort': sort,
-        'type_title': type_title,
-        'pages': pages
-    }
-
-    # 使用模板
-    return render(request, 'outsource/projects_list.html', context)
-
-
-# /detail/projects_id
+# 项目详情页
 def projects_detail(request, projects_id):
     # 根据projects_id在数据库中查找是否存在该项目
     projects_id = int(projects_id)
@@ -170,10 +114,12 @@ def developers(request):
         return render(request, 'outsource/developers.html')
 
 
+# 开发者详情页
 def developers_detail(request, developers_id):
     return render(request, 'outsource/developers_detail.html')
 
 
+# 项目发布
 @login_required
 def publish(request):
     if request.method == 'GET':
@@ -202,14 +148,17 @@ def publish(request):
         return redirect('outsource:projects')
 
 
+# 帮助菜单
 def help_menu(request):
     return render(request, 'outsource/help.html')
 
 
+# 需求方帮助
 def guide1(request):
     return render(request, 'outsource/guide1.html')
 
 
+# 接包方帮助
 def guide2(request):
     return render(request, 'outsource/guide2.html')
 
@@ -242,6 +191,7 @@ def reg_dev(request):
         return redirect('outsource:projects')
 
 
+# 返回成功的JsonResponse
 def SuccessResponse(code):
     data = {}
     data['status'] = 'SUCCESS'
@@ -249,6 +199,15 @@ def SuccessResponse(code):
     return JsonResponse(data)
 
 
+# 返回错误的JsonResponse(不带消息)
+def ErrorCodeResponse(code):
+    data = {}
+    data['status'] = 'ERROR'
+    data['code'] = code
+    return JsonResponse(data)
+
+
+# 返回错误的JsonResponse(带消息)
 def ErrorResponse(code, message):
     data = {}
     data['status'] = 'ERROR'
@@ -257,6 +216,7 @@ def ErrorResponse(code, message):
     return JsonResponse(data)
 
 
+# 收藏
 def collection(request):
     is_collect = request.GET.get("is_collect")
     projects_id = request.GET.get('projects_id')
@@ -287,3 +247,20 @@ def collection(request):
         else:
             # 没有收藏过 不能取消
             return ErrorResponse(403, '没有收藏过 不能取消')
+
+
+# 竞标
+def jingbiao(request):
+    project_id = request.GET.get('project_id')
+    user_id = request.GET.get('user')
+    print('project_id', project_id, 'user_id', user_id)
+    # 先去Jingbiao表中查询  有了就是再次竞标  没有就添加到竞标表中
+    jingbiao = Jingbiao.objects.filter(project_id=project_id, user_id=user_id)
+    print('jingbiao:', jingbiao)
+    if jingbiao:
+        # 再次点击竞标    提示不能重复竞标
+        return ErrorResponse(201, '不能重复竞标!!!')
+    else:
+        # 首次竞标  添加到竞标表中
+        Jingbiao.objects.create(project_id=project_id, user_id=user_id)
+        return SuccessResponse(200)

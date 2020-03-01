@@ -110,6 +110,13 @@ class Collection(models.Model):
     projects_id = models.ForeignKey(Projects)
 
 
+# 项目竞标表
+class Jingbiao(models.Model):
+    user = models.ForeignKey(User)
+    project = models.ForeignKey(Projects)
+    status_id = models.IntegerField(default=0, verbose_name='竞标状态')
+
+
 # 开发者注册表
 class Developers(models.Model):
     user = models.OneToOneField(User)  # 外键关联 用户表(一对多)

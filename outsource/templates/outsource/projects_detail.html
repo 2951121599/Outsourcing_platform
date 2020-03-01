@@ -266,6 +266,36 @@
                                             });
                                         </script>
                                         {#                                        <button id="btn">支付定金</button>#}
+                                        <a href="#" id="jiedan"
+                                           onclick="jingbiao(this,{{ project.id }},{{ request.session.passport_id }})">
+                                            我要竞标
+                                        </a>
+                                        <script>
+                                            function jingbiao(obj, project_id, user) {
+                                                console.log(project_id, user);
+                                                $.ajax({
+                                                    url: "{% url 'outsource:jingbiao' %}",//路由
+                                                    type: "GET",
+                                                    contentType: "application/json",
+                                                    dataType: "json",
+                                                    cache: false,
+                                                    data: {
+                                                        project_id: project_id,
+                                                        user: user
+                                                    },
+                                                    success: function (data) {
+                                                        if (data.code === 200) {
+                                                            alert('您已成功竞标该项目,请等待发布人员进行选择!')
+                                                        } else {
+                                                            alert(data.message)
+                                                        }
+                                                    },
+                                                    error: function (error) {
+                                                        console.log('---django is wrong!!')
+                                                    }
+                                                })
+                                            }
+                                        </script>
                                         <a href="javascript:;" class="jb_btn jb-btn-ok" id="btn"> 我要接单 支付定金</a>
 
                                         <script>
@@ -1002,4 +1032,11 @@
         </div>
     </div>
 {% endblock %}
-
+{% block downjs %}
+    <!-- 加载js -->
+    <script src="{% static 'js/index.js' %}"></script>
+    <script>
+        //调用获取焦点的函数
+        getFocus($("#l2 a"))
+    </script>
+{% endblock %}

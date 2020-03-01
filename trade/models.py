@@ -2,6 +2,7 @@ from django.db import models
 from user.models import User
 
 
+# 项目分享
 class Project(models.Model):
     user = models.ForeignKey(User)
     title = models.CharField(max_length=100, verbose_name="项目名称")
@@ -26,8 +27,24 @@ class LikeNum(models.Model):
     project = models.OneToOneField(Project)
     like_num = models.IntegerField(default=0, verbose_name="点赞数")
 
+    class Meta:
+        db_table = "trade_likenum"
+        verbose_name = '项目点赞数'
+        verbose_name_plural = verbose_name
+
+    def __str__(self):
+        return self.project.title
+
 
 # 点赞用户
 class LikeUser(models.Model):
     like_user = models.ForeignKey(User)
     project = models.ForeignKey(Project)
+
+    class Meta:
+        db_table = "trade_likeuser"
+        verbose_name = '项目点赞用户'
+        verbose_name_plural = verbose_name
+
+    def __str__(self):
+        return self.project.title

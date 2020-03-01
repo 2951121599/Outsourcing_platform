@@ -1,7 +1,3 @@
-# -*-coding:utf-8-*- 
-# 作者：   29511
-# 文件名:  urls.py
-# 当前系统日期时间：2019/11/19，17:20 
 from django.conf.urls import url
 from django.conf import settings
 from . import views
@@ -21,8 +17,6 @@ urlpatterns = [
 
     # http://127.0.0.1:8000/projects
     url(r'^projects$', views.projects, name='projects'),
-    # 分类列表页
-    url(r'^projects/(?P<kind>\d+)/(?P<page>\d+)/$', views.projects_list, name='projects_list'),  # 列表页
 
     # 项目详情页
     # http://127.0.0.1:8000/projects/detail/projects_id
@@ -59,4 +53,7 @@ urlpatterns = [
     # 项目收藏
     # http://127.0.0.1:8000/collection
     url(r'^collection/$', views.collection, name='collection'),
+
+    # http://127.0.0.1:8000/jingbiao
+    url(r'^jingbiao/$', views.jingbiao, name='jingbiao'),
 ]

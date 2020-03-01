@@ -5,15 +5,6 @@
     主页
 {% endblock %}
 
-{% block js %}
-    <script src="{% static 'js/index.js' %}"></script>
-    <script>
-        //调用获取焦点的函数
-        getFocus($("#l1 a"))
-    </script>
-    <script src="{% static "js/scrollReveal.js" %}"></script>
-{% endblock %}
-
 {% block content %}
     <!-- 第一层 包含轮播图 和右侧区域 -->
     <div id="layer1">
@@ -29,19 +20,19 @@
             <!-- 首页的图片广告 -->
             <div class="box">
                 <div class="proImg1"></div>
-                <div class="pub"><a href="/publish">免费发布需求</a></div>
+                <div class="pub"><a href="{% url 'outsource:publish' %}">免费发布需求</a></div>
             </div>
             <div class="box" style="margin-top: 20px">
                 <div class="proImg2"></div>
                 <div class="pub">
                     {% if user %}
                         {% if databases_user_id.user_id == user %}
-                            <a href="/projects">申请签约接单</a>
+                            <a href="{% url 'outsource:projects' %}">申请签约接单</a>
                         {% else %}
-                            <a href="/reg_dev">申请签约接单</a>
+                            <a href="{% url 'outsource:reg_dev' %}">申请签约接单</a>
                         {% endif %}
                     {% else %}
-                        <a href="/user/login">申请签约接单</a>
+                        <a href="{% url 'user:login' %}">申请签约接单</a>
                     {% endif %}
                 </div>
             </div>
@@ -93,4 +84,13 @@
     <!-- 推荐页 结束 -->
     </div>
     <!-- 第二层 结束 -->
+{% endblock %}
+
+{% block downjs %}
+    <!-- 加载js -->
+    <script src="{% static 'js/index.js' %}"></script>
+    <script>
+        //调用获取焦点的函数
+        getFocus($("#l1 a"))
+    </script>
 {% endblock %}

@@ -20,7 +20,9 @@ class NewsSpider(object):
         regex = '<div class="bd main-left-list">(.*?)</ul>'
         regex2 = '<li>.*?src="(.*?)".*?>.*?href="(.*?)">(.*?)</a></h2>.*?>(.*?)</small>.*?<p><span>(.*?)</span>.*?</li>'
         pattern = re.compile(regex, re.S)
+        print("*" * 50, pattern)
         result = pattern.findall(html)[0]
+        print("-" * 50, pattern.findall(html)[0])
         pattern2 = re.compile(regex2, re.S)
         info_list = pattern2.findall(result)
         for info in info_list:
