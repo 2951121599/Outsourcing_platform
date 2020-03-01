@@ -2,6 +2,7 @@
 from django.db import models
 from user.models import User
 from outsource.enums import *
+from ckeditor_uploader.fields import RichTextUploadingField
 
 
 # 主页新闻列表页
@@ -64,7 +65,8 @@ class Projects(models.Model):
     budget = models.CharField(max_length=20, verbose_name="预算", null=True)
     language = models.CharField(max_length=100, default=Other, verbose_name="开发语言")
     cycles = models.IntegerField(verbose_name="开发周期", null=True)
-    project_desc = models.TextField(max_length=300, default="项目描述", verbose_name="项目描述")
+    # project_desc = models.TextField(max_length=300, default="项目描述", verbose_name="项目描述")
+    project_desc = RichTextUploadingField()
     post_datetime = models.DateTimeField(auto_now_add=True, verbose_name="发布时间")
     views = models.IntegerField(default=0, verbose_name='浏览数量')
     is_Active = models.BooleanField(default=True, verbose_name="项目状态")  # 默认True代表发布状态 False代表已成功接单

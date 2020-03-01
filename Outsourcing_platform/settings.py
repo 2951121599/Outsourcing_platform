@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     'trade',
     'user',
     'payment',
+    'ckeditor',
+    'ckeditor_uploader',
 ]
 
 MIDDLEWARE = [
@@ -108,7 +110,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/
 
-LANGUAGE_CODE = 'zh-Hans'
+LANGUAGE_CODE = 'zh-hans'
 
 TIME_ZONE = 'Asia/Shanghai'
 
@@ -116,7 +118,7 @@ USE_I18N = True
 
 USE_L10N = True
 
-USE_TZ = True
+USE_TZ = False
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
@@ -134,3 +136,6 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'static/media')
 
 ALIPAY_KEY_DIRS = os.path.join(BASE_DIR, 'static/key_file/')
 ALIPAY_APP_ID = "2016101700705690"
+
+# 配置富文本编辑器ckeditor
+CKEDITOR_UPLOAD_PATH = 'upload/'

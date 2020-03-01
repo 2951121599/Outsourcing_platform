@@ -102,6 +102,9 @@ def projects_detail(request, projects_id):
         print(e)
         return redirect(reverse('outsource:projects'))
 
+    # 根据project_id从Jingbiao表里面查询竞标人数
+    jingbiao_count = len(Jingbiao.objects.filter(project_id=projects_id))
+    print(jingbiao_count)
     # 推荐项目 2个相同类别的 不包含本身
     project_kind = project.kind
     recommend_projects = Projects.objects.filter(kind=project_kind).exclude(id=projects_id)[:2]

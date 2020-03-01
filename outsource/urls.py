@@ -2,6 +2,7 @@ from django.conf.urls import url
 from django.conf import settings
 from . import views
 from django.views.static import serve
+from django.conf.urls.static import static
 
 app_name = "outsource"
 urlpatterns = [
@@ -15,6 +16,7 @@ urlpatterns = [
     # 图片上传
     url(r'^media/(?P<path>.*)$', serve, {'media_root': settings.MEDIA_ROOT}),
 
+    # 项目列表页
     # http://127.0.0.1:8000/projects
     url(r'^projects$', views.projects, name='projects'),
 
@@ -57,3 +59,4 @@ urlpatterns = [
     # http://127.0.0.1:8000/jingbiao
     url(r'^jingbiao/$', views.jingbiao, name='jingbiao'),
 ]
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

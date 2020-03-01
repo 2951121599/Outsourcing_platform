@@ -30,5 +30,7 @@ urlpatterns = [
     # http://127.0.0.1:8000/user/xxx
     url(r'^user/', include('user.urls')),
     # http://127.0.0.1:8000/payment/xxx
-    url(r'^payment/', include('payment.urls'))
+    url(r'^payment/', include('payment.urls')),
+    # ckeditor设置admin页面
+    url(r'^ckeditor', include('ckeditor_uploader.urls')),
 ]

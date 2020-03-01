@@ -203,7 +203,7 @@
                                     </p>
                                     <div class="project-content clearfix">
                                         <p>
-                                            {{ project.project_desc }}
+                                            {{ project.project_desc|safe }}
                                         </p>
                                         <div class="col-sm-12">
                                             <p>资料下载</p>
@@ -220,7 +220,7 @@
                                     <div class="col-sm-9 project-show">
                                         <span>&nbsp;</span>
                                         <p>
-                                            竞标人数：<span class="org pd-r-20">12人</span>
+                                            竞标人数：<span class="org pd-r-20">{{ jingbiao_count }}人</span>
                                         </p>
                                     </div>
                                     <div class="col-sm-3 bid-btn-div" style="overflow:hidden;">

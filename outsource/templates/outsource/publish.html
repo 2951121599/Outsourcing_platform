@@ -93,10 +93,14 @@
     </style>
 {% endblock %}
 
+{% block js %}
+    <script src="https://cdn.ckeditor.com/4.5.0/standard/ckeditor.js"></script>
+{% endblock %}
+
 {% block content %}
     <div class="step-form">
         <div style="height: 3px"></div>
-        <form id="newform" action="/publish" method="post">
+        <form id="newform" action="/publish" method="post" enctype="multipart/form-data">
             {% csrf_token %}
             <div class="message-tip">
                 <p>1、请提供详细的项目资料，以便于我们为您推荐合适的开发者</p>
@@ -171,13 +175,16 @@
                 <div>
                     <input type="submit" value="发布" id="pub_btn" style="margin-right:10px;margin-bottom: 25px ">
                     <script>
-                        $('#pub_btn').on('click',function () {
+                        $('#pub_btn').on('click', function () {
                             alert("发布成功!")
                         })
                     </script>
                 </div>
             </div>
         </form>
+        <script>
+            CKEDITOR.replace('project_desc', {uiColor: '#9AB8F3'});
+        </script>
     </div>
 {% endblock %}
 
