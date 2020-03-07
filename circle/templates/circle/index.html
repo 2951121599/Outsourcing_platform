@@ -15,83 +15,19 @@
                     </div>
                     <ul class="fly-list">
                         <li>
-                            <a href="/circle/user/home/{{ question.user_id }}" class="fly-avatar">
+                            <a class="fly-avatar">
                                 <img src="https://ftp.bmp.ovh/imgs/2020/02/17b3122d1d013a56.jpg"
                                      alt="默认用户头像">
                             </a>
                             <h2>
                                 <a class="layui-badge">公告</a>
-                                <a href="jie/detail.html">基于 layui 的极简社区页面模版</a>
+                                <a href="{% url 'circle:gonggao' %}">发帖评论须知注意事项</a>
                             </h2>
                             <div class="fly-list-info">
-                                <a href="/circle/user/home/{{ question.user_id }}" link>
+                                <a>
                                     <cite>管理员</cite>
                                 </a>
-                                <span>刚刚</span>
-                                <span class="fly-list-nums">
-                                    <i class="iconfont" title="人气">&#xe60b;</i> 9619
-                                </span>
-                            </div>
-                            <div class="fly-list-badge">
-                            </div>
-                        </li>
-                        <li>
-                            <a href="/circle/user/home/{{ question.user_id }}" class="fly-avatar">
-                                <img src="https://ftp.bmp.ovh/imgs/2020/02/17b3122d1d013a56.jpg"
-                                     alt="默认用户头像">
-                            </a>
-                            <h2>
-                                <a class="layui-badge">公告</a>
-                                <a href="jie/detail.html">基于 layui 的极简社区页面模版</a>
-                            </h2>
-                            <div class="fly-list-info">
-                                <a href="/circle/user/home/{{ question.user_id }}" link>
-                                    <cite>管理员</cite>
-                                </a>
-                                <span>2017-11-30</span>
-
-                                <span class="fly-list-nums">
-                                    <i class="iconfont" title="人气">&#xe60b;</i> 9619
-                                </span>
-                            </div>
-                            <div class="fly-list-badge">
-                            </div>
-                        </li>
-                        <li>
-                            <a href="/circle/user/home/{{ question.user_id }}" class="fly-avatar">
-                                <img src="https://ftp.bmp.ovh/imgs/2020/02/17b3122d1d013a56.jpg"
-                                     alt="默认用户头像">
-                            </a>
-                            <h2>
-                                <a class="layui-badge">公告</a>
-                                <a href="jie/detail.html">基于 layui 的极简社区页面模版</a>
-                            </h2>
-                            <div class="fly-list-info">
-                                <a href="/circle/user/home/{{ question.user_id }}" link>
-                                    <cite>管理员</cite>
-                                </a>
-                                <span>刚刚</span>
-
-                                <span class="fly-list-nums">
-                                    <i class="iconfont" title="人气">&#xe60b;</i> 9619
-                                </span>
-                            </div>
-                            <div class="fly-list-badge"></div>
-                        </li>
-                        <li>
-                            <a href="/circle/user/home/{{ question.user_id }}" class="fly-avatar">
-                                <img src="https://ftp.bmp.ovh/imgs/2020/02/17b3122d1d013a56.jpg"
-                                     alt="默认用户头像">
-                            </a>
-                            <h2>
-                                <a class="layui-badge">公告</a>
-                                <a href="jie/detail.html">基于 layui 的极简社区页面模版</a>
-                            </h2>
-                            <div class="fly-list-info">
-                                <a href="/circle/user/home/{{ question.user_id }}" link>
-                                    <cite>管理员</cite>
-                                </a>
-                                <span>111</span>
+                                <span>2020-01-01</span>
 
                                 <span class="fly-list-nums">
                                     <i class="iconfont" title="人气">&#xe60b;</i> 9619
@@ -105,23 +41,12 @@
 
                 <div class="fly-panel" style="margin-bottom: 15px;">
                     <div class="fly-panel-title fly-filter">
-                        <a href="" class="layui-this">综合</a>
-                        <span class="fly-mid"></span>
-                        <a href="">未结</a>
-                        <span class="fly-mid"></span>
-                        <a href="">已结</a>
-                        <span class="fly-mid"></span>
-                        <a href="">精华</a>
-                        <span class="fly-filter-right layui-hide-xs">
-            <a href="" class="layui-this">按最新</a>
-            <span class="fly-mid"></span>
-            <a href="">按热议</a>
-          </span>
+                        <h3>问题列表</h3>
                     </div>
                     <ul class="fly-list">
                         {% for question in questions %}
                             <li>
-                                <a href="" class="fly-avatar">
+                                <a href="/circle/user/home/{{ question.user_id }}" class="fly-avatar">
                                     <img src="https://ftp.bmp.ovh/imgs/2020/02/17b3122d1d013a56.jpg"
                                          alt="默认用户头像">
                                 </a>

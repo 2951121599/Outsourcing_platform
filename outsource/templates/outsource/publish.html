@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load staticfiles %}
+{% load static %}
 {% block title %}
     发布项目
 {% endblock %}
@@ -94,7 +95,8 @@
 {% endblock %}
 
 {% block js %}
-    <script src="https://cdn.ckeditor.com/4.5.0/standard/ckeditor.js"></script>
+    <script type="text/javascript" src="{% static "ckeditor/ckeditor-init.js" %}"></script>
+    <script type="text/javascript" src="{% static "ckeditor/ckeditor/ckeditor.js" %}"></script>
 {% endblock %}
 
 {% block content %}
@@ -158,14 +160,14 @@
                 <div style="height: 20px"></div>
             </div>
 
-            <div class="field" style="width: 767px;margin-left: 25px">
+            <div class="field" style="width: 967px;margin-left: 25px">
                 <label class="field-hd">第六步：我的项目介绍</label><br>
                 <div style="height: 20px"></div>
                 <textarea id="project_desc" name="project_desc"
                           style="height:140px;background: #f7f9fb; width:742px;margin-bottom: 20px;"
                           maxlength="500"></textarea>
                 <div class="check-box" style="margin-bottom: 10px;">
-                    <div class="ui checkbox" style="margin-bottom: 10px">
+                    <div class="ui checkbox" style="margin-bottom: 10px;margin-top: 20px">
                         <input type="checkbox" checked>
                         <label style="color: #1b1c1d"> 我已阅读并同意
                             <a href="/help" target="_blank" style="color: blue">《程序员外包平台项目发布协议》</a>
@@ -183,7 +185,8 @@
             </div>
         </form>
         <script>
-            CKEDITOR.replace('project_desc', {uiColor: '#9AB8F3'});
+            {#CKEDITOR.replace('project_desc', {uiColor: '#9AB8F3'});#}
+            CKEDITOR.replace('project_desc', {uiColor: '#ffffff'});
         </script>
     </div>
 {% endblock %}

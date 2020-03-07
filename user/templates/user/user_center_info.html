@@ -85,6 +85,7 @@
             float: left;
             text-align: left;
         }
+
         .user_info_list p .span2 {
             display: inline-block;
             width: 500px;
@@ -99,8 +100,10 @@
             <h3>用户中心</h3>
             <ul>
                 <li><a href="{% url 'user:user' %}" class="active">· 个人信息</a></li>
-                {#                <li><a href="{% url 'user:collection' %}" {% if sort == 'default' %} class="active" {% endif %}>· 项目收藏</a></li>#}
-                <li><a href="{% url 'user:collection' %}" class="active">· 项目收藏</a></li>
+                <li><a href="{% url 'user:collection' %}" class="active"> 项目收藏</a></li>
+                <li><a href="{% url 'user:my_publish' %}" class="active"> 我发布的项目</a></li>
+                <li><a href="{% url 'user:my_develop' %}" class="active"> 我开发的项目</a></li>
+                <li><a href="{% url 'user:my_jingbiao' %}" class="active"> 我竞标的项目</a></li>
             </ul>
         </div>
         <div class="right_content">

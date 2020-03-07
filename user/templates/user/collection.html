@@ -60,8 +60,12 @@
         <div class="left_menu_con">
             <h3>用户中心</h3>
             <ul>
-                <li><a href="{% url 'user:user' %}" class="active">· 个人信息</a></li>
+                <li><a href="{% url 'user:user' %}" class="active"> 个人信息</a></li>
                 <li><a href="{% url 'user:collection' %}" class="active">· 项目收藏</a></li>
+                <li><a href="{% url 'user:my_publish' %}" class="active"> 我发布的项目</a></li>
+                <li><a href="{% url 'user:my_develop' %}" class="active"> 我开发的项目</a></li>
+                <li><a href="{% url 'user:my_jingbiao' %}" class="active"> 我竞标的项目</a></li>
+
             </ul>
         </div>
         <div class="right_content">
@@ -77,7 +81,7 @@
                                     <td colspan="2">项目分类</td>
                                     <td colspan="2">发布日期</td>
                                     <td colspan="2">项目状态</td>
-                                    <td colspan="2">竞标人数</td>
+                                    <td colspan="2">开发语言</td>
                                     <td colspan="2">操作</td>
                                 </tr>
                                 </thead>
@@ -92,17 +96,15 @@
                                                 </a>
                                             </td>
                                             <td colspan="2" class="col-sm-2 col-md-2 collection-project-category">
-                                                {#                                            网站开发#}
                                                 {{ project.kind }}
                                             </td>
                                             <td colspan="2" class="col-sm-2 col-md-2">
-                                                {#                                            2019-12-18#}
                                                 {{ project.post_datetime }}
                                             </td>
                                             <td colspan="2" class="col-sm-2 col-md-2 collection-project-status">
                                                 竞标中
                                             </td>
-                                            <td colspan="2" class="col-sm-2 col-md-2">5</td>
+                                            <td colspan="2" class="col-sm-2 col-md-2">{{ project.language }}</td>
                                             <td colspan="2" class="col-sm-2 col-md-2">
                                                 <a href="javascript:void(0);"
                                                    class="btn btn-success btn-sm collectionToggle"

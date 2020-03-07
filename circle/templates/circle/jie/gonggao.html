@@ -1,0 +1,47 @@
+{% extends 'circle_base.html' %}
+{% load staticfiles %}
+
+{% block title %}
+    技术圈 | 公告
+{% endblock %}
+{% block content %}
+    <div style="height: 15px"></div>
+
+    <div class="layui-container">
+        <div class="layui-row layui-col-space15">
+            <div class="layui-col-md12 content detail">
+                <div class="fly-panel detail-box"><h1>即日起，【技术圈】必须符合以下要求</h1>
+                    <div class="fly-detail-info">
+                        <span class="layui-badge layui-bg-green fly-detail-column"> 公告 </span>
+                    </div>
+                    <div class="detail-about">
+                        <a class="fly-avatar" href="">
+                            <img src="{% static 'images/head.png' %}" alt="管理员">
+                        </a>
+                        <div class="fly-detail-user">
+                            <a href="" class="fly-link">
+                                <cite>管理员</cite>
+                            </a>
+                            <span>2020-01-01 </span>
+                        </div>
+                        <div class="detail-hits">
+                            <span style="padding-right: 10px; color: #FF7200">技术圈</span>
+                        </div>
+                    </div>
+                    <div class="detail-body layui-text photos">
+                        1、禁止发布任何虚假信息贴，包括淘宝刷单，办证等。<br>
+                        2、禁止发布有关政治，色情类帖子。<br>
+                        3、禁止一切形式的引战行为，一经发现，做删帖处理。<br>
+                        4、如果发布错误的帖子，需要尽快编辑，或者联系圈主等进行删帖处理。<br>
+                        5、其他的注意事项请遵循网站基本管理规定<br>
+                        6、技术圈提供给用户交流的平台，共同创建文明环境！<br>
+                        <hr>
+                        <hr>
+                        <hr>
+                        请大家尽量避免上述问题，请大家互相监督，互相理解，共同进步。
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

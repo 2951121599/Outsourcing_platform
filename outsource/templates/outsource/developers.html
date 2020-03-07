@@ -14,6 +14,11 @@
     <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
     <link rel="stylesheet" href="{% static 'assets/css/animate.min.css' %}">
     <link rel="stylesheet" type="text/css" media="all" href="{% static 'assets/css/style-projects.css' %}">
+    <style>
+        .green {
+            color: #5e80ea !important
+        }
+    </style>
 {% endblock %}
 
 
@@ -29,8 +34,7 @@
 {% block content %}
     <!-- Header -->
     <div class="row container-kamn">
-        <img src="{% static 'assets/img/slider/slide9.jpg' %}" width="100%" class="blog-post" alt="Feature-img"
-             align="right" width="100%">
+        <img src="{% static 'assets/img/slider/slide9.jpg' %}" width="100%" class="blog-post" align="right">
     </div>
 
     <!--End Header -->
@@ -39,76 +43,27 @@
     <div id="banners"></div>
     <div class="container">
         <div class="row">
-            <div class="col-md-6">
-                <div class="blockquote-box blockquote-info animated wow fadeInLeft clearfix">
-                    <div class="square pull-left">
-                        <img src="{% static 'assets/img/team/member2.png' %}" alt="Feature-img" height="80" width="100">
+            {% for developer in developers %}
+                <div class="col-md-12">
+                    <div class="blockquote-box animated wow fadeInLeft clearfix">
+                        <div class="square pull-left">
+                            <img src="{% static 'assets/img/team/member1.png' %}" alt="Feature-img" height="80"
+                                 width="80">
+                        </div>
+                        <h4>
+                            <a href="{% url 'outsource:developers_detail' developer.id %}">{{ developer.name }}</a>
+                        </h4>
+                        <p>
+                            <span class="green">个人介绍: </span>
+                            {{ developer.person_introduce }}
+                        </p>
+                        <p>
+                            <span class="green">语言方向: </span>
+                            <span>{{ developer.language_direction }}</span>
+                        </p>
                     </div>
-                    <h4>
-                        倪齐民
-                    </h4>
-                    <p>
-                        java资深开发工程师,15年开发经验
-                    </p>
                 </div>
-                <div class="blockquote-box blockquote-primary animated wow fadeInLeft clearfix">
-                    <div class="square pull-left">
-                        <img src="{% static 'assets/img/team/member1.png' %}" alt="Feature-img" height="80" width="100">
-                    </div>
-                    <h4>
-                        桂纶镁
-                    </h4>
-                    <p>
-                        UI高级设计师,同时也是多个开源项目的开发者和维护者。
-                    </p>
-                </div>
-                <div class="blockquote-box blockquote-success animated wow fadeInLeft clearfix">
-                    <div class="square pull-left">
-                        <img src="{% static 'assets/img/team/member2.png' %}" alt="Feature-img" height="80" width="100">
-                    </div>
-                    <h4>
-                        何云伟
-                    </h4>
-                    <p>
-                        长期致力于HTML5、Java、CSS3、jQuery<br>以及HTML5跨平台开发的技术研究
-                    </p>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="blockquote-box blockquote-danger animated wow fadeInRight clearfix">
-                    <div class="square pull-left">
-                        <img src="{% static 'assets/img/team/member3.png' %}" alt="Feature-img" height="80" width="100">
-                    </div>
-                    <h4>
-                        廖雪峰
-                    </h4>
-                    <p>
-                        十年软件开发经验，对开源框架有深入研究<br>精通Java/Python/Ruby/Scheme/Objective C等
-                    </p>
-                </div>
-                <div class="blockquote-box blockquote-warning animated wow fadeInRight clearfix">
-                    <div class="square pull-left">
-                        <img src="{% static 'assets/img/team/member2.png' %}" alt="Feature-img" height="80" width="100">
-                    </div>
-                    <h4>
-                        Chris Way
-                    </h4>
-                    <p>
-                        iOS Developer , Technext
-                    </p>
-                </div>
-                <div class="blockquote-box blockquote-info animated wow fadeInRight clearfix">
-                    <div class="square pull-left">
-                        <img src="{% static 'assets/img/team/member1.png' %}" alt="Feature-img" height="80" width="100">
-                    </div>
-                    <h4>
-                        Rango
-                    </h4>
-                    <p>
-                        13年曾在某大型电商搜索负责PHP和C扩展方面的事务。<br>现负责某公司架构设计、公共组件、基础服务相关开发的工作。<br>是一个PHP和C程序员，略懂JS、Go、Python。
-                    </p>
-                </div>
-            </div>
+            {% endfor %}
         </div>
     </div>
     <!--End Main Container -->

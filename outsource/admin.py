@@ -1,9 +1,6 @@
 from django.contrib import admin
 from .models import *
 
-# Register your models here.
-admin.site.register(News)
-
 
 class ProjectsAdmin(admin.ModelAdmin):
     list_display = (
@@ -18,4 +15,10 @@ class ProjectsAdmin(admin.ModelAdmin):
     )
 
 
+admin.site.register(News)
 admin.site.register(Projects, ProjectsAdmin)
+admin.site.register(Developers)
+admin.site.register(Jingbiao)
+admin.site.register(Collection)
+admin.site.register(LanguageChoice)
+admin.site.register(KindChoice)

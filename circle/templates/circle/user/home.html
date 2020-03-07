@@ -12,9 +12,14 @@
             {{ user.username }}
         </h1>
         <p class="fly-home-info">
-            <i class="iconfont icon-shijian"></i><span>{{ user.created_time | date}} 加入</span>
+            <i class="iconfont icon-shijian"></i><span>{{ user.created_time | date }} 加入</span>
         </p>
-        <p class="fly-home-sign">个人描述: {{ user.description }}</p>
+        <p class="fly-home-sign">个人描述: {% if user.description %}
+            {{ user.description }}
+        {% else %}
+            暂无
+        {% endif %}
+        </p>
     </div>
 
     <div class="layui-container">
@@ -25,13 +30,11 @@
                     <ul class="jie-row">
                         {% for question in questions %}
                             <li>
-                                <a href="/circle/jie/detail/{{ question.id }}" class="jie-title">{{ question.title | linenumbers}}</a>
+                                <a href="/circle/jie/detail/{{ question.id }}"
+                                   class="jie-title">{{ question.title }}</a>
                                 <i>{{ question.created_time }}</i>
-                                <em class="layui-hide-xs">1136阅/27答</em>
                             </li>
                         {% endfor %}
-
-
                     </ul>
                 </div>
             </div>
@@ -39,30 +42,35 @@
             <div class="layui-col-md6 fly-home-da">
                 <div class="fly-panel">
                     <h3 class="fly-panel-title">{{ user.username }} 最近的回答</h3>
-                    <ul class="home-jieda">
-                        <li>
-                            <p>
-                                <span>1分钟前</span>
-                                在<a href="" target="_blank">tips能同时渲染多个吗?</a>中回答：
-                            </p>
-                            <div class="home-dacontent">
-                                尝试给layer.photos加上这个属性试试：
-                                <pre>
-full: true         
-</pre>
-                                文档没有提及
-                            </div>
-                        </li>
-                        <li>
-                            <p>
-                                <span>5分钟前</span>
-                                在<a href="" target="_blank">在Fly社区用的是什么系统啊?</a>中回答：
-                            </p>
-                            <div class="home-dacontent">
-                                Fly社区采用的是NodeJS。分享出来的只是前端模版
-                            </div>
-                        </li>
-                    </ul>
+                    {% if comments %}
+                        <ul class="home-jieda">
+                            {#                    展示在哪个问题回答#}
+                            {#                        {% for title in questions_title %}#}
+                            {#                            <li>#}
+                            {#                                <p>#}
+                            {#                                    在<a href="/circle/jie/detail/{{ question.id }}">{{ title }}</a>中回答：#}
+                            {#                                </p>#}
+                            {#                            </li>#}
+                            {#                        {% endfor %}#}
+
+                            {% for comment in comments %}
+                                <li style="overflow: hidden">
+                                    <div class="home-dacontent">
+
+                                        <a href="/circle/jie/detail/{{ comment.question_id }}">{{ comment.comment }}</a>
+                                        <span style="float: right">评论时间：{{ comment.created_time }}</span>
+                                    </div>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    {% else %}
+                        <ul class="home-jieda">
+                            <span style="color: red">暂无回答</span>
+                        </ul>
+
+
+                    {% endif %}
+
                 </div>
             </div>
         </div>

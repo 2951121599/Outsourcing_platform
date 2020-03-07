@@ -1,6 +1,12 @@
+import random
+from itertools import chain
+
 from django.core.paginator import Paginator
-from django.http import *
+from django.http import HttpResponse, StreamingHttpResponse, JsonResponse
 from django.shortcuts import render, redirect
+from django.views.decorators.csrf import csrf_exempt
+import os
+
 from outsource.models import *
 from functions.decorators import login_required
 from django.urls import reverse
@@ -104,25 +110,61 @@ def projects_detail(request, projects_id):
 
     # 根据project_id从Jingbiao表里面查询竞标人数
     jingbiao_count = len(Jingbiao.objects.filter(project_id=projects_id))
-    print(jingbiao_count)
+    print('jingbiao_count:', jingbiao_count)
     # 推荐项目 2个相同类别的 不包含本身
     project_kind = project.kind
     recommend_projects = Projects.objects.filter(kind=project_kind).exclude(id=projects_id)[:2]
+    user = request.session.get("passport_id")
+    try:
+        # 当前用户为开发者
+        is_developer = Developers.objects.get(user_id=user)
+        user = is_developer.user_id
+    except Exception as e:
+        # 当前用户不是开发者
+        user = None
+    print('locals:---------', locals())
     return render(request, 'outsource/projects_detail.html', locals())
 
 
 # 开发者列表页
 def developers(request):
     if request.method == 'GET':
-        return render(request, 'outsource/developers.html')
+        developers = Developers.objects.all()
+        return render(request, 'outsource/developers.html', locals())
 
 
 # 开发者详情页
 def developers_detail(request, developers_id):
-    return render(request, 'outsource/developers_detail.html')
+    developers_id = int(developers_id)
+    try:
+        # 获取开发者信息
+        developer = Developers.objects.get(id=developers_id)
+        # 获取承接项目的个数
+        confirm_count = len(Confirm.objects.filter(developer_id=developers_id))
+        # 信誉积分
+        credit_score = confirm_count * 10
+
+        # 后端得到多个queryset怎么给前端(困难点)
+        all_projects = Projects.objects.none()
+        projects_list = []
+        # 承接的项目
+        confirm_projects = Confirm.objects.filter(developer_id=developers_id)
+        for i in confirm_projects:
+            projects = Projects.objects.filter(id=i.project_id)
+            projects_list.append(projects)
+        for i in projects_list:
+            all_projects = all_projects | i
+        projects_list = chain(all_projects)
+        print('****************', projects_list)
+        print('------------------', locals())
+        return render(request, 'outsource/developers_detail.html', locals())
+    except Exception as e:
+        print('报错信息:', e)
+        return redirect(reverse("outsource:developers"))
 
 
 # 项目发布
+# @csrf_exempt
 @login_required
 def publish(request):
     if request.method == 'GET':
@@ -254,16 +296,109 @@ def collection(request):
 
 # 竞标
 def jingbiao(request):
-    project_id = request.GET.get('project_id')
-    user_id = request.GET.get('user')
-    print('project_id', project_id, 'user_id', user_id)
-    # 先去Jingbiao表中查询  有了就是再次竞标  没有就添加到竞标表中
-    jingbiao = Jingbiao.objects.filter(project_id=project_id, user_id=user_id)
-    print('jingbiao:', jingbiao)
-    if jingbiao:
-        # 再次点击竞标    提示不能重复竞标
-        return ErrorResponse(201, '不能重复竞标!!!')
+    project_id = request.GET.get('project_id')  # 项目id
+    user_id = request.GET.get('user')  # 竞标者id
+    project = Projects.objects.get(id=project_id)  # 发包方id
+    pub_id = project.user_id
+    print('project_id', project_id, 'user_id', user_id, 'pub_id', pub_id)
+    # 如果是发包方 不能进行竞标
+    if int(pub_id) == int(user_id):
+        return ErrorResponse(202, '您是发包方 不能进行竞标!!!')
     else:
-        # 首次竞标  添加到竞标表中
-        Jingbiao.objects.create(project_id=project_id, user_id=user_id)
-        return SuccessResponse(200)
+        # 先去Jingbiao表中查询  有了就是再次竞标  没有就添加到竞标表中
+        jingbiao = Jingbiao.objects.filter(project_id=project_id, user_id=user_id)
+        print('jingbiao:', jingbiao)
+        if jingbiao:
+            # 再次点击竞标    提示不能重复竞标
+            return ErrorResponse(201, '不能重复竞标!!!')
+        else:
+            # 首次竞标  添加到竞标表中
+            Jingbiao.objects.create(project_id=project_id, user_id=user_id)
+            return SuccessResponse(200)
+
+
+# 中标
+def zhongbiao(request, project_id):
+    # 项目状态为 竞标中
+    # 项目信息
+    try:
+        project = Projects.objects.get(id=project_id)
+        passport_id = request.session.get('passport_id')
+        # 竞标人选
+        jingbiao_users = Jingbiao.objects.filter(project_id=project_id)
+        jingbiao_count = len(Jingbiao.objects.filter(project_id=project_id))
+    except Exception as e:
+        print(e)
+    return render(request, 'outsource/choose_developer.html', locals())
+    # 项目状态为 竞标结束
+
+
+# 确认开发者
+def confirm(request):
+    if request.method == 'GET':
+        return HttpResponse("请使用POST方式提交数据! ")
+    elif request.method == 'POST':
+        # 处理数据
+        dev_number = int(request.POST.get('dev_number'))
+        project_id = request.POST.get('project_id')
+        user_id = request.session.get('passport_id')
+        print('+' * 100, dev_number, project_id, user_id)
+        # 查询用户输入的开发者编号
+        jingbiao = Jingbiao.objects.get(id=dev_number)
+        user_id2 = jingbiao.user_id
+        developer = Developers.objects.get(user_id=user_id2)
+        developer_id = developer.id
+
+        # 创建数据 向confirm表添加数据
+        try:
+            Confirm.objects.create(developer_id=developer_id, project_id=project_id, user_id=user_id)
+            # 修改项目状态
+            project = Projects.objects.get(id=project_id)
+            project.is_Active = False
+            project.save()
+            # return HttpResponse("开发者选择完毕, 请支付定金后启动项目!!! ")
+            return render(request, 'outsource/choose_developer.html', locals())
+        except Exception as e:
+            print("添加失败! ")
+            print(e)
+            return HttpResponse("开发者选择 添加失败!!!")
+
+
+# 合同下载
+def file_down(request):
+    file_name = "软件开发外包合同.pdf"  # 文件名
+    base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))  # 项目根目录
+
+    file_path = os.path.join(base_dir, file_name)  # 下载文件的绝对路径
+    print(file_path)
+    if not os.path.isfile(file_path):  # 判断下载文件是否存在
+        return HttpResponse("Sorry but Not Found the File")
+
+    def file_iterator(file_path, chunk_size=512):
+        """
+        文件生成器,防止文件过大，导致内存溢出
+        :param file_path: 文件绝对路径
+        :param chunk_size: 块大小
+        :return: 生成器
+        """
+        with open(file_path, mode='rb') as f:
+            while True:
+                c = f.read(chunk_size)
+                if c:
+                    yield c
+                else:
+                    break
+
+    try:
+        # 设置响应头
+        # StreamingHttpResponse将文件内容进行流式传输，数据量大可以用这个方法
+        response = StreamingHttpResponse(file_iterator(file_path))
+        # 以流的形式下载文件,这样可以实现任意格式的文件下载
+        response['Content-Type'] = 'application/octet-stream'
+        # Content-Disposition就是当用户想把请求所得的内容存为一个文件的时候提供一个默认的文件名
+        response['Content-Disposition'] = 'attachment;filename="contract.pdf"'
+        print(response)
+    except:
+        return HttpResponse("Sorry but Not Found the File")
+
+    return response

@@ -23,6 +23,7 @@ class News(models.Model):
         return self.news_title
 
 
+# 项目排序管理
 class ProjectsManager(models.Manager):
     # sort = 'new' 按照创建时间排序
     # sort = 'hot' 按照关注度排序
@@ -69,7 +70,7 @@ class Projects(models.Model):
     project_desc = RichTextUploadingField()
     post_datetime = models.DateTimeField(auto_now_add=True, verbose_name="发布时间")
     views = models.IntegerField(default=0, verbose_name='浏览数量')
-    is_Active = models.BooleanField(default=True, verbose_name="项目状态")  # 默认True代表发布状态 False代表已成功接单
+    is_Active = models.BooleanField(default=True, verbose_name="项目状态")  # 只有两个状态 默认True代表竞标中 False代表已成功接单
 
     objects = ProjectsManager()
 
@@ -82,6 +83,7 @@ class Projects(models.Model):
         return str(self.project_name)
 
 
+# 项目类别选择表
 class KindChoice(models.Model):
     kind_name = models.CharField(max_length=30, default="其它分类", verbose_name='项目类别')
 
@@ -94,6 +96,7 @@ class KindChoice(models.Model):
         return str("%s" % self.kind_name)
 
 
+# 开发语言选择表
 class LanguageChoice(models.Model):
     language_name = models.CharField(max_length=30, default="暂无", verbose_name='开发语言')
 
@@ -111,12 +114,28 @@ class Collection(models.Model):
     user = models.ForeignKey(User)
     projects_id = models.ForeignKey(Projects)
 
+    class Meta:
+        db_table = "collection"
+        verbose_name = "用户收藏项目表"
+        verbose_name_plural = verbose_name
+
+    def __str__(self):
+        return str("%s" % self.user)
+
 
 # 项目竞标表
 class Jingbiao(models.Model):
     user = models.ForeignKey(User)
     project = models.ForeignKey(Projects)
     status_id = models.IntegerField(default=0, verbose_name='竞标状态')
+
+    class Meta:
+        db_table = "jingbiao"
+        verbose_name = "项目竞标表"
+        verbose_name_plural = verbose_name
+
+    def __str__(self):
+        return str("%s" % self.user)
 
 
 # 开发者注册表
@@ -145,3 +164,19 @@ class Developers(models.Model):
 
     def __str__(self):
         return "姓名: " + self.name
+
+
+# 确认开发者表
+class Confirm(models.Model):
+    developer = models.ForeignKey(Developers, default=None)
+    user = models.ForeignKey(User, default=None)
+    project = models.ForeignKey(Projects, default=None)
+    status_id = models.IntegerField(default=1, verbose_name='中标状态')
+
+    class Meta:
+        db_table = "confirm"
+        verbose_name = "确认开发者表"
+        verbose_name_plural = verbose_name
+
+    def __str__(self):
+        return str("%s" % self.developer)

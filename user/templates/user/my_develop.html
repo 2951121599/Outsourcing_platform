@@ -1,0 +1,112 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block css %}
+    <link rel='stylesheet' type='text/css' href='{% static '/css/projects/bootstrap.min.css' %}' media='all'>
+    <style>
+        .main_con {
+            width: 1140px;
+            margin: 20px auto;
+            overflow: hidden;
+        }
+
+        .left_menu_con {
+            width: 200px;
+            float: left;
+        }
+
+        .left_menu_con h3 {
+            font-size: 18px;
+            line-height: 40px;
+            border-bottom: 2px solid #000;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .left_menu_con ul li {
+            line-height: 40px;
+            text-align: center;
+            font-size: 16px;
+        }
+
+        .left_menu_con ul li a {
+            color: #666;
+        }
+
+        .left_menu_con ul li .active {
+            color: #ac2925;
+            font-weight: bold;
+        }
+
+        .right_content {
+            width: 900px;
+            float: right;
+            min-height: 600px;
+        }
+
+        .info_con {
+            width: 980px;
+        }
+
+        .common_title2 {
+            height: 20px;
+            line-height: 20px;
+            font-size: 16px;
+            margin: 10px 0;
+        }
+    </style>
+{% endblock %}
+{% block content %}
+    <div class="main_con">
+        <div class="left_menu_con">
+            <h3>用户中心</h3>
+            <ul>
+                <li><a href="{% url 'user:user' %}" class="active"> 个人信息</a></li>
+                <li><a href="{% url 'user:collection' %}" class="active"> 项目收藏</a></li>
+                <li><a href="{% url 'user:my_publish' %}" class="active"> 我发布的项目</a></li>
+                <li><a href="{% url 'user:my_develop' %}" class="active">· 我开发的项目</a></li>
+                <li><a href="{% url 'user:my_jingbiao' %}" class="active"> 我竞标的项目</a></li>
+            </ul>
+        </div>
+        <div class="right_content">
+            <div class="info_con">
+                <h3 class="common_title2">项目基本信息</h3>
+                <div class="col-sm-9 col-md-9 main-user-content nopadding-right bg-color-f">
+                    <div class="main-content">
+                        <div class="collection-project pd-t-15">
+                            <table class="table table-project table-collection-project" style="border: 1px red solid">
+                                <thead>
+                                <tr class="text-center">
+                                    <td colspan="4" class="collection-project-name">项目名称</td>
+                                    <td colspan="2">项目分类</td>
+                                    <td colspan="2">发布日期</td>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for project in projects %}
+                                    {% if project %}
+                                        <tr class="text-center">
+                                            <td colspan="4" class="col-sm-4 col-md-4 text-left collection-project-name">
+                                                <a href="/projects/detail/{{ project.id }}">
+                                                    {{ project.project_name }}
+                                                </a>
+                                            </td>
+                                            <td colspan="2" class="col-sm-2 col-md-2 collection-project-category">
+                                                {{ project.kind }}
+                                            </td>
+                                            <td colspan="2" class="col-sm-2 col-md-2">
+                                                {{ project.post_datetime }}
+                                            </td>
+                                        </tr>
+                                    {% else %}
+                                        暂无
+                                    {% endif %}
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

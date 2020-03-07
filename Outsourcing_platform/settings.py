@@ -139,3 +139,15 @@ ALIPAY_APP_ID = "2016101700705690"
 
 # 配置富文本编辑器ckeditor
 CKEDITOR_UPLOAD_PATH = 'upload/'
+
+# 只能上传图片
+CKEDITOR_ALLOW_NONIMAGE_FILES = False
+X_FRAME_OPTIONS = 'SAMEORIGIN'
+# ckeditor在后台管理员界面的配置
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': 'full',  # 工具条功能
+        'height': 500,  # 编辑器高度
+        'width': 1000,  # 编辑器宽
+    },
+}

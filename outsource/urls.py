@@ -56,7 +56,20 @@ urlpatterns = [
     # http://127.0.0.1:8000/collection
     url(r'^collection/$', views.collection, name='collection'),
 
+    # 项目竞标
     # http://127.0.0.1:8000/jingbiao
     url(r'^jingbiao/$', views.jingbiao, name='jingbiao'),
+
+    # 结束竞标
+    # http://127.0.0.1:8000/zhongbiao/1
+    url(r'^zhongbiao/(\d+)$', views.zhongbiao, name='zhongbiao'),
+
+    # 确认开发者
+    # http://127.0.0.1:8000/confirm
+    url(r'^confirm$', views.confirm, name='confirm'),
+
+    # PDF文件下载
+    # http://127.0.0.1:8000/file_down
+    url(r'^file_down$', views.file_down, name='file_down'),
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

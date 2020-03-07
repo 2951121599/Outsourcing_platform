@@ -37,57 +37,15 @@
                     </fieldset>
 
                     <ul class="jieda" id="jieda">
-                        <li data-id="111" class="jieda-daan">
-                            <a name="item-1111111111"></a>
-                            <div class="detail-about detail-about-reply">
-                                <a class="fly-avatar" href="">
-                                    <img src="https://tva1.sinaimg.cn/crop.0.0.118.118.180/5db11ff4gw1e77d3nqrv8j203b03cweg.jpg"
-                                         alt=" ">
-                                </a>
-                                <div class="fly-detail-user">
-                                    <a href="" class="fly-link">
-                                        <cite>贤心</cite>
-                                        <i class="iconfont icon-renzheng" title="认证信息：XXX"></i>
-                                        <i class="layui-badge fly-badge-vip">VIP3</i>
-                                    </a>
-
-                                    <span>(楼主)</span>
-                                </div>
-
-                                <div class="detail-hits">
-                                    <span>2017-11-30</span>
-                                </div>
-
-                                <i class="iconfont icon-caina" title="最佳答案"></i>
-                            </div>
-                            <div class="detail-body jieda-body photos">
-                                <p>香菇那个蓝瘦，这是一条被采纳的回帖</p>
-                            </div>
-                            <div class="jieda-reply">
-              <span class="jieda-zan zanok" type="zan">
-                <i class="iconfont icon-zan"></i>
-                <em>66</em>
-              </span>
-                                <span type="reply">
-                <i class="iconfont icon-svgmoban53"></i>
-                回复
-              </span>
-                                <div class="jieda-admin">
-                                    <span type="edit">编辑</span>
-                                    <span type="del">删除</span>
-                                    <!-- <span class="jieda-accept" type="accept">采纳</span> -->
-                                </div>
-                            </div>
-                        </li>
                         {% for comment in comments %}
                             <li data-id="111">
                                 <div class="detail-about detail-about-reply">
-                                    <a class="fly-avatar" href="">
-                                        <img src="https://tva1.sinaimg.cn/crop.0.0.118.118.180/5db11ff4gw1e77d3nqrv8j203b03cweg.jpg"
-                                             alt=" ">
+                                    <a class="fly-avatar" href="/circle/user/home/{{ comment.user.id }}">
+                                        <img src="{% static 'images/default_user.jpg' %}"
+                                             alt="默认用户头像">
                                     </a>
                                     <div class="fly-detail-user">
-                                        <a href="" class="fly-link">
+                                        <a href="/circle/user/home/{{ comment.user.id }}" class="fly-link">
                                             <cite>{{ comment.user.username }}</cite>
                                         </a>
                                     </div>
@@ -98,38 +56,23 @@
                                 <div class="detail-body jieda-body photos">
                                     <p>{{ comment.comment }}</p>
                                 </div>
-                                <div class="jieda-reply">
-                              <span class="jieda-zan" type="zan">
-                                <i class="iconfont icon-zan"></i>
-                                <em>0</em>
-                              </span>
-                                    <span type="reply">
-                                        <i class="iconfont icon-svgmoban53"></i>
-                                        回复
-                                    </span>
-                                    <div class="jieda-admin">
-                                        <span type="edit">编辑</span>
-                                        <span type="del">删除</span>
-                                        <span class="jieda-accept" type="accept">采纳</span>
-                                    </div>
-                                </div>
                             </li>
+                        {% empty %}
+                            暂无评论
                         {% endfor %}
                     </ul>
 
                     <div class="layui-form layui-form-pane">
-                        <form action="" method="post">
+                        <form action="{% url 'circle:reply' %}" method="post">
                             {% csrf_token %}
                             <div class="layui-form-item layui-form-text">
+                                <input type="hidden" name="question_id" value="{{ question_id }}">
                                 <div class="layui-input-block">
-                                    <textarea id="L_content" name="comment" required lay-verify="required"
-                                              placeholder="请输入评论内容" class="layui-textarea fly-editor"
-                                              style="height: 150px;">
-                                    </textarea>
+                                    <textarea name="comment" id="" cols="30" rows="10" placeholder="请输入评论内容"
+                                              style="height: 150px;" class="layui-textarea fly-editbox"></textarea>
                                 </div>
                             </div>
                             <div class="layui-form-item">
-                                <input type="hidden" name="jid" value="123">
                                 <button class="layui-btn" lay-filter="*" lay-submit>提交回复</button>
                             </div>
                         </form>

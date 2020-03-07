@@ -1,10 +1,11 @@
 import json
 import re
+from itertools import chain
 
 from django.http import JsonResponse
 from django.shortcuts import *
 
-from outsource.models import Projects, Collection
+from outsource.models import Projects, Collection, Jingbiao, Confirm, Developers
 from .models import *
 from functions.decorators import login_required
 
@@ -172,15 +173,75 @@ def ErrorResponse(code, message):
 def collection(request):
     if request.method == 'GET':
         passport_id = request.session.get('passport_id')  # 数据表中的id
-        # user = User.objects.get(id=passport_id)
+        # 收藏表中查询用户 得到收藏用户列表
         collection_obj = Collection.objects.filter(user_id=passport_id)
 
+        # 收藏用户不存在 返回空
         if not collection_obj:
             item = {}
             return render(request, 'user/collection.html', item)
+        # 收藏用户存在(多个) 得到多个收藏的项目id
         project_list = []
         for project_obj in collection_obj:
+            # 得到每个具体的项目对象
             project1 = Projects.objects.filter(id=project_obj.projects_id_id)
+            # 根据project_id从Jingbiao表里面查询竞标人数
+            jingbiao_count = len(Jingbiao.objects.filter(project_id=project_obj.projects_id_id))
+            print('+++++++++')
+            print(jingbiao_count)
+            project1.jingbiao_count = jingbiao_count
             project_list.append(project1)
+        print(project_list)
 
         return render(request, 'user/collection.html', locals())
+
+
+# 我发布的项目
+def my_publish(request):
+    if request.method == 'GET':
+        passport_id = request.session.get('passport_id')
+        project_list = Projects.objects.filter(user_id=passport_id)
+        for project in project_list:
+            # 根据project_id从Jingbiao表里面查询竞标人数
+            project_id = project.id
+            jingbiao_count = len(Jingbiao.objects.filter(project_id=project_id))
+            # 给每一个project一个新的字段jingbiao_count
+            project.jingbiao_count = jingbiao_count
+        return render(request, 'user/my_publish.html', locals())
+
+
+# 我开发的项目
+def my_develop(request):
+    if request.method == 'GET':
+        # Confirm表中获取当前登录用户开发的项目
+        passport_id = request.session.get('passport_id')  # 12
+        try:
+            developer_id = Developers.objects.filter(user_id=passport_id)[0]
+            developer_id = developer_id.id  # 5
+            project_list = Confirm.objects.filter(developer_id=developer_id)
+            for project in project_list:
+                # 根据project_id从Projects表里面查询项目信息
+                project_id = project.project_id
+                projects = Projects.objects.filter(id=project_id)
+        except Exception as e:
+            print(e)
+            return redirect(reverse('outsource:reg_dev'))
+        print('----------', locals())
+        return render(request, 'user/my_develop.html', locals())
+
+
+# 我竞标的项目
+def my_jingbiao(request):
+    if request.method == 'GET':
+        passport_id = int(request.session.get('passport_id'))  # 12
+        jingbiao_projects_obj = Jingbiao.objects.filter(user_id=passport_id)
+        temp = Jingbiao.objects.none()
+        jingbiao_list = []
+        for i in jingbiao_projects_obj:
+            jingbiao_projects = Projects.objects.filter(id=i.project_id)  # 10 14 15
+            jingbiao_list.append(jingbiao_projects)
+        for i in jingbiao_list:
+            temp = temp | i
+        jingbiao_list = chain(temp)
+        print('*******/*/*', jingbiao_list)
+    return render(request, 'user/my_jingbiao.html', locals())

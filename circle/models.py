@@ -30,6 +30,7 @@ class Comments(models.Model):
         db_table = "circle_comments"
         verbose_name = "帖子评论"
         verbose_name_plural = verbose_name
+        ordering = ['-created_time']
 
     def __str__(self):
         return str(self.question.title)

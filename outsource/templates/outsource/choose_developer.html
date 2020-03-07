@@ -1,0 +1,335 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block title %}
+    确定开发者
+{% endblock %}
+
+{% block css %}
+    <link rel='stylesheet' type='text/css' href='{% static '/css/projects/bootstrap.min.css' %}' media='all'>
+    <link rel='stylesheet' type='text/css' href='{% static '/css/projects/web-20190904.css' %}' media="all">
+    <link href="{% static '/css/projects/bootstrapValidator.min.css' %}" rel="stylesheet">
+
+    <style type="text/css">
+        .n_banner a {
+            background: url(
+            /static/images/projects/nei_banner.png) no-repeat center center;
+        }
+
+        .release a {
+            color: #ffffff !important;
+            text-align: center;
+            background-color: #2EB135;
+            width: 110px;
+            border-radius: 20px;
+        }
+    </style>
+{% endblock %}
+
+{% block js %}
+    <script src="{% static '/js/projects/jquery-1.9.1.js' %}" type="text/javascript"></script>
+    <script src="{% static '/js/projects/bootstrap.min.js' %}" type="text/javascript"></script>
+{% endblock %}
+{% block content %}
+    <div class="wrap">
+        {# 项目状态进度条 #}
+        <div class="bg-color-f5 pb-10 pt-20">
+            <div class="container">
+                <div class="project-progress">
+                    <div class="progress-bar1">
+                        <div class="single-blank"></div>
+                        <div class="single status-color">
+                            <div class="circle circle-color">
+                                <div class="project-status">
+                                    <p class="title1">
+                                        发包方提交了项目
+                                    </p>
+                                    <p class="date">
+                                        2019-11-27 </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="single status-color">
+                            <div class="circle circle-color">
+                                <div class="project-status">
+                                    <p class="title1">
+                                        审批通过，项目发布
+                                    </p>
+                                    <p class="date">
+                                        2019-11-28
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="single">
+                            <div class="circle circle-color">
+                                <div class="project-status">
+                                    <p class="title1">
+                                        发包方选定承接人,项目进入开发
+                                    </p>
+                                    <p class="date">
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="single-blank">
+                            <div class="circle ">
+                                <div class="project-status">
+                                    <p class="title1">
+                                        计划全部完成，项目完工
+                                    </p>
+                                    <p class="date">
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {# 项目具体内容展示 #}
+        <div class="bg-color-f5">
+            <div class="container">
+                <div class="clearfix">
+                    <div class="project-detail clearfix">
+                        <div class="left">
+                            <div class="title-msg clearfix">
+                                <div class="col-sm-10 clearfix">
+                                    <h1 class="project-title" title="{{ project.project_name }}">
+                                        {{ project.project_name }}
+                                        <span class="status">
+                                            {% if project.is_Active %}
+                                                接单中
+                                            {% else %}
+                                                已接单
+                                            {% endif %}
+                                        </span>
+                                    </h1>
+                                </div>
+                                <div class="col-sm-2">
+                                    <p class="collect">
+
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="owner">
+                                <div class="col-sm-12">
+                                    <p class="msg">
+                                        发包方<a target="_blank" href="{% url 'user:user' %}"><span
+                                            class="green">{{ project.user.username }}</span></a>
+                                        <span>
+                                            {{ project.post_datetime }}
+                                        </span>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="project-msg">
+                                <div class="col-sm-3">
+                                    <div class="single">
+                                        <p class="cat-name">
+                                            {{ project.kind }} </p>
+                                        <p class="cat-title">
+                                            项目类型
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="single">
+                                        <p class="cat-name">
+                                            {{ project.budget }}元
+                                        </p>
+                                        <p class="cat-title">
+                                            项目预算
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="single">
+                                        <p class="cat-name">
+                                            {{ project.cycles }}天 </p>
+                                        <p class="cat-title">
+                                            预计开发时间
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="single">
+                                        <p class="cat-name" title="{{ project.language }}">
+                                            {{ project.language }}
+                                        </p>
+                                        <p class="cat-title">
+                                            语言限制
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="project-describe">
+                                <div class="col-sm-12">
+                                    <p class="project-des-title">
+                                        项目内容描述
+                                    </p>
+                                    <div class="project-content clearfix">
+                                        <p>
+                                            {{ project.project_desc|safe }}
+                                        </p>
+                                        <div class="col-sm-12">
+                                            <p>资料下载</p>
+                                            <a href="javascript:;" class="download">
+                                                暂无资料
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {% if project.is_Active %}
+                                <div class="bid clearfix">
+                                    <div class="col-sm-12">
+                                        <div class="col-sm-9 project-show">
+                                            <span>&nbsp;</span>
+                                            <p>
+                                                竞标人数：<span class="org pd-r-20">{{ jingbiao_count }}人</span>
+                                            </p>
+                                            {% for jingbiao_user in jingbiao_users %}
+                                                <a href="{% url 'outsource:developers_detail' jingbiao_user.id %}"
+                                                   target="_blank">开发者编号: {{ jingbiao_user.id }}, {{ jingbiao_user.user }}</a>
+                                                <br>
+                                            {% endfor %}
+                                        </div>
+                                        <div style="margin-bottom: 40px"></div>
+                                        <div class="col-sm-3 bid-btn-div" style="overflow:hidden;">
+                                            <script src="/static/js/jquery-1.11.3.js"></script>
+
+                                            <form action="/confirm" method="post">
+                                                {% csrf_token %}
+                                                <input type="text" name="dev_number" style="width: 180px"
+                                                       placeholder="请输入开发者编号:" required>
+                                                <input type="text" name="project_id" style="width: 180px"
+                                                       value="{{ project.id }}" hidden>
+                                                <div style="padding-top: 20px"></div>
+                                                <input type="submit" value="确定开发者(中标人)">
+                                                <div style="padding-bottom: 20px"></div>
+                                            </form>
+
+                                            <a href="javascript:;" class="jb_btn jb-btn-ok" id="btn"> 支付定金后启动项目 </a>
+
+                                            <script>
+                                                //测试期间 支付过后的订单号不可重复使用
+                                                var order_id = '201912091234888';
+                                                //var order_id = '项目编号' + {{ project.id }};
+                                                post_data = {"order_id": order_id};
+
+                                                $(function () {
+                                                    $('#btn').click(function () {
+                                                        $.ajax({
+                                                            url: "http://127.0.0.1:8000/payment/jump",
+                                                            type: "post",
+                                                            contentType: "application/json",
+                                                            dataType: "json",
+                                                            data: JSON.stringify(post_data),
+                                                            success: function (data) {
+                                                                //获取 支付宝 链接地址
+                                                                window.location.href = data.pay_url;
+                                                                console.log('---request is ok')
+                                                            },
+                                                            error: function (errors) {
+                                                                console.log('---django is wrong!!')
+                                                            }
+                                                        })
+                                                    })
+                                                })
+                                            </script>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% else %}
+                                <div class="bid clearfix">
+                                    <div class="col-sm-12">
+                                        <div style="margin-bottom: 40px"></div>
+                                        <div class="col-sm-3 bid-btn-div" style="overflow:hidden;">
+                                            <script src="/static/js/jquery-1.11.3.js"></script>
+
+                                            <p>开发者选择完毕</p>
+
+                                            <a href="javascript:;" class="jb_btn jb-btn-ok" id="btn"> 请支付定金, 启动项目 </a>
+
+                                            <script>
+                                                //测试期间 支付过后的订单号不可重复使用
+                                                var order_id = '201912091234888';
+                                                //var order_id = '项目编号' + {{ project.id }};
+                                                post_data = {"order_id": order_id};
+
+                                                $(function () {
+                                                    $('#btn').click(function () {
+                                                        $.ajax({
+                                                            url: "http://127.0.0.1:8000/payment/jump",
+                                                            type: "post",
+                                                            contentType: "application/json",
+                                                            dataType: "json",
+                                                            data: JSON.stringify(post_data),
+                                                            success: function (data) {
+                                                                //获取 支付宝 链接地址
+                                                                window.location.href = data.pay_url;
+                                                                console.log('---request is ok')
+                                                            },
+                                                            error: function (errors) {
+                                                                console.log('---django is wrong!!')
+                                                            }
+                                                        })
+                                                    })
+                                                })
+                                            </script>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endif %}
+                        </div>
+                        <div class="right">
+                            <div class="waring-message">
+                                <div class="message">
+                                    <div class="reminder">警告：线上交易可以保障您的资金安全，私自线下交易可能带来安全风险。</div>
+                                </div>
+                            </div>
+                            <div class="contact-service">
+                                <p class="contact-title">
+                                    如您有任何疑问，请咨询客服
+                                </p>
+                                <p class="qq1">
+                                    <span class="services_kefu">客服QQ:</span>
+                                    <a target="_blank"
+                                       href="http://wpa.qq.com/msgrd?v=3&uin=2951121599&site=qq&menu=yes"><img
+                                            border="0" src="http://wpa.qq.com/pa?p=2:2951121599:51" alt="点击这里给我发消息"
+                                            title="点击这里给我发消息"/></a>
+                                </p>
+                            </div>
+                            <div class="service-email">
+                                <p class="service-email-title">
+                                    客服邮箱
+                                </p>
+                                <p class="email">
+                                    2951121599@qq.com
+                                </p>
+                            </div>
+                            <div class="service-phone">
+                                <p class="service-phone-title">
+                                    客服电话
+                                </p>
+                                <p class="phone">
+                                    15733927279
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block downjs %}
+    <!-- 加载js -->
+    <script src="{% static 'js/index.js' %}"></script>
+    <script>
+        //调用获取焦点的函数
+        getFocus($("#l2 a"))
+    </script>
+{% endblock %}

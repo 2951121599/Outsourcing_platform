@@ -1,0 +1,185 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block title %}
+    开发者详情页
+{% endblock %}
+{% block css %}
+
+    <link rel='stylesheet' type='text/css' href='{% static 'css/developers_detail/font-awesome.min.css' %}'/>
+    <link rel='stylesheet' type='text/css' href='{% static 'css/developers_detail/bootstrap.min.css' %}'/>
+    <link rel='stylesheet' type='text/css' href='{% static 'css/developers_detail/jquery.ui.customer.css' %}'/>
+    <link rel='stylesheet' type='text/css' href='{% static 'css/developers_detail/web.css' %}'/>
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="https://cdn.bootcss.com/bootstrap-validator/0.5.3/css/bootstrapValidator.min.css" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+    <style>
+        .tabs-title {
+            font-size: 20px;
+            font-weight: bold;
+            padding: 10px 15px;
+            border-bottom: 1px solid #ebebeb;
+            margin-top: 20px;
+        }
+    </style>
+
+    <div class="container user">
+        <div class="left">
+            <i class="pic">
+                <img src='{% static 'assets/img/team/member1.png' %}'
+                     title='默认头像' width="120" height="120"/>
+            </i>
+            <p>
+                <span class="name">{{ developer.name }}</span>
+                <span>全职程序员</span>
+            </p>
+            <p class="th">
+                <span><b>{{ confirm_count }}</b>承接项目数</span>
+                <span><em>{{ credit_score }}</em>信誉积分</span>
+                <span><em>4.2</em>评分</span>
+            </p>
+
+            <p>
+                <span>邮箱</span>
+                <span class="green">{{ developer.email }}</span>
+            </p>
+
+            <p>
+                <span>手机号</span>
+                <span class="green">{{ developer.phone }}</span>
+            </p>
+
+            <p>
+                <span>工作状态</span>
+                <span class="green">{{ developer.work_status }}</span>
+            </p>
+
+            <p>
+                <span>职业方向</span>
+                <span class="green">
+                    {{ developer.work_direction }}
+                </span>
+            </p>
+
+            <p>
+                <span>语言方向</span>
+                <span class="green">{{ developer.language_direction }}</span>
+            </p>
+
+            <p>
+                <span>价格区间</span>
+                <span class="green">{{ developer.price_min }} - {{ developer.price_max }} 元 </span>
+            </p>
+
+            <p>
+                <span>个人介绍</span>
+                <span class="green">
+                    {{ developer.person_introduce }}
+                </span>
+            </p>
+
+            <p>
+                <span>工作经历</span>
+                <span class="green">
+                    {{ developer.work_experience }}
+                </span>
+            </p>
+
+            <p>
+                <span>开发作品</span>
+                <span class="green">
+                    {{ developer.project_works }}
+                </span>
+            </p>
+        </div>
+    </div>
+
+    <div class="container det">
+        <div class="row">
+            <div class="col-sm-12 col-md-12">
+                <div class="left">
+                    <div class="Tabs" id="Tabs">
+                        <div class="tabs-title">参与的外包项目</div>
+                        <div class="TabContent TabContent1">
+                            {% if confirm_projects %}
+                                {% for develop_project in projects_list %}
+                                    <a href="/projects/detail/{{ develop_project.id }}">
+
+                                        <p style="margin:20px 0 10px 35px">{{ develop_project }}</p>
+                                    </a>
+
+                                {% endfor %}
+
+
+                            {% else %}
+                                <p style="margin:20px 0 10px 35px">您还没有在本网站开发过项目 !</p>
+                            {% endif %}
+
+                        </div>
+                        <div class="tabs-title">综合评价</div>
+                        <div class="TabContent TabContent2">
+                            <div class="star">
+                                <p>软件外包综合评分：</p>
+                                <div class="half">
+                                    <span>专业程度</span>
+                                    <span><i class="glyphicon glyphicon-star green"></i><i
+                                            class="glyphicon glyphicon-star green"></i><i
+                                            class="glyphicon glyphicon-star green"></i><i
+                                            class="glyphicon glyphicon-star green"></i><i
+                                            class="glyphicon glyphicon-star"><em
+                                            style="left: 0;top: 0;width: 17%;height: 100%;color: #2eb135;overflow:hidden;position: absolute;"
+                                            class="glyphicon glyphicon-star"></em></i></span>
+                                    <span>4.2</span>
+                                </div>
+                                <div class="half">
+                                    <span>服务态度</span>
+                                    <span><i class="glyphicon glyphicon-star green"></i><i
+                                            class="glyphicon glyphicon-star green"></i><i
+                                            class="glyphicon glyphicon-star green"></i><i
+                                            class="glyphicon glyphicon-star green"></i><i
+                                            class="glyphicon glyphicon-star"><em
+                                            style="left: 0;top: 0;width: 17%;height: 100%;color: #2eb135;overflow:hidden;position: absolute;"
+                                            class="glyphicon glyphicon-star"></em></i></span>
+                                    <span>4.2</span>
+                                </div>
+                                <div class="half">
+                                    <span>完成质量</span>
+                                    <span><i class="glyphicon glyphicon-star green"></i><i
+                                            class="glyphicon glyphicon-star green"></i><i
+                                            class="glyphicon glyphicon-star green"></i><i
+                                            class="glyphicon glyphicon-star green"></i><i
+                                            class="glyphicon glyphicon-star"><em
+                                            style="left: 0;top: 0;width: 17%;height: 100%;color: #2eb135;overflow:hidden;position: absolute;"
+                                            class="glyphicon glyphicon-star"></em></i></span>
+                                    <span>4.2</span>
+                                </div>
+                                <div class="half">
+                                    <span>反馈速度</span>
+                                    <span><i class="glyphicon glyphicon-star green"></i><i
+                                            class="glyphicon glyphicon-star green"></i><i
+                                            class="glyphicon glyphicon-star green"></i><i
+                                            class="glyphicon glyphicon-star green"></i><i
+                                            class="glyphicon glyphicon-star"><em
+                                            style="left: 0;top: 0;width: 17%;height: 100%;color: #2eb135;overflow:hidden;position: absolute;"
+                                            class="glyphicon glyphicon-star"></em></i></span>
+                                    <span>4.2</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block downjs %}
+    <!-- 加载js -->
+    <script src="{% static 'js/index.js' %}"></script>
+    <script>
+        //调用获取焦点的函数
+        getFocus($("#l3 a"))
+    </script>
+{% endblock %}
+
