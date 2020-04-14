@@ -122,7 +122,7 @@
                             <div class="owner">
                                 <div class="col-sm-12">
                                     <p class="msg">
-                                        发包方<a target="_blank" href="{% url 'user:user' %}"><span
+                                        发包方<a target="_blank" href="{% url 'outsource:publisher_detail' project.user_id %}"><span
                                             class="green">{{ project.user.username }}</span></a>
                                         <span>
                                             {{ project.post_datetime }}

@@ -1,0 +1,128 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block title %}
+    发包方详情页
+{% endblock %}
+{% block css %}
+
+    <link rel='stylesheet' type='text/css' href='{% static 'css/developers_detail/font-awesome.min.css' %}'/>
+    <link rel='stylesheet' type='text/css' href='{% static 'css/developers_detail/bootstrap.min.css' %}'/>
+    <link rel='stylesheet' type='text/css' href='{% static 'css/developers_detail/jquery.ui.customer.css' %}'/>
+    <link rel='stylesheet' type='text/css' href='{% static 'css/developers_detail/web.css' %}'/>
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="https://cdn.bootcss.com/bootstrap-validator/0.5.3/css/bootstrapValidator.min.css" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+    <style>
+        .tabs-title {
+            font-size: 20px;
+            font-weight: bold;
+            padding: 10px 15px;
+            border-bottom: 1px solid #ebebeb;
+            margin-top: 20px;
+        }
+    </style>
+
+    <div class="container user">
+        <div class="left">
+            <i class="pic">
+                <img src='{% static 'assets/img/team/member2.png' %}'
+                     title='默认头像' width="120" height="120"/>
+            </i>
+            <p>
+                <span class="name">{{ user.username }}</span>
+                <span>发包方</span>
+            </p>
+
+            <p>
+                <span>邮箱</span>
+                <span class="green">{{ user.email }}</span>
+            </p>
+
+            <p>
+                <span>手机号</span>
+                <span class="green">
+                    {% if user.phone %}
+                        {{ user.phone }}
+                    {% else %}
+                        暂无
+                    {% endif %}
+                </span>
+            </p>
+
+            <p>
+                <span>昵称</span>
+                <span class="green">
+                    {% if user.nickname %}
+                        {{ user.nickname }}
+                    {% else %}
+                        暂无
+                    {% endif %}
+                </span>
+            </p>
+
+            <p>
+                <span>真实姓名</span>
+                <span class="green">
+                    {% if user.name %}
+                        {{ user.name }}
+                    {% else %}
+                        暂无
+                    {% endif %}
+                </span>
+            </p>
+
+
+            <p>
+                <span>个人描述</span>
+                <span class="green">
+                    {% if user.description %}
+                        {{ user.description }}
+                    {% else %}
+                        暂无
+                    {% endif %}
+                </span>
+            </p>
+
+        </div>
+    </div>
+
+    <div class="container det">
+        <div class="row">
+            <div class="col-sm-12 col-md-12">
+                <div class="left">
+                    <div class="Tabs" id="Tabs">
+                        <div class="tabs-title">发布的外包项目</div>
+                        <div class="TabContent TabContent1">
+                            {% if publisher_projects %}
+                                {% for publisher_project in publisher_projects %}
+                                    <a href="/projects/detail/{{ publisher_project.id }}">
+
+                                        <p style="margin:20px 0 10px 35px">{{ publisher_project }}</p>
+                                    </a>
+
+                                {% endfor %}
+
+
+                            {% else %}
+                                <p style="margin:20px 0 10px 35px">您还没有在本网站发布过项目 !</p>
+                            {% endif %}
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block downjs %}
+    <!-- 加载js -->
+    <script src="{% static 'js/index.js' %}"></script>
+    <script>
+        //调用获取焦点的函数
+        getFocus($("#l2 a"))
+    </script>
+{% endblock %}
+

@@ -122,6 +122,22 @@ def projects_detail(request, projects_id):
     return render(request, 'outsource/projects_detail.html', locals())
 
 
+# 发包方详情页
+def publisher_detail(request, publisher_id):
+    publisher_id = int(publisher_id)
+    print("publisher_id------------", publisher_id)
+    try:
+        # 获取发包方信息
+        user = User.objects.get(id=publisher_id)
+        # 获取发包方发布项目的信息
+        publisher_projects = Projects.objects.filter(user_id=publisher_id)
+        print("publisher_projects------------", publisher_projects)
+        return render(request, 'outsource/publisherer_detail.html', locals())
+    except Exception as e:
+        print('报错信息:', e)
+        return redirect(reverse("outsource:projects"))
+
+
 # 开发者列表页
 def developers(request):
     if request.method == 'GET':

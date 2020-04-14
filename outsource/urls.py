@@ -24,6 +24,10 @@ urlpatterns = [
     # http://127.0.0.1:8000/projects/detail/projects_id
     url(r'^projects/detail/(?P<projects_id>\d+)$', views.projects_detail, name='detail'),
 
+    # 发包方详情页
+    # http://127.0.0.1:8000/publisher/detail/publisher_id
+    url(r'^publisher/detail/(\d+)$', views.publisher_detail, name='publisher_detail'),
+
     # 开发者列表页
     # http://127.0.0.1:8000/developers
     url(r'^developers$', views.developers, name='developers'),
