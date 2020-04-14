@@ -2,11 +2,9 @@ certifi==2019.11.28
 cffi==1.13.2
 chardet==3.0.4
 cryptography==2.8
-Django==1.11.8
 django-ckeditor==5.4.0
 django-js-asset==1.2.2
 idna==2.8
-Pillow==6.2.1
 pycparser==2.19
 pycryptodomex==3.9.4
 PyMySQL==0.9.3
