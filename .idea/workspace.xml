@@ -2,30 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="84d2eb85-f7ff-4016-a402-d2464172f1e2" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/outsource/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/outsource/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/payment/templates/payment/pay.html" beforeDir="false" afterPath="$PROJECT_DIR$/payment/templates/payment/pay.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/payment/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/payment/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/images/1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/images/help/0c545201-b1d5-427e-a7cc-5a69f562.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/images/help/4096abd1-a9e3-4f0d-ba0e-44d06e0e.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/images/help/518388bd-d24a-47ec-9359-bbd2fd70.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/images/help/5611906b-f6e6-4bb8-ad98-fbce49ae.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/images/help/85ec9372-d7ef-4595-a077-2ef8b052.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/images/help/ae28cd21-b680-4228-bc7c-e9a364a0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/images/help/d19909cc-ed2b-4c8b-9d3b-2087426b.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/images/help/dbfe9267-b9b9-46bb-8d85-8c18b489.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/images/projects/active_btn.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/images/projects/bangzhu.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/images/projects/bank_abc.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/images/projects/bank_cbc.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/images/projects/bank_ccb.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/images/projects/bg_jb3.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/images/projects/bg_jhcz.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/images/star.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/media/img/baidu.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/media/img/csdn-logo_.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/user/templates/user/collection.html" beforeDir="false" afterPath="$PROJECT_DIR$/user/templates/user/collection.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/outsource/templates/outsource/guide1.html" beforeDir="false" afterPath="$PROJECT_DIR$/outsource/templates/outsource/guide1.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/outsource/templates/outsource/guide2.html" beforeDir="false" afterPath="$PROJECT_DIR$/outsource/templates/outsource/guide2.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/outsource/templates/outsource/help.html" beforeDir="false" afterPath="$PROJECT_DIR$/outsource/templates/outsource/help.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/css/help/main.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/help/main.min.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/templates/user/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/user/templates/user/login.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/templates/user/register.html" beforeDir="false" afterPath="$PROJECT_DIR$/user/templates/user/register.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -53,103 +35,31 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Outsourcing_platform/settings.py">
+        <entry file="file://$PROJECT_DIR$/user/templates/user/login.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3151">
-              <caret line="137" column="34" selection-start-line="137" selection-start-column="34" selection-end-line="137" selection-end-column="34" />
+            <state relative-caret-position="342">
+              <caret line="192" column="26" lean-forward="true" selection-start-line="192" selection-start-column="26" selection-end-line="192" selection-end-column="26" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/payment/urls.py">
+        <entry file="file://$PROJECT_DIR$/user/templates/user/register.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="161">
-              <caret line="8" column="1" selection-start-line="8" selection-start-column="1" selection-end-line="8" selection-end-column="1" />
-              <folding>
-                <element signature="e#0#32#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/payment/views.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="253">
-              <caret line="21" column="43" selection-start-line="21" selection-start-column="43" selection-end-line="21" selection-end-column="43" />
-              <folding>
-                <element signature="e#0#11#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/payment/templates/payment/pay.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1541">
-              <caret line="67" column="60" selection-start-line="67" selection-start-column="26" selection-end-line="67" selection-end-column="60" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/outsource/urls.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="115">
-              <caret line="9" column="24" selection-start-line="9" selection-start-column="24" selection-end-line="9" selection-end-column="24" />
-              <folding>
-                <element signature="e#0#32#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/outsource/views.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="4209">
-              <caret line="190" selection-start-line="190" selection-end-line="190" />
-              <folding>
-                <element signature="e#0#43#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/outsource/templates/outsource/projects_detail.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1748">
-              <caret line="76" selection-start-line="76" selection-end-line="76" />
+            <state relative-caret-position="-149">
+              <caret line="175" column="37" lean-forward="true" selection-start-line="175" selection-start-column="37" selection-end-line="175" selection-end-column="37" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/outsource/templates/outsource/projects_detail2.html">
+        <entry file="file://$PROJECT_DIR$/user/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="23">
-              <caret line="301" column="105" selection-start-line="301" selection-start-column="103" selection-end-line="301" selection-end-column="105" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/static/js/index.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1012">
-              <caret line="44" selection-start-line="44" selection-end-line="52" selection-end-column="1" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/outsource/templates/outsource/index.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="621">
-              <caret line="27" column="28" selection-start-line="27" selection-start-column="28" selection-end-line="27" selection-end-column="28" />
+            <state relative-caret-position="736">
+              <caret line="32" column="79" selection-start-line="32" selection-start-column="79" selection-end-line="32" selection-end-column="79" />
+              <folding>
+                <element signature="e#0#28#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -211,9 +121,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/static/css/projects/web-20190904.css" />
-        <option value="$PROJECT_DIR$/outsource/templates/outsource/index.html" />
-        <option value="$PROJECT_DIR$/circle/apps.py" />
         <option value="$PROJECT_DIR$/circle/__init__.py" />
         <option value="$PROJECT_DIR$/trade/__init__.py" />
         <option value="$PROJECT_DIR$/trade/apps.py" />
@@ -230,13 +137,10 @@
         <option value="$PROJECT_DIR$/functions/pdf_download.py" />
         <option value="$PROJECT_DIR$/Outsourcing_platform/urls.py" />
         <option value="$PROJECT_DIR$/outsource/urls.py" />
-        <option value="$PROJECT_DIR$/outsource/templates/outsource/guide1.html" />
-        <option value="$PROJECT_DIR$/outsource/templates/outsource/guide2.html" />
         <option value="$PROJECT_DIR$/outsource/models.py" />
         <option value="$PROJECT_DIR$/outsource/templates/outsource/choose_developer.html" />
         <option value="$PROJECT_DIR$/static/css/developers_detail/web.css" />
         <option value="$PROJECT_DIR$/user/templates/user/fsd.html" />
-        <option value="$PROJECT_DIR$/user/templates/user/login.html" />
         <option value="$PROJECT_DIR$/outsource/templates/outsource/reg_dev.html" />
         <option value="$PROJECT_DIR$/outsource/templates/outsource/developers.html" />
         <option value="$PROJECT_DIR$/outsource/templates/outsource/developers_detail.html" />
@@ -262,6 +166,12 @@
         <option value="$PROJECT_DIR$/user/templates/user/collection.html" />
         <option value="$PROJECT_DIR$/payment/views.py" />
         <option value="$PROJECT_DIR$/payment/templates/payment/pay.html" />
+        <option value="$PROJECT_DIR$/outsource/templates/outsource/guide1.html" />
+        <option value="$PROJECT_DIR$/outsource/templates/outsource/help.html" />
+        <option value="$PROJECT_DIR$/outsource/templates/outsource/guide2.html" />
+        <option value="$PROJECT_DIR$/static/css/help/main.min.css" />
+        <option value="$PROJECT_DIR$/user/templates/user/login.html" />
+        <option value="$PROJECT_DIR$/user/templates/user/register.html" />
       </list>
     </option>
   </component>
@@ -307,11 +217,6 @@
               <item name="Outsourcing-platform" type="b2602c69:ProjectViewProjectNode" />
               <item name="Outsourcing-platform" type="462c0819:PsiDirectoryNode" />
               <item name="Outsourcing_platform" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Outsourcing-platform" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Outsourcing-platform" type="462c0819:PsiDirectoryNode" />
-              <item name="payment" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -632,12 +537,12 @@
       <workItem from="1586159561771" duration="1554000" />
       <workItem from="1586398653308" duration="621000" />
       <workItem from="1586422224821" duration="576000" />
-      <workItem from="1586865061435" duration="649000" />
+      <workItem from="1586865061435" duration="4994000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="174129000" />
+    <option name="totallyTimeSpent" value="178474000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -650,6 +555,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.16353887" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -663,7 +569,7 @@
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.50402147" side_tool="true" weight="0.3286119" />
       <window_info anchor="bottom" id="Python Console" order="8" />
-      <window_info anchor="bottom" id="Terminal" order="9" sideWeight="0.49597856" visible="true" weight="0.21388102" />
+      <window_info anchor="bottom" id="Terminal" order="9" sideWeight="0.49597856" weight="0.38668555" />
       <window_info anchor="bottom" id="Version Control" order="10" show_stripe_button="false" />
       <window_info anchor="bottom" id="Docker" order="11" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="12" />
@@ -745,35 +651,6 @@
     <SUITE FILE_PATH="coverage/Outsourcing_platform$views.coverage" NAME="views Coverage Results" MODIFIED="1575543918264" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/outsource" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/user/templates/user/fsd.html" />
-    <entry file="file://$PROJECT_DIR$/outsource/templates/outsource/reg_dev.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1479">
-          <caret line="99" column="56" selection-start-line="99" selection-start-column="52" selection-end-line="99" selection-end-column="56" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/outsource/templates/outsource/developers.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="426">
-          <caret line="60" column="47" selection-start-line="60" selection-start-column="47" selection-end-line="60" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/user/templates/user/login.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="870">
-          <caret line="171" column="13" selection-start-line="171" selection-start-column="13" selection-end-line="171" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/circle/templates/circle/user/home.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1519">
-          <caret line="67" column="51" selection-start-line="67" selection-start-column="51" selection-end-line="67" selection-end-column="51" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/circle_base.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="999">
@@ -1005,16 +882,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/user/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="713">
-          <caret line="32" column="79" selection-start-line="32" selection-start-column="79" selection-end-line="32" selection-end-column="79" />
-          <folding>
-            <element signature="e#0#28#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/user/templates/user/collection.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1633">
@@ -1032,23 +899,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/outsource/templates/outsource/help.html">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/Outsourcing_platform/settings.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3151">
           <caret line="137" column="34" selection-start-line="137" selection-start-column="34" selection-end-line="137" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/payment/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="161">
-          <caret line="8" column="1" selection-start-line="8" selection-start-column="1" selection-end-line="8" selection-end-column="1" />
-          <folding>
-            <element signature="e#0#32#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1112,8 +966,70 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/outsource/templates/outsource/projects_detail2.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="23">
+        <state relative-caret-position="1472">
           <caret line="301" column="105" selection-start-line="301" selection-start-column="103" selection-end-line="301" selection-end-column="105" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/payment/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="184">
+          <caret line="8" column="1" selection-start-line="8" selection-start-column="1" selection-end-line="8" selection-end-column="1" />
+          <folding>
+            <element signature="e#0#32#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/outsource/templates/outsource/help.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="506">
+          <caret line="49" column="20" selection-start-line="49" selection-start-column="20" selection-end-line="49" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/css/help/main.min.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="256" column="8" lean-forward="true" selection-start-line="256" selection-start-column="8" selection-end-line="256" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/outsource/templates/outsource/guide2.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="138">
+          <caret line="6" column="72" lean-forward="true" selection-start-line="6" selection-start-column="72" selection-end-line="6" selection-end-column="72" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/outsource/templates/outsource/guide1.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="207">
+          <caret line="12" column="39" selection-start-line="12" selection-start-column="39" selection-end-line="12" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/user/templates/user/login.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="342">
+          <caret line="192" column="26" lean-forward="true" selection-start-line="192" selection-start-column="26" selection-end-line="192" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/user/templates/user/register.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-149">
+          <caret line="175" column="37" lean-forward="true" selection-start-line="175" selection-start-column="37" selection-end-line="175" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/user/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="736">
+          <caret line="32" column="79" selection-start-line="32" selection-start-column="79" selection-end-line="32" selection-end-column="79" />
+          <folding>
+            <element signature="e#0#28#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
