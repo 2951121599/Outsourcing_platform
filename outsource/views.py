@@ -1,15 +1,11 @@
-import random
-from itertools import chain
-
 from django.core.paginator import Paginator
 from django.http import HttpResponse, StreamingHttpResponse, JsonResponse
 from django.shortcuts import render, redirect
-from django.views.decorators.csrf import csrf_exempt
-import os
-
 from outsource.models import *
 from functions.decorators import login_required
 from django.urls import reverse
+from itertools import chain
+import os
 
 
 # 主页

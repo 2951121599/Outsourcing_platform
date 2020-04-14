@@ -47,7 +47,7 @@ class JumpView(View):
         # notify_url  用户支付完毕后，支付宝将最终结果以POST形式 发至 商户 后端； 上线请将此地址更换为公网 ip
         order_string = alipay.api_alipay_trade_page_pay(
             out_trade_no=order_id,
-            total_amount=20,
+            total_amount=23.00,
             subject=order_id,
             return_url="http://127.0.0.1:8000/payment/result",
             notify_url="http://127.0.0.1:8000/payment/result"
