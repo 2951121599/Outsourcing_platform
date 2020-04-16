@@ -38,7 +38,7 @@
             <p class="th">
                 <span><b>{{ confirm_count }}</b>承接项目数</span>
                 <span><em>{{ credit_score }}</em>信誉积分</span>
-                <span><em>4.2</em>评分</span>
+                <span><em>{{ score }}</em>评分</span>
             </p>
 
             <p>
@@ -106,13 +106,9 @@
                             {% if confirm_projects %}
                                 {% for develop_project in projects_list %}
                                     <a href="/projects/detail/{{ develop_project.id }}">
-
                                         <p style="margin:20px 0 10px 35px">{{ develop_project }}</p>
                                     </a>
-
                                 {% endfor %}
-
-
                             {% else %}
                                 <p style="margin:20px 0 10px 35px">您还没有在本网站开发过项目 !</p>
                             {% endif %}
@@ -124,47 +120,206 @@
                                 <p>软件外包综合评分：</p>
                                 <div class="half">
                                     <span>专业程度</span>
-                                    <span><i class="glyphicon glyphicon-star green"></i><i
-                                            class="glyphicon glyphicon-star green"></i><i
-                                            class="glyphicon glyphicon-star green"></i><i
-                                            class="glyphicon glyphicon-star green"></i><i
-                                            class="glyphicon glyphicon-star"><em
-                                            style="left: 0;top: 0;width: 17%;height: 100%;color: #2eb135;overflow:hidden;position: absolute;"
-                                            class="glyphicon glyphicon-star"></em></i></span>
-                                    <span>4.2</span>
+                                    <span>
+                                        {% ifequal score_int 5 %}
+                                            <i class="glyphicon glyphicon-star green"></i>
+                                            <i class="glyphicon glyphicon-star green"></i>
+                                            <i class="glyphicon glyphicon-star green"></i>
+                                            <i class="glyphicon glyphicon-star green"></i>
+                                            <i class="glyphicon glyphicon-star green"></i>
+                                        {% endifequal %}
+                                        {% ifequal score_int 4 %}
+                                            <i class="glyphicon glyphicon-star green"></i>
+                                            <i class="glyphicon glyphicon-star green"></i>
+                                            <i class="glyphicon glyphicon-star green"></i>
+                                            <i class="glyphicon glyphicon-star green"></i>
+                                            <i class="glyphicon glyphicon-star"></i>
+                                        {% endifequal %}
+                                        {% ifequal score_int 3 %}
+                                            <i class="glyphicon glyphicon-star green"></i>
+                                            <i class="glyphicon glyphicon-star green"></i>
+                                            <i class="glyphicon glyphicon-star green"></i>
+                                            <i class="glyphicon glyphicon-star"></i>
+                                            <i class="glyphicon glyphicon-star"></i>
+                                        {% endifequal %}
+                                        {% ifequal score_int 2 %}
+                                            <i class="glyphicon glyphicon-star green"></i>
+                                            <i class="glyphicon glyphicon-star green"></i>
+                                            <i class="glyphicon glyphicon-star"></i>
+                                            <i class="glyphicon glyphicon-star"></i>
+                                            <i class="glyphicon glyphicon-star"></i>
+                                        {% endifequal %}
+                                        {% ifequal score_int 1 %}
+                                            <i class="glyphicon glyphicon-star green"></i>
+                                            <i class="glyphicon glyphicon-star"></i>
+                                            <i class="glyphicon glyphicon-star"></i>
+                                            <i class="glyphicon glyphicon-star"></i>
+                                            <i class="glyphicon glyphicon-star"></i>
+                                        {% endifequal %}
+                                        {% ifequal score_int 0 %}
+                                            <i class="glyphicon glyphicon-star"></i>
+                                            <i class="glyphicon glyphicon-star"></i>
+                                            <i class="glyphicon glyphicon-star"></i>
+                                            <i class="glyphicon glyphicon-star"></i>
+                                            <i class="glyphicon glyphicon-star"></i>
+                                        {% endifequal %}
+
+                                    </span>
+                                    <span>{{ score }}</span>
                                 </div>
                                 <div class="half">
                                     <span>服务态度</span>
-                                    <span><i class="glyphicon glyphicon-star green"></i><i
-                                            class="glyphicon glyphicon-star green"></i><i
-                                            class="glyphicon glyphicon-star green"></i><i
-                                            class="glyphicon glyphicon-star green"></i><i
-                                            class="glyphicon glyphicon-star"><em
-                                            style="left: 0;top: 0;width: 17%;height: 100%;color: #2eb135;overflow:hidden;position: absolute;"
-                                            class="glyphicon glyphicon-star"></em></i></span>
-                                    <span>4.2</span>
+                                    <span>
+                                        {% ifequal score_int 5 %}
+                                            <i class="glyphicon glyphicon-star green"></i>
+                                            <i class="glyphicon glyphicon-star green"></i>
+                                            <i class="glyphicon glyphicon-star green"></i>
+                                            <i class="glyphicon glyphicon-star green"></i>
+                                            <i class="glyphicon glyphicon-star green"></i>
+                                        {% endifequal %}
+                                        {% ifequal score_int 4 %}
+                                            <i class="glyphicon glyphicon-star green"></i>
+                                            <i class="glyphicon glyphicon-star green"></i>
+                                            <i class="glyphicon glyphicon-star green"></i>
+                                            <i class="glyphicon glyphicon-star green"></i>
+                                            <i class="glyphicon glyphicon-star"></i>
+                                        {% endifequal %}
+                                        {% ifequal score_int 3 %}
+                                            <i class="glyphicon glyphicon-star green"></i>
+                                            <i class="glyphicon glyphicon-star green"></i>
+                                            <i class="glyphicon glyphicon-star green"></i>
+                                            <i class="glyphicon glyphicon-star"></i>
+                                            <i class="glyphicon glyphicon-star"></i>
+                                        {% endifequal %}
+                                        {% ifequal score_int 2 %}
+                                            <i class="glyphicon glyphicon-star green"></i>
+                                            <i class="glyphicon glyphicon-star green"></i>
+                                            <i class="glyphicon glyphicon-star"></i>
+                                            <i class="glyphicon glyphicon-star"></i>
+                                            <i class="glyphicon glyphicon-star"></i>
+                                        {% endifequal %}
+                                        {% ifequal score_int 1 %}
+                                            <i class="glyphicon glyphicon-star green"></i>
+                                            <i class="glyphicon glyphicon-star"></i>
+                                            <i class="glyphicon glyphicon-star"></i>
+                                            <i class="glyphicon glyphicon-star"></i>
+                                            <i class="glyphicon glyphicon-star"></i>
+                                        {% endifequal %}
+                                        {% ifequal score_int 0 %}
+                                            <i class="glyphicon glyphicon-star"></i>
+                                            <i class="glyphicon glyphicon-star"></i>
+                                            <i class="glyphicon glyphicon-star"></i>
+                                            <i class="glyphicon glyphicon-star"></i>
+                                            <i class="glyphicon glyphicon-star"></i>
+                                        {% endifequal %}
+
+                                    </span>
+                                    <span>{{ score }}</span>
                                 </div>
                                 <div class="half">
                                     <span>完成质量</span>
-                                    <span><i class="glyphicon glyphicon-star green"></i><i
-                                            class="glyphicon glyphicon-star green"></i><i
-                                            class="glyphicon glyphicon-star green"></i><i
-                                            class="glyphicon glyphicon-star green"></i><i
-                                            class="glyphicon glyphicon-star"><em
-                                            style="left: 0;top: 0;width: 17%;height: 100%;color: #2eb135;overflow:hidden;position: absolute;"
-                                            class="glyphicon glyphicon-star"></em></i></span>
-                                    <span>4.2</span>
+                                    <span>
+                                        {% ifequal score_int 5 %}
+                                            <i class="glyphicon glyphicon-star green"></i>
+                                            <i class="glyphicon glyphicon-star green"></i>
+                                            <i class="glyphicon glyphicon-star green"></i>
+                                            <i class="glyphicon glyphicon-star green"></i>
+                                            <i class="glyphicon glyphicon-star green"></i>
+                                        {% endifequal %}
+                                        {% ifequal score_int 4 %}
+                                            <i class="glyphicon glyphicon-star green"></i>
+                                            <i class="glyphicon glyphicon-star green"></i>
+                                            <i class="glyphicon glyphicon-star green"></i>
+                                            <i class="glyphicon glyphicon-star green"></i>
+                                            <i class="glyphicon glyphicon-star"></i>
+                                        {% endifequal %}
+                                        {% ifequal score_int 3 %}
+                                            <i class="glyphicon glyphicon-star green"></i>
+                                            <i class="glyphicon glyphicon-star green"></i>
+                                            <i class="glyphicon glyphicon-star green"></i>
+                                            <i class="glyphicon glyphicon-star"></i>
+                                            <i class="glyphicon glyphicon-star"></i>
+                                        {% endifequal %}
+                                        {% ifequal score_int 2 %}
+                                            <i class="glyphicon glyphicon-star green"></i>
+                                            <i class="glyphicon glyphicon-star green"></i>
+                                            <i class="glyphicon glyphicon-star"></i>
+                                            <i class="glyphicon glyphicon-star"></i>
+                                            <i class="glyphicon glyphicon-star"></i>
+                                        {% endifequal %}
+                                        {% ifequal score_int 1 %}
+                                            <i class="glyphicon glyphicon-star green"></i>
+                                            <i class="glyphicon glyphicon-star"></i>
+                                            <i class="glyphicon glyphicon-star"></i>
+                                            <i class="glyphicon glyphicon-star"></i>
+                                            <i class="glyphicon glyphicon-star"></i>
+                                        {% endifequal %}
+                                        {% ifequal score_int 0 %}
+                                            <i class="glyphicon glyphicon-star"></i>
+                                            <i class="glyphicon glyphicon-star"></i>
+                                            <i class="glyphicon glyphicon-star"></i>
+                                            <i class="glyphicon glyphicon-star"></i>
+                                            <i class="glyphicon glyphicon-star"></i>
+                                        {% endifequal %}
+
+                                    </span>
+                                    <span>{{ score }}</span>
                                 </div>
                                 <div class="half">
                                     <span>反馈速度</span>
-                                    <span><i class="glyphicon glyphicon-star green"></i><i
-                                            class="glyphicon glyphicon-star green"></i><i
-                                            class="glyphicon glyphicon-star green"></i><i
-                                            class="glyphicon glyphicon-star green"></i><i
-                                            class="glyphicon glyphicon-star"><em
-                                            style="left: 0;top: 0;width: 17%;height: 100%;color: #2eb135;overflow:hidden;position: absolute;"
-                                            class="glyphicon glyphicon-star"></em></i></span>
-                                    <span>4.2</span>
+                                    {#                                    <span><i class="glyphicon glyphicon-star green"></i><i#}
+                                    {#                                            class="glyphicon glyphicon-star green"></i><i#}
+                                    {#                                            class="glyphicon glyphicon-star green"></i><i#}
+                                    {#                                            class="glyphicon glyphicon-star green"></i><i#}
+                                    {#                                            class="glyphicon glyphicon-star"><em#}
+                                    {#                                            style="left: 0;top: 0;width: 17%;height: 100%;color: #2eb135;overflow:hidden;position: absolute;"#}
+                                    {#                                            class="glyphicon glyphicon-star"></em></i></span>#}
+                                    <span>
+                                        {% ifequal score_int 5 %}
+                                            <i class="glyphicon glyphicon-star green"></i>
+                                            <i class="glyphicon glyphicon-star green"></i>
+                                            <i class="glyphicon glyphicon-star green"></i>
+                                            <i class="glyphicon glyphicon-star green"></i>
+                                            <i class="glyphicon glyphicon-star green"></i>
+                                        {% endifequal %}
+                                        {% ifequal score_int 4 %}
+                                            <i class="glyphicon glyphicon-star green"></i>
+                                            <i class="glyphicon glyphicon-star green"></i>
+                                            <i class="glyphicon glyphicon-star green"></i>
+                                            <i class="glyphicon glyphicon-star green"></i>
+                                            <i class="glyphicon glyphicon-star"></i>
+                                        {% endifequal %}
+                                        {% ifequal score_int 3 %}
+                                            <i class="glyphicon glyphicon-star green"></i>
+                                            <i class="glyphicon glyphicon-star green"></i>
+                                            <i class="glyphicon glyphicon-star green"></i>
+                                            <i class="glyphicon glyphicon-star"></i>
+                                            <i class="glyphicon glyphicon-star"></i>
+                                        {% endifequal %}
+                                        {% ifequal score_int 2 %}
+                                            <i class="glyphicon glyphicon-star green"></i>
+                                            <i class="glyphicon glyphicon-star green"></i>
+                                            <i class="glyphicon glyphicon-star"></i>
+                                            <i class="glyphicon glyphicon-star"></i>
+                                            <i class="glyphicon glyphicon-star"></i>
+                                        {% endifequal %}
+                                        {% ifequal score_int 1 %}
+                                            <i class="glyphicon glyphicon-star green"></i>
+                                            <i class="glyphicon glyphicon-star"></i>
+                                            <i class="glyphicon glyphicon-star"></i>
+                                            <i class="glyphicon glyphicon-star"></i>
+                                            <i class="glyphicon glyphicon-star"></i>
+                                        {% endifequal %}
+                                        {% ifequal score_int 0 %}
+                                            <i class="glyphicon glyphicon-star"></i>
+                                            <i class="glyphicon glyphicon-star"></i>
+                                            <i class="glyphicon glyphicon-star"></i>
+                                            <i class="glyphicon glyphicon-star"></i>
+                                            <i class="glyphicon glyphicon-star"></i>
+                                        {% endifequal %}
+
+                                    </span>
+                                    <span>{{ score }}</span>
                                 </div>
                             </div>
                         </div>

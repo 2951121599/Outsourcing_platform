@@ -67,7 +67,7 @@ class Projects(models.Model):
     language = models.CharField(max_length=100, default=Other, verbose_name="开发语言")
     cycles = models.IntegerField(verbose_name="开发周期", null=True)
     # project_desc = models.TextField(max_length=300, default="项目描述", verbose_name="项目描述")
-    project_desc = RichTextUploadingField()
+    project_desc = RichTextUploadingField()  # 采用富文本
     post_datetime = models.DateTimeField(auto_now_add=True, verbose_name="发布时间")
     views = models.IntegerField(default=0, verbose_name='浏览数量')
     is_Active = models.BooleanField(default=True, verbose_name="项目状态")  # 只有两个状态 默认True代表竞标中 False代表已成功接单
@@ -154,6 +154,7 @@ class Developers(models.Model):
     person_introduce = models.TextField(max_length=500, verbose_name='个人介绍')
     work_experience = models.TextField(max_length=500, verbose_name='工作经历')
     project_works = models.TextField(max_length=500, verbose_name='开发作品')
+    score = models.CharField(max_length=50, default="", verbose_name="评分")
     created_time = models.DateTimeField(auto_now_add=True, verbose_name='创建时间')
     updated_time = models.DateTimeField(auto_now=True, verbose_name='更新时间')
 

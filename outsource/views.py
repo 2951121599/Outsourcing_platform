@@ -44,21 +44,7 @@ def projects(request):
     language = request.GET.get('language', '')
     if language:
         all_projects = all_projects.filter(language=language)
-    '''
-    # 3.按照项目预算搜索
-    budget = request.GET.get('budget', '')
-    # budget = Projects.objects.extra(select={'budget': 'budget+0'})
-    # print('*' * 100, type(budget))
-    if budget == '1000':
-        all_projects = Projects.objects.extra(select={'budget': 'budget+0'}).extra(order_by=["-budget"]).filter(
-            budget__range=(0, 1000))
-    elif budget == '5000':
-        all_projects = Projects.objects.extra(select={'budget': 'budget+0'}).extra(order_by=["-budget"]).filter(budget__range=(1000, 5000))
-    elif budget == '10000':
-        all_projects = Projects.objects.filter(budget__range=(5000, 10000))
-    else:
-        all_projects = all_projects.all()
-    '''
+
     # 查询每种项目类型的5个最新  和４个最多浏览的信息
     app_data_new = Projects.objects.get_projects_by_type(APP, limit=5, sort='new')
     desktop_data_new = Projects.objects.get_projects_by_type(DESK_APP, limit=5, sort='new')
@@ -79,7 +65,6 @@ def projects(request):
     # 右侧top10展示 按照预算的高低 存储的是字符串 先转成数字
     projects_top10 = Projects.objects.extra(select={'budget': 'budget+0'})
     projects_top10 = projects_top10.extra(order_by=["-budget"])
-    # projects_top10 = Projects.objects.order_by('budget')
 
     # 按照项目类别分类
     obj = Projects.objects.all().values("kind")
@@ -91,6 +76,28 @@ def projects(request):
     for obj in u_project_id:
         collected_list.append(obj.projects_id_id)
 
+    # 获取当前时间
+    from django.utils import timezone
+    now = timezone.now()
+    import time
+    t = int(time.time())
+    print("t------------", t)
+    # 项目发布时间
+    new_publish = []
+    for date in all_projects:
+        # 得到时间戳
+        import datetime
+        import time
+        # 先把date转变为字符串,然后转换为datetime格式
+        this_date = datetime.datetime.strptime(str(date.post_datetime), '%Y-%m-%d %H:%M:%S.%f')
+        # 把datetime转变为时间戳
+        this_date = time.mktime(this_date.timetuple())
+        this_date = int(t - this_date)
+        days_5 = int(432000)
+        # 5天的时间戳为 432000
+        if this_date < days_5:
+            new_publish.append(date)
+    print("new_publish------------", new_publish)
     return render(request, 'outsource/projects.html', locals())
 
 
@@ -155,7 +162,13 @@ def developers_detail(request, developers_id):
         confirm_count = len(Confirm.objects.filter(developer_id=developers_id))
         # 信誉积分
         credit_score = confirm_count * 10
-
+        # 评分
+        score = Developers.objects.get(id=developers_id).score
+        if score == "":
+            score = 0
+        print("score------------", type(int(float(score))))
+        score_int = int(float(score))
+        print("score_int------------", score_int)
         # 后端得到多个queryset怎么给前端(困难点)
         all_projects = Projects.objects.none()
         projects_list = []
