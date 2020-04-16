@@ -41,18 +41,22 @@
                 <div class="col-md-9 col-lg-9 list">
                     <ul class="list-unstyled">
                         {% for page_ in page_obj %}
-                            {# 新发布的图片 #}
-                            {% for _ in new_publish %}
-                                <i class="icon_new"></i>
-                            {% endfor %}
+
                             <li>
+                                {# 5天之内发布的添加new样式 #}
+                                {% for i in new_publish %}
+                                    {% ifequal page_.id i.id %}
+                                        <i class="icon_new"></i>
+                                    {% endifequal %}
+                                {% endfor %}
                                 <div class="left_2" style="padding-top: 30px;display: block;color: red;text-align: center;height: 56px;
     line-height: 56px;font-size: larger;">
                                     {{ page_.kind }}
                                 </div>
                                 <div class="left_8">
                                     <h4>
-                                        <a style="color: #333;" href="/projects/detail/{{ page_.id }}" target="_blank">
+                                        <a style="color: #333;" href="/projects/detail/{{ page_.id }}"
+                                           target="_blank">
                                             {{ page_.project_name }} </a>
                                     </h4>
                                     <span>预算 <em class="green">{{ page_.budget }}元</em></span>
@@ -138,6 +142,7 @@
                                     {% endif %}
                                 </div>
                             </li>
+
                         {% endfor %}
                     </ul>
                     <div style="padding: 25px 0">
