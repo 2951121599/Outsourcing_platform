@@ -6,12 +6,11 @@ from django.conf.urls.static import static
 
 app_name = "outsource"
 urlpatterns = [
+    # 主页
     # http://127.0.0.1:8000/
     url(r'^$', views.index, name='index'),
     # http://127.0.0.1:8000/index/
     url(r'^index$', views.index),
-    # # http://127.0.0.1:8000/news/detail/projects_id  新闻详情页
-    # url(r'^news/detail/(\d+)$', views.news_detail),
 
     # 图片上传
     url(r'^media/(?P<path>.*)$', serve, {'media_root': settings.MEDIA_ROOT}),

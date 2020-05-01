@@ -29,6 +29,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'simpleui',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -151,3 +152,8 @@ CKEDITOR_CONFIGS = {
         'width': 1000,  # 编辑器宽
     },
 }
+
+# 设置simpleUI为离线模式
+SIMPLEUI_STATIC_OFFLINE = True
+# 隐藏项目链接
+SIMPLEUI_HOME_INFO = False

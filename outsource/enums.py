@@ -28,6 +28,7 @@ GO = 6
 Perl = 7
 Lua = 8
 Other = 9
+JavaScript = 10
 
 DEVELOP_LANGUAGE = {
     Python: "Python",
@@ -39,4 +40,5 @@ DEVELOP_LANGUAGE = {
     Perl: "Perl",
     Lua: "Lua",
     Other: "Other",
+    JavaScript: "JavaScript",
 }

@@ -5,6 +5,14 @@
     众包网站 | 技术圈
 {% endblock %}
 
+{% block css %}
+    <style>
+        #nav a {
+            font-size: 16px;
+        }
+    </style>
+{% endblock %}
+
 {% block content %}
     <div class="layui-container">
         <div class="layui-row layui-col-space15">
@@ -16,7 +24,7 @@
                     <ul class="fly-list">
                         <li>
                             <a class="fly-avatar">
-                                <img src="https://ftp.bmp.ovh/imgs/2020/02/17b3122d1d013a56.jpg"
+                                <img src="http://ww1.sinaimg.cn/large/006zzYLzly1ge864a5nxgj30dw0dwglq.jpg"
                                      alt="默认用户头像">
                             </a>
                             <h2>
@@ -47,7 +55,7 @@
                         {% for question in questions %}
                             <li>
                                 <a href="/circle/user/home/{{ question.user_id }}" class="fly-avatar">
-                                    <img src="https://ftp.bmp.ovh/imgs/2020/02/17b3122d1d013a56.jpg"
+                                    <img src="http://ww1.sinaimg.cn/large/006zzYLzly1ge864a5nxgj30dw0dwglq.jpg"
                                          alt="默认用户头像">
                                 </a>
                                 <h2>
