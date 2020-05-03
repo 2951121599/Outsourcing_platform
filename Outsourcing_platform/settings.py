@@ -157,3 +157,8 @@ CKEDITOR_CONFIGS = {
 SIMPLEUI_STATIC_OFFLINE = True
 # 隐藏项目链接
 SIMPLEUI_HOME_INFO = False
+# 更改模块图标
+SIMPLEUI_ICON = {
+    '技术圈': 'far fa-comments',  # name: 模块名字，请注意不是model的命名，而是菜单栏上显示的文本   icon: 图标
+    '项目分享': 'fas fa-user-tie'
+}

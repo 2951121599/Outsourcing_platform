@@ -150,7 +150,7 @@ class Developers(models.Model):
     work_status = models.CharField(max_length=50, verbose_name='工作状态')
     work_direction = models.CharField(max_length=50, verbose_name='职业方向')
     language_direction = models.CharField(max_length=50, verbose_name='语言方向')
-    sex = models.CharField(max_length=50, verbose_name='工作状态')
+    sex = models.CharField(max_length=50, verbose_name='性别')
     person_introduce = models.TextField(max_length=500, verbose_name='个人介绍')
     work_experience = models.TextField(max_length=500, verbose_name='工作经历')
     project_works = models.TextField(max_length=500, verbose_name='开发作品')

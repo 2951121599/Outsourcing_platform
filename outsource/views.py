@@ -261,11 +261,20 @@ def reg_dev(request):
         return redirect('outsource:projects')
 
 
-# 返回成功的JsonResponse
-def SuccessResponse(code):
+# 返回成功的JsonResponse(不带消息)
+def SuccessCodeResponse(code):
     data = {}
     data['status'] = 'SUCCESS'
     data['code'] = code
+    return JsonResponse(data)
+
+
+# 返回成功的JsonResponse(带消息)
+def SuccessResponse(code, message):
+    data = {}
+    data['status'] = 'SUCCESS'
+    data['code'] = code
+    data['message'] = message
     return JsonResponse(data)
 
 
@@ -292,10 +301,6 @@ def collection(request):
     projects_id = request.GET.get('projects_id')
     user = request.GET.get('user')
     print(projects_id)
-
-    # print('is_collect***********', is_collect)  # true
-    # print('projects_id***********', projects_id)  # 1
-    # print('user***********', user)  # 1
     # 处理数据
     if is_collect == 'True':
         # 要收藏
@@ -303,20 +308,12 @@ def collection(request):
         if created:
             # 未收藏过 进行收藏
             Collection.objects.get(projects_id_id=projects_id, user_id=user)
-            return SuccessResponse(200)
+            return SuccessResponse(200, '收藏成功')
         else:
-            # 已收藏过 不能重复收藏
-            return ErrorResponse(402, '已收藏过 不能重复收藏')
-    else:
-        # 要取消收藏
-        if Collection.objects.filter(projects_id_id=projects_id, user_id=user).exists():
             # 有收藏过 取消收藏
             collection = Collection.objects.get(projects_id_id=projects_id, user_id=user)
             collection.delete()
-            return SuccessResponse(201)
-        else:
-            # 没有收藏过 不能取消
-            return ErrorResponse(403, '没有收藏过 不能取消')
+            return SuccessResponse(201, '取消收藏成功')
 
 
 # 竞标

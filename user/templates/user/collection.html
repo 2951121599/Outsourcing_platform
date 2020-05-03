@@ -87,49 +87,82 @@
                                 </thead>
                                 <tbody>
                                 {% for projects in project_list %}
-                                {% if projects %}
-                                    {% for project in projects %}
+                                    {% if projects %}
+                                        {% for project in projects %}
+                                            <tr class="text-center">
+                                                <td colspan="4"
+                                                    class="col-sm-4 col-md-4 text-left collection-project-name">
+                                                    <a href="/projects/detail/{{ project.id }}">
+                                                        {{ project.project_name }}
+                                                    </a>
+                                                </td>
+                                                <td colspan="2" class="col-sm-2 col-md-2 collection-project-category">
+                                                    {{ project.kind }}
+                                                </td>
+                                                <td colspan="2" class="col-sm-2 col-md-2">
+                                                    {{ project.post_datetime }}
+                                                </td>
+                                                <td colspan="2" class="col-sm-2 col-md-2 collection-project-status">
+                                                    竞标中
+                                                </td>
+                                                <td colspan="2" class="col-sm-2 col-md-2">{{ project.language }}</td>
+                                                <td colspan="2" class="col-sm-2 col-md-2">
+                                                    <a href="javascript:void(0);"
+                                                       class="btn btn-success btn-sm collectionToggle"
+                                                       id="88230" datatype="project"
+                                                       onclick="collection(this,{{ project.id }},{{ request.session.passport_id }})"
+                                                    >取消收藏
+                                                    </a>
+                                                    <script>
+                                                        function collection(obj, projects_id, user) {
+                                                            var is_collect = "True";
+                                                            $.ajax(
+                                                                {
+                                                                    url: "{% url 'outsource:collection' %}",
+                                                                    type: 'GET',
+                                                                    data: {
+                                                                        is_collect: is_collect,
+                                                                        projects_id: projects_id,
+                                                                        user: user
+                                                                    },
+                                                                    contentType: "application/json",
+                                                                    cache: false,
+                                                                    success: function (data) {
+                                                                        alert(data.message);
+                                                                        window.location.reload()
+                                                                    },
+                                                                    error: function (xhr) {
+                                                                        alert(xhr.responseText);
+                                                                        window.location.reload()
+                                                                    }
+                                                                }
+                                                            );
+                                                        }
+                                                    </script>
+                                                </td>
+                                            </tr>
+                                        {% endfor %}
+                                    {% else %}
                                         <tr class="text-center">
-                                            <td colspan="4" class="col-sm-4 col-md-4 text-left collection-project-name">
-                                                <a href="/projects/detail/{{ project.id }}">
-                                                    {{ project.project_name }}
-                                                </a>
-                                            </td>
-                                            <td colspan="2" class="col-sm-2 col-md-2 collection-project-category">
-                                                {{ project.kind }}
-                                            </td>
-                                            <td colspan="2" class="col-sm-2 col-md-2">
-                                                {{ project.post_datetime }}
-                                            </td>
-                                            <td colspan="2" class="col-sm-2 col-md-2 collection-project-status">
-                                                竞标中
-                                            </td>
-                                            <td colspan="2" class="col-sm-2 col-md-2">{{ project.language }}</td>
-                                            <td colspan="2" class="col-sm-2 col-md-2">
-                                            </td>
-                                        </tr>
-                                    {% endfor %}
-                                {% else %}
-                                    <tr class="text-center">
-                                    <td colspan="4" class="col-sm-4 col-md-4 text-left collection-project-name">
-                                        <a href="">
+                                        <td colspan="4" class="col-sm-4 col-md-4 text-left collection-project-name">
+                                            <a href="">
+                                                无
+                                            </a>
+                                        </td>
+                                        <td colspan="2" class="col-sm-2 col-md-2 collection-project-category">
                                             无
-                                        </a>
-                                    </td>
-                                    <td colspan="2" class="col-sm-2 col-md-2 collection-project-category">
-                                        无
-                                    </td>
-                                    <td colspan="2" class="col-sm-2 col-md-2">
-                                        无
-                                    </td>
-                                    <td colspan="2" class="col-sm-2 col-md-2 collection-project-status">
-                                        ...
-                                    </td>
-                                    <td colspan="2" class="col-sm-2 col-md-2">...</td>
-                                    <td colspan="2" class="col-sm-2 col-md-2">
-                                    <p class="btn btn-success btn-sm collectionToggle"
-                                       id="88230" datatype="project">...</p>
-                                {% endif %}
+                                        </td>
+                                        <td colspan="2" class="col-sm-2 col-md-2">
+                                            无
+                                        </td>
+                                        <td colspan="2" class="col-sm-2 col-md-2 collection-project-status">
+                                            ...
+                                        </td>
+                                        <td colspan="2" class="col-sm-2 col-md-2">...</td>
+                                        <td colspan="2" class="col-sm-2 col-md-2">
+                                        <p class="btn btn-success btn-sm collectionToggle"
+                                           id="88230" datatype="project">...</p>
+                                    {% endif %}
                                 {% endfor %}
 
                                 </tbody>

@@ -92,7 +92,7 @@
                                                             cache: false,
                                                             success: function (data) {
                                                                 console.log(data);
-                                                                alert("收藏成功");
+                                                                alert(data.message);
                                                                 window.location.reload()
                                                             },
                                                             error: function (xhr) {
@@ -127,6 +127,7 @@
                                                             cache: false,
                                                             success: function (data) {
                                                                 console.log(data);
+                                                                alert(data.message);
                                                                 window.location.reload()
                                                             },
                                                             error: function (xhr) {
