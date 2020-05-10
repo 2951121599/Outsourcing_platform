@@ -3,6 +3,7 @@ from django.http import HttpResponse, StreamingHttpResponse, JsonResponse
 from django.shortcuts import render, redirect
 from outsource.models import *
 from functions.decorators import login_required
+from functions import send_email
 from django.urls import reverse
 from itertools import chain
 import os
@@ -155,6 +156,7 @@ def developers(request):
 # 开发者详情页
 def developers_detail(request, developers_id):
     developers_id = int(developers_id)
+    print("developers_id------------", developers_id)
     try:
         # 获取开发者信息
         developer = Developers.objects.get(id=developers_id)
@@ -325,18 +327,18 @@ def jingbiao(request):
     print('project_id', project_id, 'user_id', user_id, 'pub_id', pub_id)
     # 如果是发包方 不能进行竞标
     if int(pub_id) == int(user_id):
-        return ErrorResponse(202, '您是发包方 不能进行竞标!!!')
+        return ErrorResponse(202, '您是发包方，不能进行竞标！')
     else:
         # 先去Jingbiao表中查询  有了就是再次竞标  没有就添加到竞标表中
         jingbiao = Jingbiao.objects.filter(project_id=project_id, user_id=user_id)
         print('jingbiao:', jingbiao)
         if jingbiao:
             # 再次点击竞标    提示不能重复竞标
-            return ErrorResponse(201, '不能重复竞标!!!')
+            return ErrorResponse(201, '不能重复竞标！')
         else:
-            # 首次竞标  添加到竞标表中
+            # 首次竞标  添加到竞标表中  (改：最好存为开发者id 方便确认开发者时直接跳转到开发者详情页)
             Jingbiao.objects.create(project_id=project_id, user_id=user_id)
-            return SuccessResponse(200)
+            return SuccessResponse(200, '您已成功竞标该项目，请等待发布人员进行选择！')
 
 
 # 中标
@@ -377,6 +379,9 @@ def confirm(request):
             # 修改项目状态
             project = Projects.objects.get(id=project_id)
             project.is_Active = False
+            project_name = project.project_name
+            # 发送邮件
+            send_email.send_mail_remind(project_name)
             project.save()
             # return HttpResponse("开发者选择完毕, 请支付定金后启动项目!!! ")
             return render(request, 'outsource/choose_developer.html', locals())

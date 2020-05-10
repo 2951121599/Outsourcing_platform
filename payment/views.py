@@ -9,6 +9,7 @@ from django.shortcuts import render
 # Create your views here.
 from django.views import View
 from django.conf import settings
+from django.views.decorators.csrf import csrf_exempt
 
 app_private_key_string = open(settings.ALIPAY_KEY_DIRS + 'app_private_key.pem').read()
 alipay_public_key_string = open(settings.ALIPAY_KEY_DIRS + 'alipay_publick_key.pem').read()
@@ -16,12 +17,11 @@ alipay_public_key_string = open(settings.ALIPAY_KEY_DIRS + 'alipay_publick_key.p
 ORDER_STATUS = 1  # 1 待付款 2 已付款
 
 
-class JumpView(View):
-    def get(self, request):
-        # 生成支付页面
+@csrf_exempt
+def JumpView(request):
+    if request.method == 'GET':
         return render(request, 'payment/pay.html')
-
-    def post(self, request):
+    elif request.method == 'POST':
         # 获取支付宝支付链接
         data = request.body
         json_obj = json.loads(data)
@@ -57,9 +57,8 @@ class JumpView(View):
         return JsonResponse({'code': 200, 'pay_url': pay_url})
 
 
-class ResultView(View):
-
-    def get_verify(self, request_data):
+def ResultView(request):
+    def get_verify(request_data):
         # 深拷贝 字典类参数
         data = copy.deepcopy(request_data)
         sign = data.pop('sign')
@@ -79,11 +78,10 @@ class ResultView(View):
         print('is_verify:*********************', is_verify)
         return data, is_verify, alipay
 
-    def get(self, request):
-        # return url 会请求此方法
+    if request.method == 'GET':
         request_data = {k: request.GET[k] for k in request.GET.keys()}
         print('request_data:', request_data)
-        data, is_verify, alipay = self.get_verify(request_data)
+        data, is_verify, alipay = get_verify(request_data)
         print('data:', data)
         print('is_verify:', is_verify)
         print('alipay:', alipay)
@@ -110,11 +108,10 @@ class ResultView(View):
         else:
             # 违法访问
             return HttpResponse('!!!!')
-
-    def post(self, request):
+    elif request.method == 'POST':
         # notify url  会请求此方法 支付结束后，支付宝第一时间 请求 notify url 并将 具体支付结果用表单形式提交
         request_data = {k: request.POST[k] for k in request.POST.keys()}
-        data, verify, alipay = self.get_verify(request_data)
+        data, verify, alipay = get_verify(request_data)
         if verify is True:
             # 验签成功 数据来源可靠【支付宝】
             # notify url 会比 return url多出 trade_status参数，此参数标明订单支付最终结果

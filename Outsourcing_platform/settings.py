@@ -162,3 +162,11 @@ SIMPLEUI_ICON = {
     '技术圈': 'far fa-comments',  # name: 模块名字，请注意不是model的命名，而是菜单栏上显示的文本   icon: 图标
     '项目分享': 'fas fa-user-tie'
 }
+
+# 发送邮件设置
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'  # 固定写法
+EMAIL_HOST = 'smtp.qq.com'  # 腾讯QQ邮箱 SMTP 服务器地址  'smtp.163.com'
+EMAIL_PORT = 25  # SMTP服务的端口号
+EMAIL_HOST_USER = '2951121599@qq.com'  # 发送邮件的QQ邮箱
+EMAIL_HOST_PASSWORD = 'zxnulqzuaafddebf'  # 在QQ邮箱->设置->帐户->“POP3/IMAP......服务” 里得到的在第三方登录QQ邮箱授权码
+EMAIL_USE_TLS = True  # 与SMTP服务器通信时，是否启动TLS链接(安全链接)默认false  加密True

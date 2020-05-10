@@ -26,7 +26,7 @@ def register_handle(request):
     # 校正数据
     # 数据有空
     if not all([username, password, email]):
-        return render(request, 'user/register.html', {'errmsg': '参数不能为空'})
+        return render(request, 'user/register.html', {'errmsg': '数据不能为空'})
     # 判断邮箱是否合法
     if not re.match(r'^[a-z0-9][\w\.\-]*@[a-z0-9\-]+(\.[a-z]{2,5}){1,2}$', email):
         return render(request, 'user/register.html', {'errmsg': '邮箱不正确'})

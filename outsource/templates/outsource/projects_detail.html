@@ -122,7 +122,8 @@
                             <div class="owner">
                                 <div class="col-sm-12">
                                     <p class="msg">
-                                        发包方<a target="_blank" href="{% url 'outsource:publisher_detail' project.user_id %}"><span
+                                        发包方<a target="_blank"
+                                              href="{% url 'outsource:publisher_detail' project.user_id %}"><span
                                             class="green">{{ project.user.username }}</span></a>
                                         <span>
                                             {{ project.post_datetime }}
@@ -219,7 +220,7 @@
                                                             },
                                                             success: function (data) {
                                                                 if (data.code === 200) {
-                                                                    alert('您已成功竞标该项目,请等待发布人员进行选择!');
+                                                                    alert(data.message);
                                                                     window.location.reload();
                                                                 } else if (data.code === 202) {
                                                                     alert(data.message)

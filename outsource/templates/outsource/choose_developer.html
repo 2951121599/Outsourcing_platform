@@ -192,7 +192,7 @@
                                             </p>
                                             {% for jingbiao_user in jingbiao_users %}
                                                 <a href="{% url 'outsource:developers_detail' jingbiao_user.id %}"
-                                                   target="_blank">开发者编号: {{ jingbiao_user.id }}, {{ jingbiao_user.user }}</a>
+                                                   target="_blank">开发者编号: {{ jingbiao_user.id }}, {{ jingbiao_user.user.name }}</a>
                                                 <br>
                                             {% endfor %}
                                         </div>
@@ -255,7 +255,7 @@
 
                                             <script>
                                                 //测试期间 支付过后的订单号不可重复使用
-                                                var order_id = '201912091234888';
+                                                var order_id = {{ project_id }};
                                                 //var order_id = '项目编号' + {{ project.id }};
                                                 post_data = {"order_id": order_id};
 
