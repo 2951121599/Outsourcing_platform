@@ -119,6 +119,13 @@ def projects_detail(request, projects_id):
     project_kind = project.kind
     recommend_projects = Projects.objects.filter(kind=project_kind).exclude(id=projects_id)[:2]
     user = request.session.get("passport_id")
+    # 当前用户为发包方
+    project_user_id = project.user_id
+    print("project_user_id------------", project_user_id)
+    passport_id = request.session.get("passport_id")
+    print("passport_id------------", passport_id)
+    if project_user_id == passport_id:
+        return redirect('outsource:zhongbiao', projects_id)
     try:
         # 当前用户为开发者
         is_developer = Developers.objects.get(user_id=user)
@@ -126,7 +133,6 @@ def projects_detail(request, projects_id):
     except Exception as e:
         # 当前用户不是开发者
         user = None
-    print('locals:---------', locals())
     return render(request, 'outsource/projects_detail.html', locals())
 
 
@@ -367,6 +373,9 @@ def zhongbiao(request, project_id):
         # 竞标人选
         jingbiao_users = Jingbiao.objects.filter(project_id=project_id)
         jingbiao_count = len(Jingbiao.objects.filter(project_id=project_id))
+        # 开发者编号
+        dev_id = Developers.objects.get(user_id=passport_id).id
+        print("dev_id------------", dev_id)
     except Exception as e:
         print(e)
     return render(request, 'outsource/choose_developer.html', locals())
