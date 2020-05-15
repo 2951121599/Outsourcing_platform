@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load staticfiles %}
 {% block title %}
-    开发者
+    开发者搜索结果页
 {% endblock %}
 
 {% block css %}
@@ -37,35 +37,28 @@
     <div id="banners"></div>
     <div class="container">
         <div style="padding-bottom: 50px">
-            <form action="{% url 'outsource:developers_search' %}">
-                <span>开发者搜索：</span>
-                <input type="text" name="search_word" placeholder="请输入要搜索的开发者"
-                       style="width: 200px;height: 30px;">
-                <input type="submit" value="搜索" style="width: 50px;height: 30px;line-height: 21px">
-            </form>
+            <h3>开发者搜索结果：</h3>
         </div>
         <div class="row">
-            {% for developer in developers %}
-                <div class="col-md-12">
-                    <div class="blockquote-box animated wow fadeInLeft clearfix">
-                        <div class="square pull-left">
-                            <img src="{% static 'assets/img/team/member1.png' %}" alt="Feature-img" height="80"
-                                 width="80">
-                        </div>
-                        <h4>
-                            <a href="{% url 'outsource:developers_detail' developer.id %}">{{ developer.name }}</a>
-                        </h4>
-                        <p>
-                            <span class="green">个人介绍: </span>
-                            {{ developer.person_introduce }}
-                        </p>
-                        <p>
-                            <span class="green">语言方向: </span>
-                            <span>{{ developer.language_direction }}</span>
-                        </p>
+            <div class="col-md-12">
+                <div class="blockquote-box animated wow fadeInLeft clearfix">
+                    <div class="square pull-left">
+                        <img src="{% static 'assets/img/team/member1.png' %}" alt="Feature-img" height="80"
+                             width="80">
                     </div>
+                    <h4>
+                        <a href="{% url 'outsource:developers_detail' search_developer.id %}">{{ search_developer.name }}</a>
+                    </h4>
+                    <p>
+                        <span class="green">个人介绍: </span>
+                        {{ search_developer.person_introduce }}
+                    </p>
+                    <p>
+                        <span class="green">语言方向: </span>
+                        <span>{{ search_developer.language_direction }}</span>
+                    </p>
                 </div>
-            {% endfor %}
+            </div>
         </div>
     </div>
     <!--End Main Container -->

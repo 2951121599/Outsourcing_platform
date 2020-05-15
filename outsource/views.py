@@ -153,6 +153,22 @@ def developers(request):
         return render(request, 'outsource/developers.html', locals())
 
 
+# 开发者搜索
+def developers_search(request):
+    search_word = request.GET.get('search_word', '')
+    try:
+        # 部分匹配
+        search_developer = Developers.objects.filter(name__icontains=search_word)
+        # 获得搜索的类型
+        search_name = search_developer[0].name
+        search_developer = search_developer[0]
+        print('search_name------------', search_name)
+    except Exception as e:
+        print(e)
+        return HttpResponse('没有搜索到符合的结果! ')
+    return render(request, 'outsource/search.html', locals())
+
+
 # 开发者详情页
 def developers_detail(request, developers_id):
     developers_id = int(developers_id)

@@ -31,6 +31,10 @@ urlpatterns = [
     # http://127.0.0.1:8000/developers
     url(r'^developers$', views.developers, name='developers'),
 
+    # 开发者搜索页
+    # http://127.0.0.1:8000/search
+    url(r'^search$', views.developers_search, name='developers_search'),
+
     # 开发者详情页
     # http://127.0.0.1:8000/developers/detail/developers_id
     url(r'^developers/detail/(\d+)$', views.developers_detail, name='developers_detail'),

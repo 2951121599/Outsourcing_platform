@@ -6,6 +6,7 @@ from django.urls import reverse
 
 from circle.models import Questions, Comments
 from functions.decorators import login_required
+from functions.keywords_filter import DFAFilter
 
 # Create your views here.
 from user.models import User
@@ -27,6 +28,11 @@ def add(request):
         title = request.POST.get('title')
         content = request.POST.get('content')
         passport_id = request.session.get('passport_id')
+        # 关键词过滤
+        gfw = DFAFilter()
+        path = "./keywords.txt"
+        gfw.parse(path)
+        content = gfw.filter(content)
         # 存储到数据库
         Questions.objects.create(title=title, content=content, user_id=passport_id)
         return redirect('circle:index')
@@ -105,6 +111,11 @@ def reply(request):
     question_id = int(request.POST.get('question_id'))
     comment = request.POST.get('comment', '')
     passport_id = request.session.get('passport_id')
+    # 关键词过滤
+    gfw = DFAFilter()
+    path = "./keywords.txt"
+    gfw.parse(path)
+    comment = gfw.filter(comment)
     # 存储到数据库
     Comments.objects.create(comment=comment, question_id=question_id, user_id=passport_id)
     return redirect(referer)
